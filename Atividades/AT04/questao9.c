@@ -263,12 +263,107 @@ int validarCPF(cliente valores) {
 	}
 }
 
-// Em construção
 int validarData(cliente valores) {
 
-	if(strlen(valores.dataNascimento) - 1 == 6 || strlen(valores.dataNascimento) -1 == 8) {
-		return 1;
-	} else {
-		return -1;
+	long int data = atoi(valores.dataNascimento);
+
+	if(strlen(valores.dataNascimento) - 1 == 6) {
+		int digito1 = 0;
+		int digito2 = 0;
+		int digito3 = 0;
+		int digito4 = 0;
+		int digito5 = 0;
+		int digito6 = 0;
+		digito1 = data / 100000;
+		digito1 = digito1 % 10;
+		digito2 = data / 10000;
+		digito2 = digito2 % 10;
+		digito3 = data / 1000;
+		digito3 = digito3 % 10;
+		digito4 = data / 100;
+		digito4 = digito4 % 10;
+		digito5 = data / 10;
+		digito5 = digito5 % 10;
+		digito6 = data % 10;
+
+		// Dividindo os números em três partes (Dias, Meses, Anos);
+		
+		// Dias
+		int digito1Dia = digito1 * 10;
+		int digito2Dia = digito2;
+		int digitosDias = digito1Dia + digito2Dia;
+		if(digitosDias <= 0 || digitosDias > 31) {
+			return -1;
+		} else {
+			// Meses
+			int digito1Mes = digito3 * 10;
+			int digito2Mes = digito4;
+			int digitosMes = digito1Mes + digito2Mes;
+			if(digitosMes <= 0 || digitosMes > 12) {
+				return -1;
+			} else {
+				int digito1Ano = digito5 * 10;
+				int digito2Ano = digito6;
+				int digitosAno = digito1Ano + digito2Ano;
+				if(digitosAno < 0 || digitosAno > 21) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		}
+	} else if(strlen(valores.dataNascimento) -1 == 8) {
+		int digito1 = 0;
+		int digito2 = 0;
+		int digito3 = 0;
+		int digito4 = 0;
+		int digito5 = 0;
+		int digito6 = 0;
+		int digito7 = 0;
+		int digito8 = 0;
+		digito1 = data / 10000000;
+		digito1 = digito1 % 10;
+		digito2 = data / 1000000;
+		digito2 = digito2 % 10;
+		digito3 = data / 100000;
+		digito3 = digito3 % 10;
+		digito4 = data / 10000;
+		digito4 = digito4 % 10;
+		digito5 = data / 1000;
+		digito5 = digito5 % 10;
+		digito6 = data / 100;
+		digito6 = digito6 % 10;
+		digito7 = data / 10;
+		digito7 = digito7 % 10;
+		digito8 = data % 10;		
+
+		// Dias
+		int digito1Dia = digito1 * 10;
+		int digito2Dia = digito2;
+		int digitosDia = digito1Dia + digito2Dia;
+		if(digitosDia <= 0 || digitosDia > 31) {
+			return -1;
+		} else {
+			// Meses
+			int digito1Mes = digito3 * 10;
+			int digito2Mes = digito4;
+			int digitosMes = digito1Mes + digito2Mes;
+			if(digitosMes <= 0 || digitosMes > 12) {
+				return -1;
+			} else {
+				// Anos
+				int digito1Ano = digito5 * 1000;
+				int digito2Ano = digito6 * 100;
+				int digito3Ano = digito7 * 10;
+				int digito4Ano = digito8;
+				int digitosAno = digito1Ano + digito2Ano + digito3Ano + digito4Ano;
+				if(digitosAno <= 0 || digitosAno > 2021) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		}
+
 	}
 }
