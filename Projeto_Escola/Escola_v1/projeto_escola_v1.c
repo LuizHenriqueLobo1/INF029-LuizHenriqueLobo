@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-// Começando o projeto...
+#include <string.h>
 
 typedef struct {
 	int dia;
@@ -18,11 +17,14 @@ typedef struct {
 
 int cadastrarAlunos(int qtdAlunos, aluno estudante[]);
 void mostrarAlunos(int qtdAlunos, aluno estudante[]);
+int validarNome(char nome[]);
+int validarSexo(char sexo);
 
 int main() {
 
 	aluno estud[10];
 	int quantidadeAlunos = 0;
+	int validador = 0;
 	int flag = 1;
 	int option = 0;
 
@@ -49,9 +51,12 @@ int main() {
 				int retornoCadastroAluno = 0;
 				retornoCadastroAluno = cadastrarAlunos(quantidadeAlunos, estud);
 				if(retornoCadastroAluno == 1) {
-				quantidadeAlunos++;
-				printf("\nALUNO CADASTRADO COM SUCESSO!\n");
+					quantidadeAlunos++;
+					printf("\nALUNO CADASTRADO COM SUCESSO!\n");
+				} else {
+					printf("\nFALHA AO CADASTRAR ALUNO!\n");
 				}
+	
 				break;
 			}
 
@@ -79,13 +84,29 @@ int cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 	fgets(estudante[qtdAlunos].matricula, 50, stdin);
 	setbuf(stdin, NULL);
 
-	printf("\nDigite o nome do aluno: ");
+	printf("\nDigite o nome do aluno (Ate 20 caracteres): ");
 	fgets(estudante[qtdAlunos].nome, 50, stdin);
 	setbuf(stdin, NULL);
-
-	printf("\nDigite o sexo do aluno: ");
+	while(1) {
+		if(validarNome(estudante[qtdAlunos].nome) != 1) {
+			printf("\nNOME INVALIDO! Digite novamente...\n");
+			fgets(estudante[qtdAlunos].nome, 50, stdin);
+		} else {
+			break;
+		}
+	}
+	
+	printf("\nDigite o sexo do aluno (M, F ou O): ");
 	scanf("%c", &estudante[qtdAlunos].sexo);
 	setbuf(stdin, NULL);
+	while(1) {
+		if(validarSexo(estudante[qtdAlunos].sexo) != 1) {
+			printf("\nSEXO INVALIDO! Digite novamente...\n");
+			scanf("%c", &estudante[qtdAlunos].sexo);
+		} else {
+			break;
+		}
+	}
 
 	printf("\nDigite a data de nascimento do aluno:\nDia: ");
 	scanf("%d", &estudante[qtdAlunos].nascimento.dia);
@@ -123,5 +144,22 @@ void mostrarAlunos(int qtdAlunos, aluno estudante[]) {
 		printf("\nCPF: %s", estudante[i].cpf);
 		printf("-----------------------------\n");
 		}
+	}
+}
+
+int validarNome(char nome[]) {
+	if(strlen(nome) - 1 > 20 || strlen(nome) - 1 <= 0) {
+		return -1;
+	} else {
+		return 1;
+	}
+}
+
+int validarSexo(char sexo) {
+	if(sexo == 'M' || sexo == 'F' || sexo == 'O' ||
+		sexo == 'm' || sexo == 'f' || sexo == 'o') {
+		return 1;
+	} else {
+		return -1;
 	}
 }
