@@ -17,6 +17,7 @@ int validarNome(char nome[]);
 int validarSexo(char sexo);
 int validarCPF(char cpf[]);
 int validarData(char dataNasc[]);
+int menu(int op);
 
 int main() {
 
@@ -27,14 +28,7 @@ int main() {
 
 	while(flag == 1) {
 
-		printf("\n---------- MENU ----------\n");
-		printf("| 0 -> SAIR              |\n");
-		printf("| 1 -> CADASTRAR ALUNO   |\n");
-		printf("| 2 -> MOSTRAR ALUNOS    |");
-		printf("\n--------------------------\n");
-		printf("> ");
-		scanf("%d", &opcao);
-		setbuf(stdin, NULL);
+		opcao = menu(opcao);
 
 		switch(opcao) {
 
@@ -69,6 +63,20 @@ int main() {
 	}
 
 	return 0;
+}
+
+int menu(int op) {
+
+	printf("\n---------- MENU ----------\n");
+	printf("| 0 -> SAIR              |\n");
+	printf("| 1 -> CADASTRAR ALUNO   |\n");
+	printf("| 2 -> MOSTRAR ALUNOS    |");
+	printf("\n--------------------------\n");
+	printf("> ");
+	scanf("%d", &op);
+	setbuf(stdin, NULL);
+
+	return op;
 }
 
 int cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
