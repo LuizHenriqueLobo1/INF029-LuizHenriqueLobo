@@ -3,14 +3,16 @@
 #include <string.h>
 #include <ctype.h>
 
+#define TAM 5
+
 #include "projeto_escola_adendos.h"
 
 int main() {
 
-	aluno estud[10];
+	aluno estud[TAM];
 	int quantidadeAlunos = 0;
-	int flag = 1;
 	int opcao = 0;
+	int flag = 1;
 
 	while(flag == 1) {
 
@@ -25,16 +27,15 @@ int main() {
 			}
 
 			case 1: {
-				int retornoCadastroAluno = 0;
-				retornoCadastroAluno = cadastrarAlunos(quantidadeAlunos, estud);
-				if(retornoCadastroAluno == 1) {
+				if(quantidadeAlunos < 5) {
+					cadastrarAlunos(quantidadeAlunos, estud);
 					quantidadeAlunos++;
 					printf("\nALUNO CADASTRADO COM SUCESSO!\n");
+					break;
 				} else {
-					printf("\nFALHA AO CADASTRAR ALUNO!\n");
+					printf("\nQUANTIDADE MAXIMA DE ALUNOS ATINGIDA!\n");
+					break;
 				}
-	
-				break;
 			}
 
 			case 2: {
@@ -44,6 +45,7 @@ int main() {
 
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
+				break;
 			}
 		}
 	}
@@ -65,7 +67,7 @@ int menu(int op) {
 	return op;
 }
 
-int cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
+void cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 
 	printf("\n---------------------\n");
 	printf("| CADASTRANDO ALUNO |");
@@ -112,7 +114,6 @@ int cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 		}
 	}
 
-
 	printf("\nDigite o CPF do aluno (Somente os numeros): ");
 	fgets(estudante[qtdAlunos].cpf, 50, stdin);
 	setbuf(stdin, NULL);
@@ -124,8 +125,6 @@ int cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 			break;
 		}
 	}
-
-	return 1;
 }
 
 void mostrarAlunos(int qtdAlunos, aluno estudante[]) {
