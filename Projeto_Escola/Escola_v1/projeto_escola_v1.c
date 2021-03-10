@@ -76,6 +76,14 @@ void cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 	printf("\nDigite o numero de matricula: ");
 	fgets(estudante[qtdAlunos].matricula, 50, stdin);
 	setbuf(stdin, NULL);
+	while(1) {
+		if(validarMatricula(estudante[qtdAlunos].matricula) != 1) {
+			printf("\nMATRICULA INVALIDA! Digite novamente...\n");
+			fgets(estudante[qtdAlunos].matricula, 50, stdin);
+		} else {
+			break;
+		}
+	}
 
 	printf("\nDigite o nome do aluno (Ate 20 caracteres): ");
 	fgets(estudante[qtdAlunos].nome, 50, stdin);

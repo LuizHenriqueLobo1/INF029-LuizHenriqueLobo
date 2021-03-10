@@ -8,6 +8,7 @@ typedef struct {
 
 void cadastrarAlunos(int qtdAlunos, aluno estudante[]);
 void mostrarAlunos(int qtdAlunos, aluno estudante[]);
+int validarMatricula(char matricula[]);
 int validarNome(char nome[]);
 int validarSexo(char sexo);
 int validarCPF(char cpf[]);
