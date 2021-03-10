@@ -6,11 +6,12 @@ typedef struct {
 	char cpf[50];
 }aluno;
 
+int menu(int op);
 void cadastrarAlunos(int qtdAlunos, aluno estudante[]);
 void mostrarAlunos(int qtdAlunos, aluno estudante[]);
+void alterarCadastro(int qtdAlunos, aluno estudante[]);
 int validarMatricula(char matricula[]);
 int validarNome(char nome[]);
 int validarSexo(char sexo);
 int validarCPF(char cpf[]);
 int validarData(char dataNasc[]);
-int menu(int op);
