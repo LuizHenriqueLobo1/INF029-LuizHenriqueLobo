@@ -170,16 +170,11 @@ int validarData(char dataNasc[]) {
 		int digito4 = 0;
 		int digito5 = 0;
 		int digito6 = 0;
-		digito1 = data / 100000;
-		digito1 = digito1 % 10;
-		digito2 = data / 10000;
-		digito2 = digito2 % 10;
-		digito3 = data / 1000;
-		digito3 = digito3 % 10;
-		digito4 = data / 100;
-		digito4 = digito4 % 10;
-		digito5 = data / 10;
-		digito5 = digito5 % 10;
+		digito1 = (data / 100000) % 10;
+		digito2 = (data / 10000) % 10;
+		digito3 = (data / 1000) % 10;
+		digito4 = (data / 100) % 10;
+		digito5 = (data / 10) % 10;
 		digito6 = data % 10;
 
 		// Dividindo os números em três partes (Dias, Meses, Anos);
@@ -217,20 +212,13 @@ int validarData(char dataNasc[]) {
 		int digito6 = 0;
 		int digito7 = 0;
 		int digito8 = 0;
-		digito1 = data / 10000000;
-		digito1 = digito1 % 10;
-		digito2 = data / 1000000;
-		digito2 = digito2 % 10;
-		digito3 = data / 100000;
-		digito3 = digito3 % 10;
-		digito4 = data / 10000;
-		digito4 = digito4 % 10;
-		digito5 = data / 1000;
-		digito5 = digito5 % 10;
-		digito6 = data / 100;
-		digito6 = digito6 % 10;
-		digito7 = data / 10;
-		digito7 = digito7 % 10;
+		digito1 = (data / 10000000) % 10;
+		digito2 = (data / 1000000) % 10;
+		digito3 = (data / 100000) % 10;
+		digito4 = (data / 10000) % 10;
+		digito5 = (data / 1000) % 10;
+		digito6 = (data / 100) % 10;
+		digito7 = (data / 10) % 10;
 		digito8 = data % 10;		
 
 		// Dias
