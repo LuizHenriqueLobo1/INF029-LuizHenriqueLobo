@@ -43,6 +43,15 @@ int main() {
 				break;
 			}
 
+			case 3: {
+				if(quantidadeAlunos <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					alterarCadastro(quantidadeAlunos, estud);
+				}	
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -58,7 +67,8 @@ int menu(int op) {
 	printf("\n---------- MENU ----------\n");
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> CADASTRAR ALUNO   |\n");
-	printf("| 2 -> MOSTRAR ALUNOS    |");
+	printf("| 2 -> MOSTRAR ALUNOS    |\n");
+	printf("| 3 -> ALTERAR CADASTRO  |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -146,12 +156,147 @@ void mostrarAlunos(int qtdAlunos, aluno estudante[]) {
 	} else {
 		for(int i = 0; i < qtdAlunos; i++) {
 		printf("\n---------- ALUNO %d ----------\n", i+1);
-		printf("Numero de matricula: %s", estudante[i].matricula);
-		printf("Nome: %s", estudante[i].nome);
-		printf("Sexo: %c", estudante[i].sexo);
-		printf("\nData de nascimento: %s", estudante[i].data);
+		printf("MATRICULA: %s", estudante[i].matricula);
+		printf("NOME: %s", estudante[i].nome);
+		printf("SEXO: %c", estudante[i].sexo);
+		printf("\nDATA DE NASCIMENTO: %s", estudante[i].data);
 		printf("CPF: %s", estudante[i].cpf);
 		printf("-----------------------------\n");
 		}
 	}
+}
+
+void alterarCadastro(int qtdAlunos, aluno estudante[]) {
+
+	int op = 0;
+	int num = 0;
+	char novaMatricula[50];
+	char novoNome[50];
+	char novoSexo;
+	char novaData[50];
+	char novoCPF[50];
+
+	mostrarAlunos(qtdAlunos, estudante);
+
+	printf("\nInforme o numero do aluno para alterar o cadastro: ");
+	scanf("%d", &num);
+	setbuf(stdin, NULL);
+
+	while(1) {
+		if(num <= 0 || num > qtdAlunos) {
+			printf("\nALUNO NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
+			scanf("%d", &num);
+		} else {
+			break;
+		}
+	}
+	
+	printf("\n----------------------\n");
+	printf("| ALTERANDO CADASTRO |\n");
+	printf("| ALUNO %d            |", num);
+	printf("\n--------------------------\n");
+	printf("| 0 -> SAIR              |\n");
+	printf("| 1 -> ALTERAR MATRICULA |\n");
+	printf("| 2 -> ALTERAR NOME      |\n");
+	printf("| 3 -> ALTERAR SEXO      |\n");
+	printf("| 4 -> ALTERAR DATA      |\n");
+	printf("| 5 -> ALTERAR CPF       |");
+	printf("\n--------------------------\n");
+	printf("> ");
+	scanf("%d", &op);
+	getchar();
+
+	switch(op) {
+
+		case 0: {
+			printf("\nVOLTANDO AO MENU PRINCIPAL!\n");
+			break;
+		}
+
+		case 1: {
+			printf("\nDigite a nova matricula: ");
+			fgets(novaMatricula, 50, stdin);
+			while(1) {
+				if(validarMatricula(estudante[num-1].matricula) != 1) {
+					printf("\nMATRICULA INVALIDA! Tente novamente...\n");
+					fgets(novaMatricula, 50, stdin);
+				} else {
+					strcpy(estudante[num-1].matricula, novaMatricula);
+					printf("\nMATRICULA ALTERADA COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+
+		case 2: {
+			printf("\nDigite o novo nome: ");
+			fgets(novoNome, 50, stdin);
+			while(1) {
+				if(validarNome(estudante[num-1].nome) != 1) {
+					printf("\nNOME INVALIDO! Tente novamente...\n");
+					fgets(novoNome, 50, stdin);
+				} else {
+					strcpy(estudante[num-1].nome, novoNome);
+					printf("\nNOME ALTERADO COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+
+		case 3: {
+			printf("\nDigite o novo sexo: ");
+			scanf("%c", &novoSexo);
+			while(1) {
+				if(validarSexo(estudante[num-1].sexo) != 1) {
+					printf("\nSEXO INVALIDO! Tente novamente...\n");
+					scanf("%c", &novoSexo);
+				} else {
+					estudante[num-1].sexo = novoSexo;
+					printf("\nSEXO ALTERADO COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+
+		case 4: {
+			printf("\nDigite a nova data de nascimento: ");
+			fgets(novaData, 50, stdin);
+			while(1) {
+				if(validarData(estudante[num-1].data) != 1) {
+					printf("\nDATA DE NASCIMENTO INVALIDA! Tente novamente...\n");
+					fgets(novaData, 50, stdin);
+				} else {
+					strcpy(estudante[num-1].data, novaData);
+					printf("\nDATA DE NASCIMENTO ALTERADA COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+
+		case 5: {
+			printf("\nDigite o novo CPF: ");
+			fgets(novoCPF, 50, stdin);
+			while(1) {
+				if(validarCPF(estudante[num-1].cpf) != 1) {
+					printf("\nCPF INVALIDO! Tente novamente...\n");
+					fgets(novaData, 50, stdin);
+				} else {
+					strcpy(estudante[num-1].cpf, novoCPF);
+					printf("\nCPF ALTERADO COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+
+		default: {
+			printf("\nVOLTANDO AO MENU PRINCIPAL!\n");
+			break;
+		}
+	}
+	
 }
