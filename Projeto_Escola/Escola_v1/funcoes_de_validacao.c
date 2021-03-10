@@ -3,7 +3,17 @@
 #include <string.h>
 #include <ctype.h>
 
+int validarMatricula(char matricula[]) {
+
+	if(strlen(matricula) < 1 || strlen(matricula) > 10) {
+		return -1;
+	} else {
+		return 1;
+	}
+}
+
 int validarNome(char nome[]) {
+
 	if(strlen(nome) - 1 > 20 || strlen(nome) - 1 <= 0) {
 		return -1;
 	} else {
@@ -12,6 +22,7 @@ int validarNome(char nome[]) {
 }
 
 int validarSexo(char sexo) {
+
 	if(sexo == 'M' || sexo == 'F' || sexo == 'O' ||
 		sexo == 'm' || sexo == 'f' || sexo == 'o') {
 		return 1;
