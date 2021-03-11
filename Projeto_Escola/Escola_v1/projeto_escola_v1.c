@@ -13,6 +13,7 @@ int main() {
 	int quantidadeAlunos = 0;
 	int opcao = 0;
 	int flag = 1;
+	int alunoRemovido = 0;
 
 	while(flag == 1) {
 
@@ -52,6 +53,17 @@ int main() {
 				break;
 			}
 
+			case 4: {
+				if(quantidadeAlunos <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					alunoRemovido = removerAluno(quantidadeAlunos, estud);
+					quantidadeAlunos--;
+					printf("\nALUNO %d REMOVIDO COM SUCESSO!\n", alunoRemovido+1);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -68,7 +80,8 @@ int menu(int op) {
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> CADASTRAR ALUNO   |\n");
 	printf("| 2 -> MOSTRAR ALUNOS    |\n");
-	printf("| 3 -> ALTERAR CADASTRO  |");
+	printf("| 3 -> ALTERAR CADASTRO  |\n");
+	printf("| 4 -> RETIRAR CADASTRO  |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -297,6 +310,32 @@ void alterarCadastro(int qtdAlunos, aluno estudante[]) {
 			printf("\nVOLTANDO AO MENU PRINCIPAL!\n");
 			break;
 		}
+
 	}
-	
+}
+
+int removerAluno(int qtdAlunos, aluno estudante[]) {
+
+	int i;
+	int pos;
+
+	mostrarAlunos(qtdAlunos, estudante);
+
+	printf("\nInforme o numero do aluno para ser removido: ");
+	scanf("%d", &pos);
+	pos--;
+
+	for(i = pos; i < qtdAlunos; i++) {
+		strcpy(estudante[i].matricula, estudante[i+1].matricula);
+		strcpy(estudante[i].nome, estudante[i+1].nome);
+		estudante[i].sexo = estudante[i+1].sexo;
+		strcpy(estudante[i].data, estudante[i+1].data);
+		strcpy(estudante[i].cpf, estudante[i+1].cpf);
+	}
+
+	qtdAlunos--;
+
+	mostrarAlunos(qtdAlunos, estudante);
+
+	return pos;
 }
