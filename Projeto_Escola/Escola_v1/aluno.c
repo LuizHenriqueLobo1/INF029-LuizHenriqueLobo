@@ -9,7 +9,7 @@
 
 int main() {
 
-	aluno estud[TAM];
+	dados estud[TAM];
 	int quantidadeAlunos = 0;
 	int opcao = 0;
 	int flag = 1;
@@ -17,7 +17,7 @@ int main() {
 
 	while(flag == 1) {
 
-		opcao = menu(opcao);
+		opcao = menuAlunos(opcao);
 
 		switch(opcao) {
 
@@ -48,7 +48,7 @@ int main() {
 				if(quantidadeAlunos <= 0) {
 					printf("\nNENHUM ALUNO CADASTRADO!\n");
 				} else {
-					alterarCadastro(quantidadeAlunos, estud);
+					alterarCadastroAlunos(quantidadeAlunos, estud);
 				}	
 				break;
 			}
@@ -74,7 +74,7 @@ int main() {
 	return 0;
 }
 
-int menu(int op) {
+int menuAlunos(int op) {
 
 	printf("\n---------- MENU ----------\n");
 	printf("| 0 -> SAIR              |\n");
@@ -90,7 +90,7 @@ int menu(int op) {
 	return op;
 }
 
-void cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
+void cadastrarAlunos(int qtdAlunos, dados estudante[]) {
 
 	printf("\n---------------------\n");
 	printf("| CADASTRANDO ALUNO |");
@@ -158,7 +158,7 @@ void cadastrarAlunos(int qtdAlunos, aluno estudante[]) {
 	}
 }
 
-void mostrarAlunos(int qtdAlunos, aluno estudante[]) {
+void mostrarAlunos(int qtdAlunos, dados estudante[]) {
 
 	printf("\n--------------------\n");
 	printf("| LISTANDO ALUNOS  |");
@@ -179,7 +179,7 @@ void mostrarAlunos(int qtdAlunos, aluno estudante[]) {
 	}
 }
 
-void alterarCadastro(int qtdAlunos, aluno estudante[]) {
+void alterarCadastroAlunos(int qtdAlunos, dados estudante[]) {
 
 	int op = 0;
 	int num = 0;
@@ -314,7 +314,7 @@ void alterarCadastro(int qtdAlunos, aluno estudante[]) {
 	}
 }
 
-int removerAluno(int qtdAlunos, aluno estudante[]) {
+int removerAluno(int qtdAlunos, dados estudante[]) {
 
 	int i;
 	int pos;
