@@ -202,20 +202,7 @@ void alterarCadastroAlunos(int qtdAlunos, dados estudante[]) {
 		}
 	}
 	
-	printf("\n----------------------\n");
-	printf("| ALTERANDO CADASTRO |\n");
-	printf("| ALUNO %d            |", num);
-	printf("\n--------------------------\n");
-	printf("| 0 -> SAIR              |\n");
-	printf("| 1 -> ALTERAR MATRICULA |\n");
-	printf("| 2 -> ALTERAR NOME      |\n");
-	printf("| 3 -> ALTERAR SEXO      |\n");
-	printf("| 4 -> ALTERAR DATA      |\n");
-	printf("| 5 -> ALTERAR CPF       |");
-	printf("\n--------------------------\n");
-	printf("> ");
-	scanf("%d", &op);
-	getchar();
+	op = menu_alterarCadastroA(num);
 
 	switch(op) {
 
