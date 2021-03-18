@@ -3,32 +3,28 @@
 #include <string.h>
 #include <ctype.h>
 
-#define TAM 5
-
 #include "projeto_escola_adendos.h"
 
-int main() {
+int mainAlunos(dados estud[], int quantidadeAlunos) {
 
-	dados estud[TAM];
-	int quantidadeAlunos = 0;
 	int opcao = 0;
 	int flag = 1;
 	int alunoRemovido = 0;
 
 	while(flag == 1) {
 
-		opcao = menuAlunos(opcao);
+		opcao = menuAlunos();
 
 		switch(opcao) {
 
 			case 0: {
 				flag = 0;
-				printf("\nPROGRAMA FINALIZADO!\n");
+				printf("\nVOLTANDO PARA MENU PRINCIPAL!\n");
 				break;
 			}
 
 			case 1: {
-				if(quantidadeAlunos < 5) {
+				if(quantidadeAlunos < TAM) {
 					cadastrarAlunos(quantidadeAlunos, estud);
 					quantidadeAlunos++;
 					printf("\nALUNO CADASTRADO COM SUCESSO!\n");
@@ -71,12 +67,14 @@ int main() {
 		}
 	}
 
-	return 0;
+	return quantidadeAlunos;
 }
 
-int menuAlunos(int op) {
+int menuAlunos() {
 
-	printf("\n---------- MENU ----------\n");
+	int op = 0;
+
+	printf("\n------- MENU ALUNO -------\n");
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> CADASTRAR ALUNO   |\n");
 	printf("| 2 -> MOSTRAR ALUNOS    |\n");
@@ -222,7 +220,7 @@ void alterarCadastroAlunos(int qtdAlunos, dados estudante[]) {
 	switch(op) {
 
 		case 0: {
-			printf("\nVOLTANDO AO MENU PRINCIPAL!\n");
+			printf("\nVOLTANDO AO MENU ALUNO!\n");
 			break;
 		}
 
@@ -307,7 +305,7 @@ void alterarCadastroAlunos(int qtdAlunos, dados estudante[]) {
 		}
 
 		default: {
-			printf("\nVOLTANDO AO MENU PRINCIPAL!\n");
+			printf("\nVOLTANDO AO MENU ALUNO!\n");
 			break;
 		}
 
