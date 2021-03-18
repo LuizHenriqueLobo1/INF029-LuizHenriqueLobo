@@ -259,6 +259,5 @@ int validarData(char dataNasc[]) {
 				}
 			}
 		}
-
 	}
 }

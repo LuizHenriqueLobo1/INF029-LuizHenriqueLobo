@@ -1,3 +1,5 @@
+#define TAM 5
+
 typedef struct {
 	char matricula[50];
 	char nome[50];
@@ -6,7 +8,9 @@ typedef struct {
 	char cpf[50];
 }dados;
 
-int menuAlunos(int op);
+int menu_principal();
+int menuAlunos();
+int mainAlunos(dados estud[], int quantidadeAlunos);
 void cadastrarAlunos(int qtdAlunos, dados estudante[]);
 void mostrarAlunos(int qtdAlunos, dados estudante[]);
 void alterarCadastroAlunos(int qtdAlunos, dados estudante[]);
