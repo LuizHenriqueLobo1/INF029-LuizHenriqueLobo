@@ -7,11 +7,14 @@
 
 int main() {
 
-	dados estud[TAM];
-	int quantidadeAlunos = 0;
+	dados Aluno[TAM];
+	int quantidadeAluno = 0;
 
-	dados prof[TAM];
-	int quantidadeProfessores = 0;
+	dados Professor[TAM];
+	int quantidadeProfessor = 0;
+
+	disc Disciplina[TAM];
+	int quantidadeDisciplina = 0;
 
 	int flag = 1;
 
@@ -28,17 +31,17 @@ int main() {
 			}
 
 			case 1: {
-				quantidadeAlunos = mainAlunos(estud, quantidadeAlunos);
+				quantidadeAluno = mainAluno(Aluno, quantidadeAluno);
 				break;
 			}
 
 			case 2: {
-				quantidadeProfessores = mainProfessor(prof, quantidadeProfessores);
+				quantidadeProfessor = mainProfessor(Professor, quantidadeProfessor);
 				break;
 			}
 
 			case 3: {
-				printf("\nTRABALHANDO NA IMPLEMENTACAO!\n");
+				quantidadeDisciplina  = mainDisciplina(Disciplina, quantidadeDisciplina, quantidadeProfessor, quantidadeAluno, Professor, Aluno);
 				break;
 			}
 
@@ -105,6 +108,28 @@ int menu_alterarCadastroP(int num) {
 	printf("| 3 -> ALTERAR SEXO      |\n");
 	printf("| 4 -> ALTERAR DATA      |\n");
 	printf("| 5 -> ALTERAR CPF       |");
+	printf("\n--------------------------\n");
+	printf("> ");
+	scanf("%d", &op);
+	getchar();
+
+	return op;
+}
+
+int menu_alterarCadastroD(int num) {
+
+	int op = 0;
+
+	printf("\n----------------------\n");
+	printf("| ALTERANDO CADASTRO |\n");
+	printf("| DISCIPLINA %d       |", num);
+	printf("\n--------------------------\n");
+	printf("| 0 -> SAIR              |\n");
+	printf("| 1 -> ALTERAR CODIGO    |\n");
+	printf("| 2 -> ALTERAR NOME      |\n");
+	printf("| 3 -> ALTERAR SEMESTRE  |\n");
+	printf("| 4 -> ALTERAR PROFESSOR |\n");
+	printf("| 5 -> ALTERAR ALUNO     |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
