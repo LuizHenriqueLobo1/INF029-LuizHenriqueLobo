@@ -261,3 +261,21 @@ int validarData(char dataNasc[]) {
 		}
 	}
 }
+
+int validarNomeDisciplina(char nomeDisciplina[]) {
+
+	if(strlen(nomeDisciplina) < 1 || strlen(nomeDisciplina) > 30) {
+		return -1;
+	} else {
+		return 1;
+	}
+}
+
+int validarSemestre(int semestre) {
+
+	if(semestre <= 0 || semestre > 12) {
+		return -1;
+	} else {
+		return 1;
+	}
+}

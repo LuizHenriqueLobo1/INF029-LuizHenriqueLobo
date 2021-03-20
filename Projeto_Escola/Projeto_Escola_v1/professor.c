@@ -5,11 +5,11 @@
 
 #include "projeto_escola_adendos.h"
 
-int mainProfessor(dados prof[], int quantidadeProfessores) {
+int mainProfessor(dados professor[], int qtdProfessor) {
 
 	int opcao = 0;
 	int flag = 1;
-	int profRemovido = 0;
+	int professorRemovido = 0;
 
 	while(flag == 1) {
 
@@ -24,9 +24,9 @@ int mainProfessor(dados prof[], int quantidadeProfessores) {
 			}
 
 			case 1: {
-				if(quantidadeProfessores < TAM) {
-					cadastrarProfessor(quantidadeProfessores, prof);
-					quantidadeProfessores++;
+				if(qtdProfessor < TAM) {
+					cadastrarProfessor(qtdProfessor, professor);
+					qtdProfessor++;
 					printf("\nPROFESSOR CADASTRADO COM SUCESSO!\n");
 					break;
 				} else {
@@ -36,26 +36,26 @@ int mainProfessor(dados prof[], int quantidadeProfessores) {
 			}
 
 			case 2: {
-				mostrarProfessor(quantidadeProfessores, prof);
+				mostrarProfessor(qtdProfessor, professor);
 				break;
 			}
 
 			case 3: {
-				if(quantidadeProfessores <= 0) {
+				if(qtdProfessor <= 0) {
 					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
 				} else {
-					alterarCadastroProfessor(quantidadeProfessores, prof);
+					alterarCadastroProfessor(qtdProfessor, professor);
 				}	
 				break;
 			}
 
 			case 4: {
-				if(quantidadeProfessores <= 0) {
+				if(qtdProfessor <= 0) {
 					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
 				} else {
-					profRemovido = removerProfessor(quantidadeProfessores, prof);
-					quantidadeProfessores--;
-					printf("\nPROFESSOR %d REMOVIDO COM SUCESSO!\n", profRemovido+1);
+					professorRemovido = removerProfessor(qtdProfessor, professor);
+					qtdProfessor--;
+					printf("\nPROFESSOR %d REMOVIDO COM SUCESSO!\n", professorRemovido+1);
 				}
 				break;
 			}
@@ -67,7 +67,7 @@ int mainProfessor(dados prof[], int quantidadeProfessores) {
 		}
 	}
 
-	return quantidadeProfessores;
+	return qtdProfessor;
 }
 
 int menuProfessor() {
@@ -88,43 +88,43 @@ int menuProfessor() {
 	return op;
 }
 
-void cadastrarProfessor(int qtdProf, dados professor[]) {
+void cadastrarProfessor(int qtdProfessor, dados professor[]) {
 
 	printf("\n-------------------------\n");
 	printf("| CADASTRANDO PROFESSOR |");
 	printf("\n-------------------------\n");
 
 	printf("\nDigite o numero de matricula: ");
-	fgets(professor[qtdProf].matricula, 50, stdin);
+	fgets(professor[qtdProfessor].matricula, 50, stdin);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarMatricula(professor[qtdProf].matricula) != 1) {
+		if(validarMatricula(professor[qtdProfessor].matricula) != 1) {
 			printf("\nMATRICULA INVALIDA! Digite novamente...\n");
-			fgets(professor[qtdProf].matricula, 50, stdin);
+			fgets(professor[qtdProfessor].matricula, 50, stdin);
 		} else {
 			break;
 		}
 	}
 
 	printf("\nDigite o nome do professor (Ate 20 caracteres): ");
-	fgets(professor[qtdProf].nome, 50, stdin);
+	fgets(professor[qtdProfessor].nome, 50, stdin);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarNome(professor[qtdProf].nome) != 1) {
+		if(validarNome(professor[qtdProfessor].nome) != 1) {
 			printf("\nNOME INVALIDO! Digite novamente...\n");
-			fgets(professor[qtdProf].nome, 50, stdin);
+			fgets(professor[qtdProfessor].nome, 50, stdin);
 		} else {
 			break;
 		}
 	}
 	
 	printf("\nDigite o sexo do professor (M, F ou O): ");
-	scanf("%c", &professor[qtdProf].sexo);
+	scanf("%c", &professor[qtdProfessor].sexo);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarSexo(professor[qtdProf].sexo) != 1) {
+		if(validarSexo(professor[qtdProfessor].sexo) != 1) {
 			printf("\nSEXO INVALIDO! Digite novamente...\n");
-			scanf("%c", &professor[qtdProf].sexo);
+			scanf("%c", &professor[qtdProfessor].sexo);
 			setbuf(stdin, NULL);
 		} else {
 			break;
@@ -132,40 +132,40 @@ void cadastrarProfessor(int qtdProf, dados professor[]) {
 	}
 
 	printf("\nDigite a data de nascimento do professor (Somente os numeros): ");
-	fgets(professor[qtdProf].data, 50, stdin);
+	fgets(professor[qtdProfessor].data, 50, stdin);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarData(professor[qtdProf].data) != 1) {
+		if(validarData(professor[qtdProfessor].data) != 1) {
 			printf("\nDATA INVALIDA! Digite novamente...\n");
-			fgets(professor[qtdProf].data, 50, stdin);
+			fgets(professor[qtdProfessor].data, 50, stdin);
 		} else {
 			break;
 		}
 	}
 
 	printf("\nDigite o CPF do professor (Somente os numeros): ");
-	fgets(professor[qtdProf].cpf, 50, stdin);
+	fgets(professor[qtdProfessor].cpf, 50, stdin);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarCPF(professor[qtdProf].cpf) != 1) {
-			printf("\nCPF INVALIDO! Digito novamente...\n");
-			fgets(professor[qtdProf].cpf, 50, stdin);
+		if(validarCPF(professor[qtdProfessor].cpf) != 1) {
+			printf("\nCPF INVALIDO! Digite novamente...\n");
+			fgets(professor[qtdProfessor].cpf, 50, stdin);
 		} else {
 			break;
 		}
 	}
 }
 
-void mostrarProfessor(int qtdProf, dados professor[]) {
+void mostrarProfessor(int qtdProfessor, dados professor[]) {
 
 	printf("\n-------------------------\n");
 	printf("| LISTANDO PROFESSORES  |");
 	printf("\n-------------------------\n");
 
-	if(qtdProf <= 0) {
+	if(qtdProfessor <= 0) {
 		printf("\nNENHUM PROFESSOR CADASTRADO!\n");
 	} else {
-		for(int i = 0; i < qtdProf; i++) {
+		for(int i = 0; i < qtdProfessor; i++) {
 		printf("\n--------- PROFESSOR %d ---------\n", i+1);
 		printf("MATRICULA: %s", professor[i].matricula);
 		printf("NOME: %s", professor[i].nome);
@@ -177,7 +177,7 @@ void mostrarProfessor(int qtdProf, dados professor[]) {
 	}
 }
 
-void alterarCadastroProfessor(int qtdProf, dados professor[]) {
+void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 
 	int op = 0;
 	int num = 0;
@@ -187,14 +187,14 @@ void alterarCadastroProfessor(int qtdProf, dados professor[]) {
 	char novaData[50];
 	char novoCPF[50];
 
-	mostrarProfessor(qtdProf, professor);
+	mostrarProfessor(qtdProfessor, professor);
 
 	printf("\nInforme o numero do professor para alterar o cadastro: ");
 	scanf("%d", &num);
 	setbuf(stdin, NULL);
 
 	while(1) {
-		if(num <= 0 || num > qtdProf) {
+		if(num <= 0 || num > qtdProfessor) {
 			printf("\nPROFESSOR NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
 			scanf("%d", &num);
 		} else {
@@ -299,18 +299,18 @@ void alterarCadastroProfessor(int qtdProf, dados professor[]) {
 	}
 }
 
-int removerProfessor(int qtdProf, dados professor[]) {
+int removerProfessor(int qtdProfessor, dados professor[]) {
 
 	int i;
 	int pos;
 
-	mostrarProfessor(qtdProf, professor);
+	mostrarProfessor(qtdProfessor, professor);
 
 	printf("\nInforme o numero do professor para ser removido: ");
 	scanf("%d", &pos);
 	pos--;
 
-	for(i = pos; i < qtdProf; i++) {
+	for(i = pos; i < qtdProfessor; i++) {
 		strcpy(professor[i].matricula, professor[i+1].matricula);
 		strcpy(professor[i].nome, professor[i+1].nome);
 		professor[i].sexo = professor[i+1].sexo;
@@ -318,9 +318,9 @@ int removerProfessor(int qtdProf, dados professor[]) {
 		strcpy(professor[i].cpf, professor[i+1].cpf);
 	}
 
-	qtdProf--;
+	qtdProfessor--;
 
-	mostrarProfessor(qtdProf, professor);
+	mostrarProfessor(qtdProfessor, professor);
 
 	return pos;
 }
