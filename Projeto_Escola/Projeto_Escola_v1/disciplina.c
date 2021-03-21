@@ -7,10 +7,11 @@
 
 // Em processo de implementação
 
-int mainDisciplina(disc disciplina[], int qtdDisciplina, int numProfessor,  int numAluno, dados professor[], dados aluno[]) {
+int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]) {
 
 	int opcao = 0;
 	int flag = 1;
+	int retornoA = 0;
 
 	while(flag == 1) {
 
@@ -25,7 +26,7 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int numProfessor,  int 
 			}
 
 			case 1: {
-				if(cadastrarDisciplina(qtdDisciplina, disciplina, numProfessor, numAluno) == 1) {
+				if(cadastrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno) == 1) {
 					qtdDisciplina++;
 					printf("\nDISCPLINA CADASTRADA COM SUCESSO!\n");
 				} else {
@@ -35,7 +36,7 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int numProfessor,  int 
 			}
 
 			case 2: {
-				mostrarDisciplina(qtdDisciplina, disciplina, numProfessor, numAluno, professor, aluno);
+				mostrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno, professor, aluno);
 				break;
 			}
 
@@ -43,7 +44,7 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int numProfessor,  int 
 				if(qtdDisciplina <= 0) {
 					printf("\nNENHUMA DISCIPLINA CADASTRADA!\n");
 				} else {
-					alterarCadastroDisciplina(qtdDisciplina, disciplina, numProfessor, numAluno);
+					alterarCadastroDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno);
 				}
 				break;
 			}
@@ -76,12 +77,9 @@ int menuDisciplina() {
 	return op;
 }
 
-int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int numProfessor, int numAluno) {
+int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno) {
 
-	int auxProfessor = numProfessor;
-	int auxAluno = numAluno;
-
-	if(numAluno <= 0 || numProfessor <= 0) {
+	if(qtdProfessor <= 0 || qtdAluno <= 0) {
 		return -1;
 	} else {
 		printf("\n--------------------------\n");
@@ -125,23 +123,22 @@ int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int numProfessor, 
 		}
 
 		printf("\nDigite o numero do professor da disciplina: ");
-		scanf("%d", &numProfessor);
-		setbuf(stdin, NULL);
+		scanf("%d", &disciplina[qtdDisciplina].numProfessor);
 		while(1) {
-			if(numProfessor <= 0 || numProfessor > auxProfessor) {
-				printf("\nNUMERO DO PROFESSOR INVALIDO! Digite novamente...\n");
-				scanf("%d", &numProfessor);
+			if(disciplina[qtdDisciplina].numProfessor <= 0 || disciplina[qtdDisciplina].numProfessor > qtdProfessor) {
+				printf("\nNUMERO INVALIDO! Digite novamente...\n");
+				scanf("%d", &disciplina[qtdDisciplina].numProfessor);
 			} else {
 				break;
 			}
 		}
 
-		printf("\nDigite o numero do aluno: ");
-		scanf("%d", &numAluno);
+		printf("\nDigite o numero do aluno da disciplina: ");
+		scanf("%d", &disciplina[qtdDisciplina].numAluno);
 		while(1) {
-			if(numAluno <= 0 || numAluno > auxAluno) {
-				printf("\nNUMERO DO ALUNO INVALIDO! Digite novamente...\n");
-				scanf("%d", &numAluno);
+			if(disciplina[qtdDisciplina].numAluno <= 0 || disciplina[qtdDisciplina].numAluno > qtdAluno) {
+				printf("\nNUMERO INVALIDO! Digite novamente...\n");
+				scanf("%d", &disciplina[qtdDisciplina].numAluno);
 			} else {
 				break;
 			}
@@ -151,7 +148,7 @@ int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int numProfessor, 
 	}
 }
 
-void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int numProfessor, int numAluno, dados professor[], dados aluno[]) {
+void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]) {
 
 	printf("\n------------------------\n");
 	printf("| LISTANDO DISCIPLINAS |");
@@ -165,22 +162,24 @@ void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int numProfessor, i
 			printf("CODIGO: %s", disciplina[i].codigo);
 			printf("NOME: %s", disciplina[i].nome);
 			printf("SEMESTRE: %d", disciplina[i].semestre);
-			//printf("\nNUM DO PROFESSOR: %d", numProfessor);
-			printf("\nNOME DO PROFESSOR: %s", professor[numProfessor-1].nome);
-			//printf("NUM DO ALUNO: %d", numAluno);
-			printf("NOME DO ALUNO: %s", aluno[numAluno-1].nome);
+			printf("\nNUM DO PROFESSOR: %d", disciplina[i].numProfessor);
+			printf("\nNOME DO PROFESSOR: %s", professor[disciplina[i].numProfessor-1].nome);
+			printf("NUM DO ALUNO: %d", disciplina[i].numAluno);
+			printf("\nNOME DO ALUNO: %s", aluno[disciplina[i].numAluno-1].nome);
 			printf("---------------------------\n");
 		}
 	}
 }
 
-void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int numAluno, int numProfessor) {
+void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno) {
 
 	int num = 0;
 	int opcao = 0;
 	char novoCodigo[50];
 	char novoNome[50];
 	int novoSemestre = 0;
+	int novoNumProfessor = 0;
+	int novoNumAluno = 0;
 
 	printf("\nInforme o numero da disciplina para alterar o cadastro: ");
 	scanf("%d", &num);
@@ -253,7 +252,41 @@ void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int numAlun
 			}
 			break;
 		}
+		
+		case 4: {
+			printf("\nDigite o numero do novo professor: ");
+			scanf("%d", &novoNumProfessor);
+			setbuf(stdin, NULL);
+			while(1) {
+				if(novoNumProfessor <= 0 || novoNumProfessor > qtdProfessor) {
+					printf("\nNUMERO INVALIDO! Digite novamente...\n");
+					scanf("%d", &disciplina[qtdDisciplina].numProfessor);
+				} else {
+					disciplina[num-1].numProfessor = novoNumProfessor;
+					printf("\nPROFESSOR ALTERADO COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
 
+		case 5: {
+			printf("\nDigite o numero do novo aluno: ");
+			scanf("%d", &novoNumAluno);
+			setbuf(stdin, NULL);
+			while(1) {
+				if(novoNumAluno <= 0 || novoNumAluno > qtdAluno) {
+					printf("\nNUMERO INVALIDO! Digite novamente...\n");
+					scanf("%d", &disciplina[qtdDisciplina].numProfessor);
+				} else {
+					disciplina[num-1].numAluno = novoNumAluno;
+					printf("\nALUNO ALTERADO COM SUCESSO!\n");
+					break;
+				}
+			}
+			break;
+		}
+	
 		default: {
 			printf("\nVOLTANDO AO MENU DISCPLINA!\n");
 			break;
