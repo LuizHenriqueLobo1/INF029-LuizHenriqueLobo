@@ -40,10 +40,10 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
 
 // Disciplina
-int mainDisciplina(disc disciplina[], int quantidadeDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
-int cadastrarDisciplina(int qtdDisciplina, disc discip[], int qtdProfessor, int qtdAluno);
+int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
+int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
 void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
-void alterarCadastroDisciplina(int qtdDisciplina, disc discip[], int qtdProfessor, int qtdAluno);
+void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
 
 // Validações
 int validarMatricula(char matricula[]);
