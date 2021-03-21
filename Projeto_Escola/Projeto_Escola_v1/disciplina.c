@@ -11,7 +11,8 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 
 	int opcao = 0;
 	int flag = 1;
-	int retornoA = 0;
+	int disciplinaRemovida = 0;
+
 
 	while(flag == 1) {
 
@@ -45,6 +46,17 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 					printf("\nNENHUMA DISCIPLINA CADASTRADA!\n");
 				} else {
 					alterarCadastroDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno);
+				}
+				break;
+			}
+
+			case 4: {
+				if(qtdDisciplina <= 0) {
+					printf("\nNENHUMA DISCIPLINA CADASTRADA!\n");
+				} else {
+					disciplinaRemovida = removerDisciplina(qtdDisciplina, disciplina);
+					qtdDisciplina--;
+					printf("\nDISCIPLINA %d REMOVIDA COM SUCESSO!\n", disciplinaRemovida+1);
 				}
 				break;
 			}
@@ -292,4 +304,25 @@ void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProf
 			break;
 		}
 	}
+}
+
+int removerDisciplina(int qtdDisciplina, disc disciplina[]) {
+		
+	int pos = 0;
+
+	printf("\nInforme o numero da discplina para ser removida: ");
+	scanf("%d", &pos);
+	pos--;
+
+	for(int i = pos; i < qtdDisciplina ; i++) {
+		strcpy(disciplina[i].codigo, disciplina[i+1].codigo);
+		strcpy(disciplina[i].nome, disciplina[i+1].nome);
+		disciplina[i].semestre = disciplina[i+1].semestre;
+		disciplina[i].numProfessor = disciplina[i+1].numProfessor;
+		disciplina[i].numAluno = disciplina[i+1].numAluno;
+	}
+
+	qtdDisciplina--;
+
+	return pos;
 }
