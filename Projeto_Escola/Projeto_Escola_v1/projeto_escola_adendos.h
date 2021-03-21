@@ -44,6 +44,7 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
 void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
 void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
+int removerDisciplina(int qtdDisciplina, disc disciplina[]);
 
 // Validações
 int validarMatricula(char matricula[]);
