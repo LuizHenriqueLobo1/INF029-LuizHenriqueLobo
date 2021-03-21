@@ -4,6 +4,8 @@ typedef struct {
 	char codigo[50];
 	char nome[50];
 	int semestre;
+	int numProfessor;
+	int numAluno;
 }disc;
 
 typedef struct {
@@ -38,10 +40,10 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
 
 // Disciplina
-int mainDisciplina(disc disciplina[], int quantidadeDisciplina, int numProfessor, int numAluno, dados professor[], dados aluno[]);
-int cadastrarDisciplina(int qtdDisciplina, disc discip[], int numProfessor, int numAluno);
-void mostrarDisciplina(int qtdDisciplina, disc discip[], int numProfessor, int numAluno, dados professor[], dados aluno[]);
-void alterarCadastroDisciplina(int qtdDisciplina, disc discip[], int numProfessor, int numAluno);
+int mainDisciplina(disc disciplina[], int quantidadeDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
+int cadastrarDisciplina(int qtdDisciplina, disc discip[], int qtdProfessor, int qtdAluno);
+void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
+void alterarCadastroDisciplina(int qtdDisciplina, disc discip[], int qtdProfessor, int qtdAluno);
 
 // Validações
 int validarMatricula(char matricula[]);
