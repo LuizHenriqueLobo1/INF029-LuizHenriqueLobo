@@ -14,6 +14,7 @@ typedef struct {
 	int semestre;
 	int numProfessor;
 	dados aluno[TAM];
+	int qtdAlunoCadastrado;
 }disc;
 
 // Menus
@@ -40,13 +41,13 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
 
 // Disciplina
-int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado);
+int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[]);
 void cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor);
 void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[]);
 void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor);
 int removerDisciplina(int qtdDisciplina, disc disciplina[]);
-void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado);
-void mostrarDisciplinaComAluno(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[], int qtdAlunoCadastrado);
+void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[]);
+void mostrarDisciplinaComAluno(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[]);
 
 // Validações
 int validarMatricula(char matricula[]);
