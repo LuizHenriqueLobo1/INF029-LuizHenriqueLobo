@@ -1,20 +1,20 @@
 #define TAM 5
 
 typedef struct {
-	char codigo[50];
-	char nome[50];
-	int semestre;
-	int numProfessor;
-	int numAluno;
-}disc;
-
-typedef struct {
 	char matricula[50];
 	char nome[50];
 	char sexo;
 	char data[50];
 	char cpf[50];
 }dados;
+
+typedef struct {
+	char codigo[50];
+	char nome[50];
+	int semestre;
+	int numProfessor;
+	dados aluno[TAM];
+}disc;
 
 // Menus
 int menu_principal();
@@ -40,11 +40,13 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
 
 // Disciplina
-int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
-int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
-void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]);
-void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno);
+int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado);
+void cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor);
+void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[]);
+void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor);
 int removerDisciplina(int qtdDisciplina, disc disciplina[]);
+void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado);
+void mostrarDisciplinaComAluno(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[], int qtdAlunoCadastrado);
 
 // Validações
 int validarMatricula(char matricula[]);
