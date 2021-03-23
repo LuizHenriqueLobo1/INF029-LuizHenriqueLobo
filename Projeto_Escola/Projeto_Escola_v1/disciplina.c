@@ -7,12 +7,12 @@
 
 // Em processo de implementação
 
-int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]) {
+int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado) {
 
 	int opcao = 0;
 	int flag = 1;
 	int disciplinaRemovida = 0;
-
+	int menuDisciplinaAluno = 0;
 
 	while(flag == 1) {
 
@@ -27,17 +27,18 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 			}
 
 			case 1: {
-				if(cadastrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno) == 1) {
+				if(qtdProfessor <= 0) {
+					printf("\nPRECISA-SE DE AO MENOS UM PROFESSOR REGISTRADO PARA CONTINUAR!\n");
+				} else {
+					cadastrarDisciplina(qtdDisciplina, disciplina, qtdProfessor);
 					qtdDisciplina++;
 					printf("\nDISCPLINA CADASTRADA COM SUCESSO!\n");
-				} else {
-					printf("\nPRECISA-SE DE ALUNOS E PROFESSORES REGISTRADOS PARA CONTINUAR COM ESTA OPERACAO!\n");
-				}
+				}	
 				break;
 			}
 
 			case 2: {
-				mostrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno, professor, aluno);
+				mostrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, professor);
 				break;
 			}
 
@@ -45,7 +46,7 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 				if(qtdDisciplina <= 0) {
 					printf("\nNENHUMA DISCIPLINA CADASTRADA!\n");
 				} else {
-					alterarCadastroDisciplina(qtdDisciplina, disciplina, qtdProfessor, qtdAluno);
+					alterarCadastroDisciplina(qtdDisciplina, disciplina, qtdProfessor);
 				}
 				break;
 			}
@@ -61,11 +62,29 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, int q
 				break;
 			}
 
+			case 5: {
+				if(qtdDisciplina <= 0 || qtdAluno <= 0) {
+					printf("\nPRECISA-SE DE AO MENOS UMA DISCIPLINA E UM ALUNO REGISTRADO PARA CONTINUAR!\n");
+				} else {
+					cadastrarAlunoDisciplina(qtdDisciplina, disciplina, qtdAluno, aluno, qtdAlunoCadastrado);
+					qtdAlunoCadastrado++;
+					printf("\nALUNO CADASTRADO NA DISCPLINA COM SUCESSO!\n");
+					printf("\nQUANTIDADE DE ALUNOS CADASTRADOS NA DISCPLINA: %d\n", qtdAlunoCadastrado);
+				}
+				break;
+			}
+
+			case 6: {
+				mostrarDisciplinaComAluno(qtdDisciplina, disciplina, qtdProfessor, professor, qtdAlunoCadastrado);
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
 			}
 		}
+		
 	}
 
 	return qtdDisciplina;
@@ -75,13 +94,15 @@ int menuDisciplina() {
 	
 	int op = 0;
 
-	printf("\n----- MENU DISCIPLINA -----\n");
-	printf("| 0 -> SAIR               |\n");
-	printf("| 1 -> CADASTRAR DISC     |\n");
-	printf("| 2 -> MOSTRAR DISCS      |\n");
-	printf("| 3 -> ALTERAR DISC       |\n");
-	printf("| 4 -> RETIRAR DISC       |");
-	printf("\n---------------------------\n");
+	printf("\n-------- MENU DISCIPLINA --------\n");
+	printf("| 0 -> SAIR                     |\n");
+	printf("| 1 -> CADASTRAR DISC           |\n");
+	printf("| 2 -> MOSTRAR DISCS            |\n");
+	printf("| 3 -> ALTERAR DISC             |\n");
+	printf("| 4 -> RETIRAR DISC             |\n");
+	printf("| 5 -> CADASTRAR ALUNO NA DISC  |\n");
+	printf("| 6 -> MOSTRAR ALUNOS DA DISC   |");
+	printf("\n---------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
 	setbuf(stdin, NULL);
@@ -89,78 +110,61 @@ int menuDisciplina() {
 	return op;
 }
 
-int cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno) {
+void cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor) {
 
-	if(qtdProfessor <= 0 || qtdAluno <= 0) {
-		return -1;
-	} else {
-		printf("\n--------------------------\n");
-		printf("| CADASTRANDO DISCIPLINA |");
-		printf("\n--------------------------\n");
+	printf("\n--------------------------\n");
+	printf("| CADASTRANDO DISCIPLINA |");
+	printf("\n--------------------------\n");
 
-		printf("\nDigite o codigo da disciplina: ");
-		fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
-		setbuf(stdin, NULL);
-		while(1) {
-			if(validarMatricula(disciplina[qtdDisciplina].codigo) != 1) { 
-				printf("\nCODIGO INVALIDO! Digite novamente...\n");
-				fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
-			} else {
-				break;
-			}
+	printf("\nDigite o codigo da disciplina: ");
+	fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
+	setbuf(stdin, NULL);
+	while(1) {
+		if(validarMatricula(disciplina[qtdDisciplina].codigo) != 1) { 
+			printf("\nCODIGO INVALIDO! Digite novamente...\n");
+			fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
+		} else {
+			break;
 		}
+	}
 
-		printf("\nDigite o nome da discplina: ");
-		fgets(disciplina[qtdDisciplina].nome, 50, stdin);
-		setbuf(stdin, NULL);
-		while(1) {
-			if(validarNomeDisciplina(disciplina[qtdDisciplina].nome) != 1) {
-				printf("\nNOME INVALIDO! Digite novamente...\n");
-				fgets(disciplina[qtdDisciplina].nome, 50, stdin);
-			} else {
-				break;
-			}
+	printf("\nDigite o nome da discplina: ");
+	fgets(disciplina[qtdDisciplina].nome, 50, stdin);
+	setbuf(stdin, NULL);
+	while(1) {
+		if(validarNomeDisciplina(disciplina[qtdDisciplina].nome) != 1) {
+			printf("\nNOME INVALIDO! Digite novamente...\n");
+			fgets(disciplina[qtdDisciplina].nome, 50, stdin);
+		} else {
+			break;
 		}
+	}
 
-		printf("\nDigite o semestre da discplina: ");
-		scanf("%d", &disciplina[qtdDisciplina].semestre);
-		setbuf(stdin, NULL);
-		while(1) {
-			if(validarSemestre(disciplina[qtdDisciplina].semestre) != 1) {
-				printf("\nSEMESTRE INVALIDO! Digite novamente...\n");
-				scanf("%d", &disciplina[qtdDisciplina].semestre);
-			} else {
-				break;
-			}
+	printf("\nDigite o semestre da discplina: ");
+	scanf("%d", &disciplina[qtdDisciplina].semestre);
+	setbuf(stdin, NULL);
+	while(1) {
+		if(validarSemestre(disciplina[qtdDisciplina].semestre) != 1) {
+			printf("\nSEMESTRE INVALIDO! Digite novamente...\n");
+			scanf("%d", &disciplina[qtdDisciplina].semestre);
+		} else {
+			break;
 		}
+	}
 
-		printf("\nDigite o numero do professor da disciplina: ");
-		scanf("%d", &disciplina[qtdDisciplina].numProfessor);
-		while(1) {
-			if(disciplina[qtdDisciplina].numProfessor <= 0 || disciplina[qtdDisciplina].numProfessor > qtdProfessor) {
-				printf("\nNUMERO INVALIDO! Digite novamente...\n");
-				scanf("%d", &disciplina[qtdDisciplina].numProfessor);
-			} else {
-				break;
-			}
+	printf("\nDigite o numero do professor da disciplina: ");
+	scanf("%d", &disciplina[qtdDisciplina].numProfessor);
+	while(1) {
+		if(disciplina[qtdDisciplina].numProfessor <= 0 || disciplina[qtdDisciplina].numProfessor > qtdProfessor) {
+			printf("\nNUMERO INVALIDO! Digite novamente...\n");
+			scanf("%d", &disciplina[qtdDisciplina].numProfessor);
+		} else {
+			break;
 		}
-
-		printf("\nDigite o numero do aluno da disciplina: ");
-		scanf("%d", &disciplina[qtdDisciplina].numAluno);
-		while(1) {
-			if(disciplina[qtdDisciplina].numAluno <= 0 || disciplina[qtdDisciplina].numAluno > qtdAluno) {
-				printf("\nNUMERO INVALIDO! Digite novamente...\n");
-				scanf("%d", &disciplina[qtdDisciplina].numAluno);
-			} else {
-				break;
-			}
-		}
-		
-		return 1;
 	}
 }
 
-void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno, dados professor[], dados aluno[]) {
+void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[]) {
 
 	printf("\n------------------------\n");
 	printf("| LISTANDO DISCIPLINAS |");
@@ -176,14 +180,12 @@ void mostrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, i
 			printf("SEMESTRE: %d", disciplina[i].semestre);
 			printf("\nNUM DO PROFESSOR: %d", disciplina[i].numProfessor);
 			printf("\nNOME DO PROFESSOR: %s", professor[disciplina[i].numProfessor-1].nome);
-			printf("NUM DO ALUNO: %d", disciplina[i].numAluno);
-			printf("\nNOME DO ALUNO: %s", aluno[disciplina[i].numAluno-1].nome);
 			printf("---------------------------\n");
 		}
 	}
 }
 
-void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor, int qtdAluno) {
+void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor) {
 
 	int num = 0;
 	int opcao = 0;
@@ -281,23 +283,6 @@ void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProf
 			}
 			break;
 		}
-
-		case 5: {
-			printf("\nDigite o numero do novo aluno: ");
-			scanf("%d", &novoNumAluno);
-			setbuf(stdin, NULL);
-			while(1) {
-				if(novoNumAluno <= 0 || novoNumAluno > qtdAluno) {
-					printf("\nNUMERO INVALIDO! Digite novamente...\n");
-					scanf("%d", &disciplina[qtdDisciplina].numProfessor);
-				} else {
-					disciplina[num-1].numAluno = novoNumAluno;
-					printf("\nALUNO ALTERADO COM SUCESSO!\n");
-					break;
-				}
-			}
-			break;
-		}
 	
 		default: {
 			printf("\nVOLTANDO AO MENU DISCPLINA!\n");
@@ -319,10 +304,76 @@ int removerDisciplina(int qtdDisciplina, disc disciplina[]) {
 		strcpy(disciplina[i].nome, disciplina[i+1].nome);
 		disciplina[i].semestre = disciplina[i+1].semestre;
 		disciplina[i].numProfessor = disciplina[i+1].numProfessor;
-		disciplina[i].numAluno = disciplina[i+1].numAluno;
 	}
 
 	qtdDisciplina--;
 
 	return pos;
+}
+
+void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[], int qtdAlunoCadastrado) {
+
+	int numA;
+	int numD;
+
+	printf("\n----------------------------------\n");
+	printf("| CADASTRANDO ALUNO NA DISCPLINA |");
+	printf("\n----------------------------------\n");
+
+	printf("\nDigite o numero da disciplina que deseja cadastrar um aluno: ");
+	scanf("%d", &numD);
+	while(1) {
+		if(numD <= 0 || numD > qtdDisciplina) {
+			printf("\nNUMERO INVALIDO! Tente novamente...\n");
+			scanf("%d", &numD);
+		} else {
+			break;
+		}
+	}
+	numD--;
+
+	printf("\nDigite o numero do aluno para ser cadastrado na discplina: ");
+	scanf("%d", &numA);
+	while(1) {
+		if(numA <= 0 || numA > qtdAluno) {
+			printf("\nNUMERO INVALIDO! Tente novamente...\n");
+			scanf("%d", &numA);
+		} else {
+			break;
+		}
+	}
+	numA--;
+
+	printf("\nQUANTIDADE DE ALUNOS: %d\n", qtdAluno);
+
+	strcpy(disciplina[numD].aluno[qtdAlunoCadastrado].matricula, aluno[numA].matricula);
+	strcpy(disciplina[numD].aluno[qtdAlunoCadastrado].nome, aluno[numA].nome);
+	disciplina[numD].aluno[qtdAlunoCadastrado].sexo = aluno[numA].sexo;
+	strcpy(disciplina[numD].aluno[qtdAlunoCadastrado].data, aluno[numA].data);
+	strcpy(disciplina[numD].aluno[qtdAlunoCadastrado].cpf, aluno[numA].cpf);
+}
+
+void mostrarDisciplinaComAluno(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[], int qtdAlunoCadastrado) {
+
+	printf("\n-----------------------------------\n");
+	printf("| LISTANDO DISCIPLINAS COM ALUNOS |");
+	printf("\n-----------------------------------\n");
+
+	if(qtdDisciplina <= 0) {
+		printf("\nNENHUMA DISCPLINA CADASTRADA!\n");
+	} else {
+		for(int i = 0; i < qtdDisciplina; i++) {	
+			printf("\n------------- DISCPLINA %d -------------\n", i+1);
+			printf("CODIGO: %s", disciplina[i].codigo);
+			printf("NOME: %s", disciplina[i].nome);
+			printf("SEMESTRE: %d", disciplina[i].semestre);
+			printf("\nNUM DO PROFESSOR: %d", disciplina[i].numProfessor);
+			printf("\nNOME DO PROFESSOR: %s", professor[disciplina[i].numProfessor-1].nome);
+			printf("QTD ALUNOS CADASTRADOS NA DISCPLINA: %d\n", qtdAlunoCadastrado);
+			for(int y = 0; y < qtdAlunoCadastrado; y++) {
+				printf("NOME DO ALUNO %d: %s", y+1, disciplina[i].aluno[y].nome);
+			}
+			printf("---------------------------------------\n");
+		}
+	}
 }

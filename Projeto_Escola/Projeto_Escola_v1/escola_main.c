@@ -16,6 +16,8 @@ int main() {
 	disc Disciplina[TAM];
 	int quantidadeDisciplina = 0;
 
+	int quantidadeAlunoCadastrado = 0;
+
 	int flag = 1;
 
 	while(flag == 1) {
@@ -41,7 +43,7 @@ int main() {
 			}
 
 			case 3: {
-				quantidadeDisciplina  = mainDisciplina(Disciplina, quantidadeDisciplina, quantidadeProfessor, quantidadeAluno, Professor, Aluno);
+				quantidadeDisciplina = mainDisciplina(Disciplina, quantidadeDisciplina, quantidadeProfessor, Professor, quantidadeAluno, Aluno, quantidadeAlunoCadastrado);
 				break;
 			}
 
