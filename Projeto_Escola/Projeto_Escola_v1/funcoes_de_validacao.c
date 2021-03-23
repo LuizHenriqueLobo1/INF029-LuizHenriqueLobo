@@ -5,36 +5,50 @@
 
 int validarMatricula(char matricula[]) {
 
-	if(strlen(matricula) < 1 || strlen(matricula) > 10) {
-		return -1;
+	int retorno;
+
+	if(strlen(matricula) - 1 < 1 || strlen(matricula) - 1 > 10) {
+		retorno = -1;
 	} else {
-		return 1;
+		retorno = 1;
 	}
+
+	return retorno;
 }
 
 int validarNome(char nome[]) {
 
+	int retorno;
+
 	if(strlen(nome) - 1 > 20 || strlen(nome) - 1 <= 0) {
-		return -1;
+		retorno = -1;
 	} else {
-		return 1;
+		retorno = 1;
 	}
+
+	return retorno;
 }
 
 int validarSexo(char sexo) {
 
-	if(sexo == 'M' || sexo == 'F' || sexo == 'O' ||
-		sexo == 'm' || sexo == 'f' || sexo == 'o') {
-		return 1;
+	int retorno;
+	sexo = toupper(sexo);
+
+	if(sexo == 'M' || sexo == 'F' || sexo == 'O') {
+		retorno = 1;
 	} else {
-		return -1;
+		retorno = -1;
 	}
+
+	return retorno;
 }
 
 int validarCPF(char cpf[]) {
 
+	int retorno;
+
 	if(strlen(cpf) - 1 != 11) {
-		return -1;
+		retorno = -1;
 	} else {
 		double cpfInt = atof(cpf);
 
@@ -163,14 +177,18 @@ int validarCPF(char cpf[]) {
 		}
 
 		if(decimoDigito == primeiroDigitoVerificador && decimo1Digito == segundoDigitoVerificador) {
-			return 1;
+			retorno = 1;
 		} else {
-			return -1;
+			retorno = -1;
 		}
 	}
+
+	return retorno;
 }
 
 int validarData(char dataNasc[]) {
+
+	int retorno;
 
 	long int data = atoi(dataNasc);
 
@@ -195,22 +213,22 @@ int validarData(char dataNasc[]) {
 		int digito2Dia = digito2;
 		int digitosDias = digito1Dia + digito2Dia;
 		if(digitosDias <= 0 || digitosDias > 31) {
-			return -1;
+			retorno = -1;
 		} else {
 			// Meses
 			int digito1Mes = digito3 * 10;
 			int digito2Mes = digito4;
 			int digitosMes = digito1Mes + digito2Mes;
 			if(digitosMes <= 0 || digitosMes > 12) {
-				return -1;
+				retorno = -1;
 			} else {
 				int digito1Ano = digito5 * 10;
 				int digito2Ano = digito6;
 				int digitosAno = digito1Ano + digito2Ano;
 				if(digitosAno < 0 || digitosAno > 21) {
-					return -1;
+					retorno = -1;
 				} else {
-					return 1;
+					retorno = 1;
 				}
 			}
 		}
@@ -237,14 +255,14 @@ int validarData(char dataNasc[]) {
 		int digito2Dia = digito2;
 		int digitosDia = digito1Dia + digito2Dia;
 		if(digitosDia <= 0 || digitosDia > 31) {
-			return -1;
+			retorno = -1;
 		} else {
 			// Meses
 			int digito1Mes = digito3 * 10;
 			int digito2Mes = digito4;
 			int digitosMes = digito1Mes + digito2Mes;
 			if(digitosMes <= 0 || digitosMes > 12) {
-				return -1;
+				retorno = -1;
 			} else {
 				// Anos
 				int digito1Ano = digito5 * 1000;
@@ -253,29 +271,39 @@ int validarData(char dataNasc[]) {
 				int digito4Ano = digito8;
 				int digitosAno = digito1Ano + digito2Ano + digito3Ano + digito4Ano;
 				if(digitosAno <= 0 || digitosAno > 2021) {
-					return -1;
+					retorno = -1;
 				} else {
-					return 1;
+					retorno = 1;
 				}
 			}
 		}
 	}
+
+	return retorno;
 }
 
 int validarNomeDisciplina(char nomeDisciplina[]) {
 
+	int retorno;
+
 	if(strlen(nomeDisciplina) < 1 || strlen(nomeDisciplina) > 30) {
-		return -1;
+		retorno = -1;
 	} else {
-		return 1;
+		retorno = 1;
 	}
+
+	return retorno;
 }
 
 int validarSemestre(int semestre) {
 
+	int retorno;
+
 	if(semestre <= 0 || semestre > 12) {
-		return -1;
+		retorno = -1;
 	} else {
-		return 1;
+		retorno = 1;
 	}
+
+	return retorno;
 }
