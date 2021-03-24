@@ -286,7 +286,7 @@ int validarNomeDisciplina(char nomeDisciplina[]) {
 
 	int retorno;
 
-	if(strlen(nomeDisciplina) < 1 || strlen(nomeDisciplina) > 30) {
+	if(strlen(nomeDisciplina) - 1 < 1 || strlen(nomeDisciplina) - 1 > 30) {
 		retorno = -1;
 	} else {
 		retorno = 1;
