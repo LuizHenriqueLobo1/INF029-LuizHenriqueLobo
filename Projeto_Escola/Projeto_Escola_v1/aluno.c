@@ -78,8 +78,8 @@ int menuAluno() {
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> CADASTRAR ALUNO   |\n");
 	printf("| 2 -> MOSTRAR ALUNOS    |\n");
-	printf("| 3 -> ALTERAR CADASTRO  |\n");
-	printf("| 4 -> RETIRAR CADASTRO  |");
+	printf("| 3 -> ALTERAR ALUNO     |\n");
+	printf("| 4 -> RETIRAR ALUNO     |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);

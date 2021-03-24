@@ -78,8 +78,8 @@ int menuProfessor() {
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> CADASTRAR PROF    |\n");
 	printf("| 2 -> MOSTRAR PROFS     |\n");
-	printf("| 3 -> ALTERAR CADASTRO  |\n");
-	printf("| 4 -> RETIRAR CADASTRO  |");
+	printf("| 3 -> ALTERAR PROF      |\n");
+	printf("| 4 -> REMOVER PROF      |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);

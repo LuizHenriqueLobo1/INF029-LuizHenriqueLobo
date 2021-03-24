@@ -75,8 +75,8 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados
 			}
 
 			case 7: {
-				if(disciplina[0].qtdAlunoCadastrado <= 0) {
-					printf("\nNAO EXISTE ALUNO CADASTRADO EM DISCIPLINA!\n");
+				if(qtdDisciplina <= 0 || disciplina[0].qtdAlunoCadastrado <= 0) {
+					printf("\nNAO EXISTE DISCIPLINA OU ALUNO CADASTRADO EM DISCIPLINA!\n");
 				} else {
 					removerAlunoDisciplina(qtdDisciplina, disciplina);
 					printf("\nALUNO REMOVIDO DA DISCIPLINA COM SUCESSO!\n");
@@ -104,7 +104,7 @@ int menuDisciplina() {
 	printf("| 1 -> CADASTRAR DISC           |\n");
 	printf("| 2 -> MOSTRAR DISCS            |\n");
 	printf("| 3 -> ALTERAR DISC             |\n");
-	printf("| 4 -> RETIRAR DISC             |\n");
+	printf("| 4 -> REMOVER DISC             |\n");
 	printf("| 5 -> CADASTRAR ALUNO NA DISC  |\n");
 	printf("| 6 -> MOSTRAR ALUNOS DA DISC   |\n");
 	printf("| 7 -> REMOVER ALUNOS DA DISC   |");
