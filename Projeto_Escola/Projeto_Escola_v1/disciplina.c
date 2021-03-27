@@ -84,6 +84,16 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados
 				break;
 			}
 
+			case 8: {
+				if(qtdDisciplina <= 0 || disciplina[0].qtdAlunoCadastrado <= 0) {
+					printf("\nNAO EXISTE DISCIPLINA OU ALUNO CADASTRADO EM DISCIPLINA!\n");
+				} else {
+					removerTodosAlunosDisciplina(qtdDisciplina, disciplina);
+					printf("\nTODOS OS ALUNOS FORAM REMOVIDOS COM SUCESSO!\n");
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -107,7 +117,8 @@ int menuDisciplina() {
 	printf("| 4 -> REMOVER DISC             |\n");
 	printf("| 5 -> CADASTRAR ALUNO NA DISC  |\n");
 	printf("| 6 -> MOSTRAR ALUNOS DA DISC   |\n");
-	printf("| 7 -> REMOVER ALUNOS DA DISC   |");
+	printf("| 7 -> REMOVER ALUNOS DA DISC   |\n");
+	printf("| 8 -> REMOVER TODOS ALUNOS DISC|");
 	printf("\n---------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -335,6 +346,9 @@ void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno
 		if(numD <= 0 || numD > qtdDisciplina) {
 			printf("\nNUMERO INVALIDO! Tente novamente...\n");
 			scanf("%d", &numD);
+		} else if(disciplina[numD-1].qtdAlunoCadastrado == TAM) {
+			printf("\nESTA DISCIPLINA ESTA LOTADA! Tente novamente...\n");
+			scanf("%d", &numD);
 		} else {
 			break;
 		}
@@ -342,7 +356,7 @@ void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno
 	numD--;
 
 	pAlunoCadastrado = disciplina[numD].qtdAlunoCadastrado;
-
+	
 	printf("\nDigite o numero do aluno para ser cadastrado na disciplina: ");
 	scanf("%d", &numA);
 	while(1) {
@@ -433,4 +447,23 @@ void removerAlunoDisciplina(int qtdDisciplina, disc disciplina[]) {
 	}
 
 	disciplina[numD].qtdAlunoCadastrado--;
+}
+
+void removerTodosAlunosDisciplina(int qtdDisciplina, disc disciplina[]) {
+
+	int numD;
+
+	printf("\nDigite o numero da disciplina que deseja remover todos os alunos: ");
+	scanf("%d", &numD);
+	while(1) {
+		if(numD <= 0 || numD > qtdDisciplina) {
+			printf("\nNUMERO INVALIDO! Digite novamente...\n");
+			scanf("%d", &numD);
+		} else {
+			break;
+		}
+	}
+	numD--;
+
+	disciplina[numD].qtdAlunoCadastrado = 0;
 }
