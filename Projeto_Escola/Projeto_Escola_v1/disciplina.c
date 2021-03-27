@@ -355,7 +355,7 @@ void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno
 	}
 	numA--;
 
-	strcpy(disciplina[numD].aluno[pAlunoCadastrado].matricula, aluno[numA].matricula);
+	disciplina[numD].aluno[pAlunoCadastrado].matricula = aluno[numA].matricula;
 	strcpy(disciplina[numD].aluno[pAlunoCadastrado].nome, aluno[numA].nome);
 	disciplina[numD].aluno[pAlunoCadastrado].sexo = aluno[numA].sexo;
 	strcpy(disciplina[numD].aluno[pAlunoCadastrado].data, aluno[numA].data);
@@ -425,7 +425,7 @@ void removerAlunoDisciplina(int qtdDisciplina, disc disciplina[]) {
 	pAlunoCadastrado = disciplina[numD].qtdAlunoCadastrado;
 
 	for(int i = numA; i < pAlunoCadastrado; i++) {
-		strcpy(disciplina[numD].aluno[numA].matricula, disciplina[i].aluno[i+1].matricula);
+		disciplina[numD].aluno[numA].matricula = disciplina[i].aluno[i+1].matricula;
 		strcpy(disciplina[numD].aluno[numA].nome, disciplina[i].aluno[i+1].nome);
 		disciplina[numD].aluno[numA].sexo = disciplina[i].aluno[i+1].sexo;
 		strcpy(disciplina[numD].aluno[numA].data, disciplina[i].aluno[i+1].data);

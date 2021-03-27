@@ -1,7 +1,7 @@
 #define TAM 5
 
 typedef struct {
-	char matricula[50];
+	int matricula;
 	char nome[50];
 	char sexo;
 	char data[50];

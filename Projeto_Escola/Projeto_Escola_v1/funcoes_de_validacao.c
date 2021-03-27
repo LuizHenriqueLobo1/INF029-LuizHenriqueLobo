@@ -3,19 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 
-int validarMatricula(char matricula[]) {
-
-	int retorno;
-
-	if(strlen(matricula) - 1 < 1 || strlen(matricula) - 1 > 10) {
-		retorno = -1;
-	} else {
-		retorno = 1;
-	}
-
-	return retorno;
-}
-
 int validarNome(char nome[]) {
 
 	int retorno;
