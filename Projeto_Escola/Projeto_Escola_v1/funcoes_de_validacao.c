@@ -269,6 +269,20 @@ int validarData(char dataNasc[]) {
 	return retorno;
 }
 
+int validarCodigoDisciplina(char codigo[]) {
+
+	int retorno;
+
+	if(strlen(codigo) - 1 <= 0 || strlen(codigo) - 1 > 10) {
+		retorno = -1;
+	} else {
+		retorno = 1;
+	}
+
+
+	return retorno;
+}
+
 int validarNomeDisciplina(char nomeDisciplina[]) {
 
 	int retorno;
@@ -282,7 +296,7 @@ int validarNomeDisciplina(char nomeDisciplina[]) {
 	return retorno;
 }
 
-int validarSemestre(int semestre) {
+int validarSemestreDisciplina(int semestre) {
 
 	int retorno;
 

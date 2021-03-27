@@ -56,5 +56,6 @@ int validarNome(char nome[]);
 int validarSexo(char sexo);
 int validarCPF(char cpf[]);
 int validarData(char dataNasc[]);
+int validarCodigoDisciplina(char codigo[]);
 int validarNomeDisciplina(char nomeDisciplina[]);
-int validarSemestre(int semestre);
+int validarSemestreDisciplina(int semestre);
