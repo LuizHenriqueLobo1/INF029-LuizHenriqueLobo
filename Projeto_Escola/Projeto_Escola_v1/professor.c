@@ -27,6 +27,9 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				if(qtdProfessor < TAM) {
 					cadastrarProfessor(qtdProfessor, professor);
 					qtdProfessor++;
+					professor[-1].matricula = 999;
+					professor[qtdProfessor-1].matricula = 0;
+					professor[qtdProfessor-1].matricula = professor[qtdProfessor-2].matricula + 1;
 					printf("\nPROFESSOR CADASTRADO COM SUCESSO!\n");
 					break;
 				} else {
@@ -94,18 +97,6 @@ void cadastrarProfessor(int qtdProfessor, dados professor[]) {
 	printf("| CADASTRANDO PROFESSOR |");
 	printf("\n-------------------------\n");
 
-	printf("\nDigite o numero de matricula: ");
-	fgets(professor[qtdProfessor].matricula, 50, stdin);
-	setbuf(stdin, NULL);
-	while(1) {
-		if(validarMatricula(professor[qtdProfessor].matricula) != 1) {
-			printf("\nMATRICULA INVALIDA! Digite novamente...\n");
-			fgets(professor[qtdProfessor].matricula, 50, stdin);
-		} else {
-			break;
-		}
-	}
-
 	printf("\nDigite o nome do professor (Ate 20 caracteres): ");
 	fgets(professor[qtdProfessor].nome, 50, stdin);
 	setbuf(stdin, NULL);
@@ -167,8 +158,8 @@ void mostrarProfessor(int qtdProfessor, dados professor[]) {
 	} else {
 		for(int i = 0; i < qtdProfessor; i++) {
 		printf("\n--------- PROFESSOR %d ---------\n", i+1);
-		printf("MATRICULA: %s", professor[i].matricula);
-		printf("NOME: %s", professor[i].nome);
+		printf("MATRICULA: %d", professor[i].matricula);
+		printf("\nNOME: %s", professor[i].nome);
 		printf("SEXO: %c", professor[i].sexo);
 		printf("\nDATA DE NASCIMENTO: %s", professor[i].data);
 		printf("CPF: %s", professor[i].cpf);
@@ -181,7 +172,6 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 
 	int op = 0;
 	int num = 0;
-	char novaMatricula[50];
 	char novoNome[50];
 	char novoSexo;
 	char novaData[50];
@@ -212,22 +202,6 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 		}
 
 		case 1: {
-			printf("\nDigite a nova matricula: ");
-			fgets(novaMatricula, 50, stdin);
-			while(1) {
-				if(validarMatricula(professor[num-1].matricula) != 1) {
-					printf("\nMATRICULA INVALIDA! Tente novamente...\n");
-					fgets(novaMatricula, 50, stdin);
-				} else {
-					strcpy(professor[num-1].matricula, novaMatricula);
-					printf("\nMATRICULA ALTERADA COM SUCESSO!\n");
-					break;
-				}
-			}
-			break;
-		}
-
-		case 2: {
 			printf("\nDigite o novo nome: ");
 			fgets(novoNome, 50, stdin);
 			while(1) {
@@ -243,7 +217,7 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 			break;
 		}
 
-		case 3: {
+		case 2: {
 			printf("\nDigite o novo sexo: ");
 			scanf("%c", &novoSexo);
 			while(1) {
@@ -259,7 +233,7 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 			break;
 		}
 
-		case 4: {
+		case 3: {
 			printf("\nDigite a nova data de nascimento: ");
 			fgets(novaData, 50, stdin);
 			while(1) {
@@ -275,7 +249,7 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 			break;
 		}
 
-		case 5: {
+		case 4: {
 			printf("\nDigite o novo CPF: ");
 			fgets(novoCPF, 50, stdin);
 			while(1) {
@@ -311,7 +285,7 @@ int removerProfessor(int qtdProfessor, dados professor[]) {
 	pos--;
 
 	for(i = pos; i < qtdProfessor; i++) {
-		strcpy(professor[i].matricula, professor[i+1].matricula);
+		professor[i].matricula = professor[i+1].matricula;
 		strcpy(professor[i].nome, professor[i+1].nome);
 		professor[i].sexo = professor[i+1].sexo;
 		strcpy(professor[i].data, professor[i+1].data);

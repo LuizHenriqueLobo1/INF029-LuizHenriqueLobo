@@ -49,8 +49,7 @@ int main() {
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
-			}
-		
+			}	
 		}
 	}
 
@@ -82,11 +81,10 @@ int menu_alterarCadastroA(int num) {
 	printf("| ALUNO %d            |", num);
 	printf("\n--------------------------\n");
 	printf("| 0 -> SAIR              |\n");
-	printf("| 1 -> ALTERAR MATRICULA |\n");
-	printf("| 2 -> ALTERAR NOME      |\n");
-	printf("| 3 -> ALTERAR SEXO      |\n");
-	printf("| 4 -> ALTERAR DATA      |\n");
-	printf("| 5 -> ALTERAR CPF       |");
+	printf("| 1 -> ALTERAR NOME      |\n");
+	printf("| 2 -> ALTERAR SEXO      |\n");
+	printf("| 3 -> ALTERAR DATA      |\n");
+	printf("| 4 -> ALTERAR CPF       |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -104,11 +102,10 @@ int menu_alterarCadastroP(int num) {
 	printf("| PROFESSOR %d        |", num);
 	printf("\n--------------------------\n");
 	printf("| 0 -> SAIR              |\n");
-	printf("| 1 -> ALTERAR MATRICULA |\n");
-	printf("| 2 -> ALTERAR NOME      |\n");
-	printf("| 3 -> ALTERAR SEXO      |\n");
-	printf("| 4 -> ALTERAR DATA      |\n");
-	printf("| 5 -> ALTERAR CPF       |");
+	printf("| 1 -> ALTERAR NOME      |\n");
+	printf("| 2 -> ALTERAR SEXO      |\n");
+	printf("| 3 -> ALTERAR DATA      |\n");
+	printf("| 4 -> ALTERAR CPF       |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
