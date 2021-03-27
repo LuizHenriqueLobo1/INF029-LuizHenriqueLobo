@@ -126,7 +126,7 @@ void cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor)
 	fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarMatricula(disciplina[qtdDisciplina].codigo) != 1) { 
+		if(validarCodigoDisciplina(disciplina[qtdDisciplina].codigo) != 1) { 
 			printf("\nCODIGO INVALIDO! Digite novamente...\n");
 			fgets(disciplina[qtdDisciplina].codigo, 50, stdin);
 		} else {
@@ -150,7 +150,7 @@ void cadastrarDisciplina(int qtdDisciplina, disc disciplina[], int qtdProfessor)
 	scanf("%d", &disciplina[qtdDisciplina].semestre);
 	setbuf(stdin, NULL);
 	while(1) {
-		if(validarSemestre(disciplina[qtdDisciplina].semestre) != 1) {
+		if(validarSemestreDisciplina(disciplina[qtdDisciplina].semestre) != 1) {
 			printf("\nSEMESTRE INVALIDO! Digite novamente...\n");
 			scanf("%d", &disciplina[qtdDisciplina].semestre);
 		} else {
@@ -229,7 +229,7 @@ void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProf
 			fgets(novoCodigo, 50, stdin);
 			setbuf(stdin, NULL);
 			while(1) {
-				if(validarMatricula(novoCodigo) != 1) {
+				if(validarCodigoDisciplina(novoCodigo) != 1) {
 					printf("\nCODIGO INVALIDO! Digite novamente...\n");
 					fgets(novoCodigo, 50, stdin);
 				} else {
@@ -263,7 +263,7 @@ void alterarCadastroDisciplina(int qtdDisciplina, disc disciplina[], int qtdProf
 			scanf("%d", &novoSemestre);
 			setbuf(stdin, NULL);
 			while(1) {
-				if(validarSemestre(novoSemestre) != 1) {
+				if(validarSemestreDisciplina(novoSemestre) != 1) {
 					printf("\nSEMESTRE INVALIDO! Digite novamente...\n");
 					scanf("%d", &novoSemestre);
 				} else {
