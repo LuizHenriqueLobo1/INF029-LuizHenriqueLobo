@@ -63,8 +63,11 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados
 				if(qtdDisciplina <= 0 || qtdAluno <= 0) {
 					printf("\nPRECISA-SE DE AO MENOS UMA DISCIPLINA E UM ALUNO REGISTRADO PARA CONTINUAR!\n");
 				} else {
-					cadastrarAlunoDisciplina(qtdDisciplina, disciplina, qtdAluno, aluno);
-					printf("\nALUNO CADASTRADO NA DISCIPLINA COM SUCESSO!\n");
+					if(cadastrarAlunoDisciplina(qtdDisciplina, disciplina, qtdAluno, aluno) == 1) {
+						printf("\nALUNO CADASTRADO NA DISCIPLINA COM SUCESSO!\n");
+					} else {
+						printf("\nESTE ALUNO JA ESTA CADASTRADO NESTA DISCIPLINA!\n");
+					}
 				}
 				break;
 			}
@@ -330,11 +333,13 @@ int removerDisciplina(int qtdDisciplina, disc disciplina[]) {
 	return pos;
 }
 
-void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[]) {
+int cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno, dados aluno[]) {
 
 	int numA;
 	int numD;
 	int pAlunoCadastrado;
+	int i;
+	int retorno;
 
 	printf("\n-----------------------------------\n");
 	printf("| CADASTRANDO ALUNO NA DISCIPLINA |");
@@ -375,7 +380,23 @@ void cadastrarAlunoDisciplina(int qtdDisciplina, disc disciplina[], int qtdAluno
 	strcpy(disciplina[numD].aluno[pAlunoCadastrado].data, aluno[numA].data);
 	strcpy(disciplina[numD].aluno[pAlunoCadastrado].cpf, aluno[numA].cpf);
 
-	disciplina[numD].qtdAlunoCadastrado++;
+	if(pAlunoCadastrado <= 0) {
+		retorno = 1;
+	} else if(pAlunoCadastrado > 0) {
+		for(i = 0; i < pAlunoCadastrado; i++) {
+			if(aluno[numA].matricula == disciplina[numD].aluno[i].matricula) {
+				retorno = -1;
+				break;
+			} else {
+				retorno = 1;
+			}
+		}
+	}
+	
+	if(retorno == 1)
+		disciplina[numD].qtdAlunoCadastrado++;
+		
+	return retorno;
 }
 
 void mostrarDisciplinaComAluno(int qtdDisciplina, disc disciplina[], int qtdProfessor, dados professor[]) {
