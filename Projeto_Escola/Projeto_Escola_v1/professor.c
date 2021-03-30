@@ -63,6 +63,15 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				break;
 			}
 
+			case 5: {
+				if(qtdProfessor <= 0) {
+					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
+				} else {
+					listarProfessorAniversariante(qtdProfessor, professor);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -77,13 +86,14 @@ int menuProfessor() {
 
 	int op = 0;
 
-	printf("\n----- MENU PROFESSOR -----\n");
-	printf("| 0 -> SAIR              |\n");
-	printf("| 1 -> CADASTRAR PROF    |\n");
-	printf("| 2 -> MOSTRAR PROFS     |\n");
-	printf("| 3 -> ALTERAR PROF      |\n");
-	printf("| 4 -> REMOVER PROF      |");
-	printf("\n--------------------------\n");
+	printf("\n-------- MENU PROFESSOR --------\n");
+	printf("| 0 -> SAIR                    |\n");
+	printf("| 1 -> CADASTRAR PROFESSOR     |\n");
+	printf("| 2 -> MOSTRAR PROFESSORES     |\n");
+	printf("| 3 -> ALTERAR PROFESSOR       |\n");
+	printf("| 4 -> REMOVER PROFESSOR       |\n");
+	printf("| 5 -> ANIVERSARIANTES DO MES  |");
+	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
 	setbuf(stdin, NULL);
@@ -297,4 +307,87 @@ int removerProfessor(int qtdProfessor, dados professor[]) {
 	mostrarProfessor(qtdProfessor, professor);
 
 	return pos;
+}
+
+void listarProfessorAniversariante(int qtdProfessor, dados professor[]) {
+
+	int mes;
+	int i, y;
+	long int vetDatas[6];
+	int verificacao = 0;
+	char strMes[20];
+
+	printf("\nInforme o mes que deseja listar os aniversariantes (1/12):");
+	scanf("%d", &mes);
+	while(1) {
+		if(mes <= 0 || mes > 12) {
+			printf("\nMES INVALIDO! Digite novamente...\n");
+			scanf("%d", &mes);
+		} else {
+			break;
+		}
+	}
+
+	descobreNomeMes(mes, strMes);
+
+	printf("\n---------------------------------\n");
+	printf("   ANIVERSARIANTES DE %s ", strMes);
+	printf("\n---------------------------------\n");
+
+	for(i = 0; i < qtdProfessor; i++) {
+		vetDatas[i] = atoi(professor[i].data);
+
+		if(strlen(professor[i].data) -1 == 6) {
+			int digito1 = 0;
+			int digito2 = 0;
+			digito1 = (vetDatas[i] / 1000) % 10;
+			digito2 = (vetDatas[i] / 100) % 10;
+
+			int digito1Mes = 0;
+			int digito2Mes = 0;
+			int digitoMes = 0;
+		
+			digito1Mes = digito1 * 10;
+			digito2Mes = digito2;
+			digitoMes = digito1Mes + digito2Mes;
+
+			for(y = 0; mes == digitoMes; y++) {
+				printf("\n----------------------------\n");
+				printf("PROFESSOR %d", i+1);
+				printf("\nNome: %s", professor[i].nome);
+				printf("Data de Nascimento: %s", professor[i].data);
+				printf("----------------------------\n");
+				verificacao = 1;
+				break;
+			}
+			
+		} else if(strlen(professor[i].data) - 1 == 8) {
+			int digito1 = 0;
+			int digito2 = 0;
+			digito1 = (vetDatas[i] / 100000) % 10;
+			digito2 = (vetDatas[i] / 10000) % 10;
+
+			int digito1Mes = 0;
+			int digito2Mes = 0;
+			int digitoMes = 0;
+
+			digito1Mes = digito1 * 10;
+			digito2Mes = digito2;
+			digitoMes = digito1Mes + digito2Mes;
+
+			for(y = 0; mes == digitoMes; y++) {
+				printf("\n----------------------------\n");
+				printf("PROFESSOR %d", i+1);
+				printf("\nNome: %s", professor[i].nome);
+				printf("Data de Nascimento: %s", professor[i].data);
+				printf("----------------------------\n");
+				verificacao = 1;
+				break;
+			}
+		}
+	}
+
+	if(verificacao != 1) {
+		printf("\nNENHUM PROFESSOR FAZ ANIVESARIO ESTE MES!\n");
+	}
 }

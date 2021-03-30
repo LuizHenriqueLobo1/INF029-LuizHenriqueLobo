@@ -63,6 +63,15 @@ int mainAluno(dados aluno[], int qtdAluno) {
 				break;
 			}
 
+			case 5: {
+				if(qtdAluno <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					listarAlunoAniversariante(qtdAluno, aluno);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -77,13 +86,14 @@ int menuAluno() {
 
 	int op = 0;
 
-	printf("\n------- MENU ALUNO -------\n");
-	printf("| 0 -> SAIR              |\n");
-	printf("| 1 -> CADASTRAR ALUNO   |\n");
-	printf("| 2 -> MOSTRAR ALUNOS    |\n");
-	printf("| 3 -> ALTERAR ALUNO     |\n");
-	printf("| 4 -> RETIRAR ALUNO     |");
-	printf("\n--------------------------\n");
+	printf("\n---------- MENU ALUNO ----------\n");
+	printf("| 0 -> SAIR                    |\n");
+	printf("| 1 -> CADASTRAR ALUNO         |\n");
+	printf("| 2 -> MOSTRAR ALUNOS          |\n");
+	printf("| 3 -> ALTERAR ALUNO           |\n");
+	printf("| 4 -> RETIRAR ALUNO           |\n");
+	printf("| 5 -> ANIVERSARIANTES DO MES  |");
+	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
 	setbuf(stdin, NULL);
@@ -297,4 +307,87 @@ int removerAluno(int qtdAluno, dados aluno[]) {
 	mostrarAluno(qtdAluno, aluno);
 
 	return pos;
+}
+
+void listarAlunoAniversariante(int qtdAluno, dados aluno[]) {
+
+	int mes;
+	int i, y;
+	long int vetDatas[6];
+	int verificacao = 0;
+	char strMes[20];
+
+	printf("\nInforme o mes que deseja listar os aniversariantes (1/12):");
+	scanf("%d", &mes);
+	while(1) {
+		if(mes <= 0 || mes > 12) {
+			printf("\nMES INVALIDO! Digite novamente...\n");
+			scanf("%d", &mes);
+		} else {
+			break;
+		}
+	}
+
+	descobreNomeMes(mes, strMes);
+
+	printf("\n---------------------------------\n");
+	printf("   ANIVERSARIANTES DE %s ", strMes);
+	printf("\n---------------------------------\n");
+
+	for(i = 0; i < qtdAluno; i++) {
+		vetDatas[i] = atoi(aluno[i].data);
+
+		if(strlen(aluno[i].data) -1 == 6) {
+			int digito1 = 0;
+			int digito2 = 0;
+			digito1 = (vetDatas[i] / 1000) % 10;
+			digito2 = (vetDatas[i] / 100) % 10;
+
+			int digito1Mes = 0;
+			int digito2Mes = 0;
+			int digitoMes = 0;
+		
+			digito1Mes = digito1 * 10;
+			digito2Mes = digito2;
+			digitoMes = digito1Mes + digito2Mes;
+
+			for(y = 0; mes == digitoMes; y++) {
+				printf("\n----------------------------\n");
+				printf("ALUNO %d", i+1);
+				printf("\nNome: %s", aluno[i].nome);
+				printf("Data de Nascimento: %s", aluno[i].data);
+				printf("----------------------------\n");
+				verificacao = 1;
+				break;
+			}
+			
+		} else if(strlen(aluno[i].data) - 1 == 8) {
+			int digito1 = 0;
+			int digito2 = 0;
+			digito1 = (vetDatas[i] / 100000) % 10;
+			digito2 = (vetDatas[i] / 10000) % 10;
+
+			int digito1Mes = 0;
+			int digito2Mes = 0;
+			int digitoMes = 0;
+
+			digito1Mes = digito1 * 10;
+			digito2Mes = digito2;
+			digitoMes = digito1Mes + digito2Mes;
+
+			for(y = 0; mes == digitoMes; y++) {
+				printf("\n----------------------------\n");
+				printf("ALUNO %d", i+1);
+				printf("\nNome: %s", aluno[i].nome);
+				printf("Data de Nascimento: %s", aluno[i].data);
+				printf("----------------------------\n");
+				verificacao = 1;
+				break;
+			}
+		}
+	}
+
+	if(verificacao != 1) {
+		printf("\nNENHUM ALUNO FAZ ANIVESARIO ESTE MES!\n");
+	}
 }

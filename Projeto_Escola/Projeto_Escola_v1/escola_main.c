@@ -135,3 +135,32 @@ int menu_alterarCadastroD(int num) {
 
 	return op;
 }
+
+void descobreNomeMes(int mes, char strMes[]) {
+
+	if(mes == 1) {
+		strcpy(strMes, "JANEIRO");
+	} else if(mes == 2) {
+		strcpy(strMes, "FEVEREIRO");
+	} else if(mes == 3) {
+		strcpy(strMes, "MARCO");
+	} else if(mes == 4) {
+		strcpy(strMes, "ABRIL");
+	} else if(mes == 5) {
+		strcpy(strMes, "MAIO");
+	} else if(mes == 6) {
+		strcpy(strMes, "JUNHO");
+	} else if(mes == 7) {
+		strcpy(strMes, "JULHO");
+	} else if(mes == 8) {
+		strcpy(strMes, "AGOSTO");
+	} else if(mes == 9) {
+		strcpy(strMes, "SETEMBRO");
+	} else if(mes == 10) {
+		strcpy(strMes, "OUTUBRO");
+	} else if(mes == 11) {
+		strcpy(strMes, "NOVEMBRO");
+	} else if(mes == 12) {
+		strcpy(strMes, "DEZEMBRO");
+	} 
+}

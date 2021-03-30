@@ -32,6 +32,7 @@ void cadastrarAluno(int qtdAluno, dados aluno[]);
 void mostrarAluno(int qtdAluno, dados aluno[]);
 void alterarCadastroAluno(int qtdAluno, dados aluno[]);
 int removerAluno(int qtdAluno, dados aluno[]);
+void listarAlunoAniversariante(int qtdAluno, dados aluno[]);
 
 // Professor
 int mainProfessor(dados professor[], int qtdProfessor);
@@ -39,6 +40,7 @@ void cadastrarProfessor(int qtdProfessor, dados professor[]);
 void mostrarProfessor(int qtdProfessor, dados professor[]);
 void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
+void listarProfessorAniversariante(int qtdProfessor, dados professor[]);
 
 // Disciplina
 int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[]);
@@ -60,3 +62,6 @@ int validarData(char dataNasc[]);
 int validarCodigoDisciplina(char codigo[]);
 int validarNomeDisciplina(char nomeDisciplina[]);
 int validarSemestreDisciplina(int semestre);
+
+// Funções extras
+void descobreNomeMes(int mes, char strMes[]);
