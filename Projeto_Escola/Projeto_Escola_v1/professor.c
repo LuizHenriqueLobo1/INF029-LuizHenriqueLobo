@@ -72,6 +72,15 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				break;
 			}
 
+			case 6: {
+				if(qtdProfessor <= 0) {
+					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
+				} else {
+					listarProfessorSexo(qtdProfessor, professor);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -92,7 +101,8 @@ int menuProfessor() {
 	printf("| 2 -> MOSTRAR PROFESSORES     |\n");
 	printf("| 3 -> ALTERAR PROFESSOR       |\n");
 	printf("| 4 -> REMOVER PROFESSOR       |\n");
-	printf("| 5 -> ANIVERSARIANTES DO MES  |");
+	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
+	printf("| 6 -> MOSTRAR PROFS POR SEXO  |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -131,6 +141,7 @@ void cadastrarProfessor(int qtdProfessor, dados professor[]) {
 			break;
 		}
 	}
+	professor[qtdProfessor].sexo = toupper(professor[qtdProfessor].sexo);
 
 	printf("\nDigite a data de nascimento do professor (Somente os numeros): ");
 	fgets(professor[qtdProfessor].data, 50, stdin);
@@ -235,6 +246,7 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 					printf("\nSEXO INVALIDO! Tente novamente...\n");
 					scanf("%c", &novoSexo);
 				} else {
+					novoSexo = toupper(novoSexo);
 					professor[num-1].sexo = novoSexo;
 					printf("\nSEXO ALTERADO COM SUCESSO!\n");
 					break;
@@ -389,5 +401,53 @@ void listarProfessorAniversariante(int qtdProfessor, dados professor[]) {
 
 	if(verificacao != 1) {
 		printf("\nNENHUM PROFESSOR FAZ ANIVESARIO ESTE MES!\n");
+	}
+}
+
+void listarProfessorSexo(int qtdProfessor, dados professor[]) {
+
+	char sexo;
+	int i;
+	char strSexo[15];
+	int verificacao = 0;
+
+	setbuf(stdin, NULL);
+	printf("\nDigite o sexo que deseja listar (M, F ou O): ");
+	scanf("%c", &sexo);
+	while(1) {
+		if(validarSexo(sexo) != 1) {
+			setbuf(stdin, NULL);
+			printf("\nSEXO INVALIDO! Digite novamente...\n");
+			scanf("%c", &sexo);
+		} else {
+			break;
+		}
+	}
+	sexo = toupper(sexo);
+	
+	if(sexo == 'M') {
+		strcpy(strSexo, "MASCULINO");
+	} else if(sexo == 'F') {
+		strcpy(strSexo, "FEMININO");
+	} else {
+		strcpy(strSexo, "OUTROS");
+	}
+
+	printf("\n---------------------------------\n");
+	printf("  PROFESSORES DO SEXO %s ", strSexo);
+	printf("\n---------------------------------\n");
+
+	for(i = 0; i < qtdProfessor; i++) {
+		if(professor[i].sexo == sexo) {
+			printf("\n----------------------------\n");
+			printf("Matricula: %d", professor[i].matricula);
+			printf("\nNome: %s", professor[i].nome);
+			printf("Sexo: %c", professor[i].sexo);
+			printf("\n----------------------------\n");
+			verificacao = 1;
+		}
+	}
+	if(verificacao != 1) {
+		printf("\nNENHUM PROFESSOR DO SEXO %s CADASTRADO!\n", strSexo);
 	}
 }
