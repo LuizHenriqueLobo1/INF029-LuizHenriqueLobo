@@ -72,6 +72,15 @@ int mainAluno(dados aluno[], int qtdAluno) {
 				break;
 			}
 
+			case 6: {
+				if(qtdAluno <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					listarAlunoSexo(qtdAluno, aluno);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -92,7 +101,8 @@ int menuAluno() {
 	printf("| 2 -> MOSTRAR ALUNOS          |\n");
 	printf("| 3 -> ALTERAR ALUNO           |\n");
 	printf("| 4 -> RETIRAR ALUNO           |\n");
-	printf("| 5 -> ANIVERSARIANTES DO MES  |");
+	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
+	printf("| 6 -> MOSTRAR ALUNOS POR SEXO |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -131,6 +141,7 @@ void cadastrarAluno(int qtdAluno, dados aluno[]) {
 			break;
 		}
 	}
+	aluno[qtdAluno].sexo = toupper(aluno[qtdAluno].sexo);
 
 	printf("\nDigite a data de nascimento do aluno (Somente os numeros): ");
 	fgets(aluno[qtdAluno].data, 50, stdin);
@@ -235,6 +246,7 @@ void alterarCadastroAluno(int qtdAluno, dados aluno[]) {
 					printf("\nSEXO INVALIDO! Tente novamente...\n");
 					scanf("%c", &novoSexo);
 				} else {
+					novoSexo = toupper(novoSexo);
 					aluno[num-1].sexo = novoSexo;
 					printf("\nSEXO ALTERADO COM SUCESSO!\n");
 					break;
@@ -353,7 +365,7 @@ void listarAlunoAniversariante(int qtdAluno, dados aluno[]) {
 
 			for(y = 0; mes == digitoMes; y++) {
 				printf("\n----------------------------\n");
-				printf("ALUNO %d", i+1);
+				printf("Matricula: %d", aluno[i].matricula);
 				printf("\nNome: %s", aluno[i].nome);
 				printf("Data de Nascimento: %s", aluno[i].data);
 				printf("----------------------------\n");
@@ -377,7 +389,7 @@ void listarAlunoAniversariante(int qtdAluno, dados aluno[]) {
 
 			for(y = 0; mes == digitoMes; y++) {
 				printf("\n----------------------------\n");
-				printf("ALUNO %d", i+1);
+				printf("Matricula: %d", aluno[i].matricula);
 				printf("\nNome: %s", aluno[i].nome);
 				printf("Data de Nascimento: %s", aluno[i].data);
 				printf("----------------------------\n");
@@ -389,5 +401,53 @@ void listarAlunoAniversariante(int qtdAluno, dados aluno[]) {
 
 	if(verificacao != 1) {
 		printf("\nNENHUM ALUNO FAZ ANIVESARIO ESTE MES!\n");
+	}
+}
+
+void listarAlunoSexo(int qtdAluno, dados aluno[]) {
+
+	char sexo;
+	int i;
+	char strSexo[15];
+	int verificacao = 0;
+
+	setbuf(stdin, NULL);
+	printf("\nDigite o sexo que deseja listar (M, F ou O): ");
+	scanf("%c", &sexo);
+	while(1) {
+		if(validarSexo(sexo) != 1) {
+			setbuf(stdin, NULL);
+			printf("\nSEXO INVALIDO! Digite novamente...\n");
+			scanf("%c", &sexo);
+		} else {
+			break;
+		}
+	}
+	sexo = toupper(sexo);
+	
+	if(sexo == 'M') {
+		strcpy(strSexo, "MASCULINO");
+	} else if(sexo == 'F') {
+		strcpy(strSexo, "FEMININO");
+	} else {
+		strcpy(strSexo, "OUTROS");
+	}
+
+	printf("\n---------------------------------\n");
+	printf("    ALUNOS DO SEXO %s ", strSexo);
+	printf("\n---------------------------------\n");
+
+	for(i = 0; i < qtdAluno; i++) {
+		if(aluno[i].sexo == sexo) {
+			printf("\n----------------------------\n");
+			printf("Matricula: %d", aluno[i].matricula);
+			printf("\nNome: %s", aluno[i].nome);
+			printf("Sexo: %c", aluno[i].sexo);
+			printf("\n----------------------------\n");
+			verificacao = 1;
+		}
+	}
+	if(verificacao != 1) {
+		printf("\nNENHUM ALUNO DO SEXO %s CADASTRADO!\n", strSexo);
 	}
 }
