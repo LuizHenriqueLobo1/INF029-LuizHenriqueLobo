@@ -33,6 +33,7 @@ void mostrarAluno(int qtdAluno, dados aluno[]);
 void alterarCadastroAluno(int qtdAluno, dados aluno[]);
 int removerAluno(int qtdAluno, dados aluno[]);
 void listarAlunoAniversariante(int qtdAluno, dados aluno[]);
+void listarAlunoSexo(int qtdAluno, dados aluno[]);
 
 // Professor
 int mainProfessor(dados professor[], int qtdProfessor);
