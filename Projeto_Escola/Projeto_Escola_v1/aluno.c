@@ -81,6 +81,15 @@ int mainAluno(dados aluno[], int qtdAluno) {
 				break;
 			}
 
+			case 7: {
+				if(qtdAluno <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					listarAlunoOrdemAlfabetica(qtdAluno, aluno);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -102,7 +111,8 @@ int menuAluno() {
 	printf("| 3 -> ALTERAR ALUNO           |\n");
 	printf("| 4 -> RETIRAR ALUNO           |\n");
 	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
-	printf("| 6 -> MOSTRAR ALUNOS POR SEXO |");
+	printf("| 6 -> MOSTRAR ALUNOS POR SEXO |\n");
+	printf("| 7 -> ALUNOS EM ORDEM ALFAB   |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -450,4 +460,37 @@ void listarAlunoSexo(int qtdAluno, dados aluno[]) {
 	if(verificacao != 1) {
 		printf("\nNENHUM ALUNO DO SEXO %s CADASTRADO!\n", strSexo);
 	}
+}
+
+void listarAlunoOrdemAlfabetica(int qtdAluno, dados aluno[]) {
+
+	int i, y;
+	int comparacao;
+	char strAux[50];
+	char strNomes[TAM][50];
+
+	for(i = 0; i < qtdAluno; i++) {
+		strcpy(strNomes[i], aluno[i].nome);
+	}
+
+	for(i = 0; i < qtdAluno; i++) {
+		for(y = i + 1; y < qtdAluno; y++) {
+			comparacao = strcmp(strNomes[i], strNomes[y]);
+			if(comparacao > 0) {
+				strcpy(strAux, strNomes[i]);
+				strcpy(strNomes[i], strNomes[y]);
+				strcpy(strNomes[y], strAux);
+			}
+		}
+	}
+
+	printf("\n---------------------------------------\n");
+	printf("| LISTANDO ALUNOS EM ORDEM ALFABETICA |");
+	printf("\n---------------------------------------\n");
+
+	printf("\n--------- NOMES ---------\n");
+	for(i = 0; i < qtdAluno; i++) {
+		printf("- %s", strNomes[i]);
+	}
+	printf("-------------------------\n");
 }
