@@ -81,6 +81,15 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				break;
 			}
 
+			case 7: {
+				if(qtdProfessor <= 0) {
+					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
+				} else {
+					listarProfessorOrdemAlfabetica(qtdProfessor, professor);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -102,7 +111,8 @@ int menuProfessor() {
 	printf("| 3 -> ALTERAR PROFESSOR       |\n");
 	printf("| 4 -> REMOVER PROFESSOR       |\n");
 	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
-	printf("| 6 -> MOSTRAR PROFS POR SEXO  |");
+	printf("| 6 -> MOSTRAR PROFS POR SEXO  |\n");
+	printf("| 7 -> PROFS EM ORDEM ALFABET  |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -450,4 +460,37 @@ void listarProfessorSexo(int qtdProfessor, dados professor[]) {
 	if(verificacao != 1) {
 		printf("\nNENHUM PROFESSOR DO SEXO %s CADASTRADO!\n", strSexo);
 	}
+}
+
+void listarProfessorOrdemAlfabetica(int qtdProfessor, dados professor[]) {
+
+	int i, y;
+	int comparacao;
+	char strAux[50];
+	char strNomes[TAM][50];
+
+	for(i = 0; i < qtdProfessor; i++) {
+		strcpy(strNomes[i], professor[i].nome);
+	}
+
+	for(i = 0; i < qtdProfessor; i++) {
+		for(y = i + 1; y < qtdProfessor; y++) {
+			comparacao = strcmp(strNomes[i], strNomes[y]);
+			if(comparacao > 0) {
+				strcpy(strAux, strNomes[i]);
+				strcpy(strNomes[i], strNomes[y]);
+				strcpy(strNomes[y], strAux);
+			}
+		}
+	}
+
+	printf("\n--------------------------------------------\n");
+	printf("| LISTANDO PROFESSORES EM ORDEM ALFABETICA |");
+	printf("\n--------------------------------------------\n");
+
+	printf("\n--------- NOMES ---------\n");
+	for(i = 0; i < qtdProfessor; i++) {
+		printf("- %s", strNomes[i]);
+	}
+	printf("-------------------------\n");
 }

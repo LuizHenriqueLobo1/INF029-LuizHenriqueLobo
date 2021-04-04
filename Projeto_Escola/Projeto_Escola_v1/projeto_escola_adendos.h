@@ -44,6 +44,7 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]);
 int removerProfessor(int qtdProfessor, dados professor[]);
 void listarProfessorAniversariante(int qtdProfessor, dados professor[]);
 void listarProfessorSexo(int qtdProfessor, dados professor[]);
+void listarProfessorOrdemAlfabetica(int qtdProfessor, dados professor[]);
 
 // Disciplina
 int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados professor[], int qtdAluno, dados aluno[]);
