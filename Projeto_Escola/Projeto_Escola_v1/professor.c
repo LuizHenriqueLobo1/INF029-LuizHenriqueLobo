@@ -466,20 +466,40 @@ void listarProfessorOrdemAlfabetica(int qtdProfessor, dados professor[]) {
 
 	int i, y;
 	int comparacao;
-	char strAux[50];
-	char strNomes[TAM][50];
+	dados cloneProfessor[TAM];
+	int matriculaAux;
+	char nomeAux[50];
+	char sexoAux;
+	char dataAux[50];
+	char cpfAux[50];
 
 	for(i = 0; i < qtdProfessor; i++) {
-		strcpy(strNomes[i], professor[i].nome);
+		cloneProfessor[i].matricula = professor[i].matricula;
+		strcpy(cloneProfessor[i].nome, professor[i].nome);
+		cloneProfessor[i].sexo = professor[i].sexo;
+		strcpy(cloneProfessor[i].data, professor[i].data);
+		strcpy(cloneProfessor[i].cpf, professor[i].cpf);
 	}
 
 	for(i = 0; i < qtdProfessor; i++) {
 		for(y = i + 1; y < qtdProfessor; y++) {
-			comparacao = strcmp(strNomes[i], strNomes[y]);
+			comparacao = strcmp(cloneProfessor[i].nome, cloneProfessor[y].nome);
 			if(comparacao > 0) {
-				strcpy(strAux, strNomes[i]);
-				strcpy(strNomes[i], strNomes[y]);
-				strcpy(strNomes[y], strAux);
+				matriculaAux = cloneProfessor[i].matricula;
+				cloneProfessor[i].matricula = cloneProfessor[y].matricula;
+				cloneProfessor[y].matricula = matriculaAux;
+				strcpy(nomeAux, cloneProfessor[i].nome);
+				strcpy(cloneProfessor[i].nome, cloneProfessor[y].nome);
+				strcpy(cloneProfessor[y].nome, nomeAux);
+				sexoAux = cloneProfessor[i].sexo;
+				cloneProfessor[i].sexo = cloneProfessor[y].sexo;
+				cloneProfessor[y].sexo = sexoAux;
+				strcpy(dataAux, cloneProfessor[i].data);
+				strcpy(cloneProfessor[i].data, cloneProfessor[y].data);
+				strcpy(cloneProfessor[y].data, dataAux);
+				strcpy(cpfAux, cloneProfessor[i].cpf);
+				strcpy(cloneProfessor[i].cpf, cloneProfessor[y].cpf);
+				strcpy(cloneProfessor[y].cpf, cpfAux);
 			}
 		}
 	}
@@ -488,9 +508,13 @@ void listarProfessorOrdemAlfabetica(int qtdProfessor, dados professor[]) {
 	printf("| LISTANDO PROFESSORES EM ORDEM ALFABETICA |");
 	printf("\n--------------------------------------------\n");
 
-	printf("\n--------- NOMES ---------\n");
 	for(i = 0; i < qtdProfessor; i++) {
-		printf("- %s", strNomes[i]);
+		printf("\n----------------------------\n");
+		printf("MATRICULA: %d", cloneProfessor[i].matricula);
+		printf("\nNOME: %s", cloneProfessor[i].nome);
+		printf("SEXO: %c", cloneProfessor[i].sexo);
+		printf("\nDATA DE NASCIMENTO: %s", cloneProfessor[i].data);
+		printf("CPF: %s", cloneProfessor[i].cpf);
+		printf("----------------------------\n");
 	}
-	printf("-------------------------\n");
 }
