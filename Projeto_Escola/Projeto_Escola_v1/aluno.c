@@ -39,7 +39,11 @@ int mainAluno(dados aluno[], int qtdAluno) {
 			}
 
 			case 2: {
-				mostrarAluno(qtdAluno, aluno);
+				if(qtdAluno <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					mostrarAluno(qtdAluno, aluno);
+				}
 				break;
 			}
 
@@ -184,18 +188,14 @@ void mostrarAluno(int qtdAluno, dados aluno[]) {
 	printf("| LISTANDO ALUNOS  |");
 	printf("\n--------------------\n");
 
-	if(qtdAluno <= 0) {
-		printf("\nNENHUM ALUNO CADASTRADO!\n");
-	} else {
-		for(int i = 0; i < qtdAluno; i++) {
-		printf("\n---------- ALUNO %d ----------\n", i+1);
-		printf("MATRICULA: %d", aluno[i].matricula);
-		printf("\nNOME: %s", aluno[i].nome);
-		printf("SEXO: %c", aluno[i].sexo);
-		printf("\nDATA DE NASCIMENTO: %s", aluno[i].data);
-		printf("CPF: %s", aluno[i].cpf);
-		printf("-----------------------------\n");
-		}
+	for(int i = 0; i < qtdAluno; i++) {
+	printf("\n---------- ALUNO %d ----------\n", i+1);
+	printf("MATRICULA: %d", aluno[i].matricula);
+	printf("\nNOME: %s", aluno[i].nome);
+	printf("SEXO: %c", aluno[i].sexo);
+	printf("\nDATA DE NASCIMENTO: %s", aluno[i].data);
+	printf("CPF: %s", aluno[i].cpf);
+	printf("-----------------------------\n");
 	}
 }
 
@@ -314,6 +314,14 @@ int removerAluno(int qtdAluno, dados aluno[]) {
 
 	printf("\nInforme o numero do aluno para ser removido: ");
 	scanf("%d", &pos);
+	while(1) {
+		if(pos <= 0 || pos > qtdAluno) {
+			printf("\nALUNO NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
+			scanf("%d", &pos);
+		} else {
+			break;
+		}
+	}
 	pos--;
 
 	for(i = pos; i < qtdAluno; i++) {
@@ -325,8 +333,6 @@ int removerAluno(int qtdAluno, dados aluno[]) {
 	}
 
 	qtdAluno--;
-
-	mostrarAluno(qtdAluno, aluno);
 
 	return pos;
 }
