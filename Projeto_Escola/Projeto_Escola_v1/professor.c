@@ -39,7 +39,11 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 			}
 
 			case 2: {
-				mostrarProfessor(qtdProfessor, professor);
+				if(qtdProfessor <= 0) {
+					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
+				} else {
+					mostrarProfessor(qtdProfessor, professor);
+				}		
 				break;
 			}
 
@@ -184,18 +188,14 @@ void mostrarProfessor(int qtdProfessor, dados professor[]) {
 	printf("| LISTANDO PROFESSORES  |");
 	printf("\n-------------------------\n");
 
-	if(qtdProfessor <= 0) {
-		printf("\nNENHUM PROFESSOR CADASTRADO!\n");
-	} else {
-		for(int i = 0; i < qtdProfessor; i++) {
-		printf("\n--------- PROFESSOR %d ---------\n", i+1);
-		printf("MATRICULA: %d", professor[i].matricula);
-		printf("\nNOME: %s", professor[i].nome);
-		printf("SEXO: %c", professor[i].sexo);
-		printf("\nDATA DE NASCIMENTO: %s", professor[i].data);
-		printf("CPF: %s", professor[i].cpf);
-		printf("-------------------------------\n");
-		}
+	for(int i = 0; i < qtdProfessor; i++) {
+	printf("\n--------- PROFESSOR %d ---------\n", i+1);
+	printf("MATRICULA: %d", professor[i].matricula);
+	printf("\nNOME: %s", professor[i].nome);
+	printf("SEXO: %c", professor[i].sexo);
+	printf("\nDATA DE NASCIMENTO: %s", professor[i].data);
+	printf("CPF: %s", professor[i].cpf);
+	printf("-------------------------------\n");
 	}
 }
 
@@ -314,6 +314,14 @@ int removerProfessor(int qtdProfessor, dados professor[]) {
 
 	printf("\nInforme o numero do professor para ser removido: ");
 	scanf("%d", &pos);
+	while(1) {
+		if(pos <= 0 || pos > qtdProfessor) {
+			printf("\nPROFESSOR NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
+			scanf("%d", &pos);
+		} else {
+			break;
+		}
+	}
 	pos--;
 
 	for(i = pos; i < qtdProfessor; i++) {
@@ -326,8 +334,6 @@ int removerProfessor(int qtdProfessor, dados professor[]) {
 
 	qtdProfessor--;
 
-	mostrarProfessor(qtdProfessor, professor);
-
 	return pos;
 }
 
@@ -339,7 +345,7 @@ void listarProfessorAniversariante(int qtdProfessor, dados professor[]) {
 	int verificacao = 0;
 	char strMes[20];
 
-	printf("\nInforme o mes que deseja listar os aniversariantes (1/12):");
+	printf("\nInforme o mes que deseja listar os aniversariantes (1/12): ");
 	scanf("%d", &mes);
 	while(1) {
 		if(mes <= 0 || mes > 12) {

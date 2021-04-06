@@ -345,7 +345,7 @@ void listarAlunoAniversariante(int qtdAluno, dados aluno[]) {
 	int verificacao = 0;
 	char strMes[20];
 
-	printf("\nInforme o mes que deseja listar os aniversariantes (1/12):");
+	printf("\nInforme o mes que deseja listar os aniversariantes (1/12): ");
 	scanf("%d", &mes);
 	while(1) {
 		if(mes <= 0 || mes > 12) {
