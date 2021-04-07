@@ -27,7 +27,7 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				if(qtdProfessor < TAM) {
 					cadastrarProfessor(qtdProfessor, professor);
 					qtdProfessor++;
-					professor[-1].matricula = 999;
+					professor[-1].matricula = 0;
 					professor[qtdProfessor-1].matricula = 0;
 					professor[qtdProfessor-1].matricula = professor[qtdProfessor-2].matricula + 1;
 					printf("\nPROFESSOR CADASTRADO COM SUCESSO!\n");
@@ -184,18 +184,20 @@ void cadastrarProfessor(int qtdProfessor, dados professor[]) {
 
 void mostrarProfessor(int qtdProfessor, dados professor[]) {
 
+	int i;
+
 	printf("\n-------------------------\n");
 	printf("| LISTANDO PROFESSORES  |");
 	printf("\n-------------------------\n");
 
-	for(int i = 0; i < qtdProfessor; i++) {
-	printf("\n--------- PROFESSOR %d ---------\n", i+1);
-	printf("MATRICULA: %d", professor[i].matricula);
-	printf("\nNOME: %s", professor[i].nome);
-	printf("SEXO: %c", professor[i].sexo);
-	printf("\nDATA DE NASCIMENTO: %s", professor[i].data);
-	printf("CPF: %s", professor[i].cpf);
-	printf("-------------------------------\n");
+	for(i = 0; i < qtdProfessor; i++) {
+		printf("\n-------------------------------\n", i+1);
+		printf("MATRICULA: %d", professor[i].matricula);
+		printf("\nNOME: %s", professor[i].nome);
+		printf("SEXO: %c", professor[i].sexo);
+		printf("\nDATA DE NASCIMENTO: %s", professor[i].data);
+		printf("CPF: %s", professor[i].cpf);
+		printf("-------------------------------\n");
 	}
 }
 
@@ -210,10 +212,9 @@ void alterarCadastroProfessor(int qtdProfessor, dados professor[]) {
 
 	mostrarProfessor(qtdProfessor, professor);
 
-	printf("\nInforme o numero do professor para alterar o cadastro: ");
+	printf("\nInforme a matricula do professor para alterar o cadastro: ");
 	scanf("%d", &num);
 	setbuf(stdin, NULL);
-
 	while(1) {
 		if(num <= 0 || num > qtdProfessor) {
 			printf("\nPROFESSOR NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
@@ -312,7 +313,7 @@ int removerProfessor(int qtdProfessor, dados professor[]) {
 
 	mostrarProfessor(qtdProfessor, professor);
 
-	printf("\nInforme o numero do professor para ser removido: ");
+	printf("\nInforme a matricula do professor para ser removido: ");
 	scanf("%d", &pos);
 	while(1) {
 		if(pos <= 0 || pos > qtdProfessor) {

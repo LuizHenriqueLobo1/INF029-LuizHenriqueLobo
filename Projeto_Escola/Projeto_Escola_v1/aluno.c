@@ -27,7 +27,7 @@ int mainAluno(dados aluno[], int qtdAluno) {
 				if(qtdAluno < TAM) {
 					cadastrarAluno(qtdAluno, aluno);
 					qtdAluno++;
-					aluno[-1].matricula = 999;
+					aluno[-1].matricula = 0;
 					aluno[qtdAluno-1].matricula = 0;
 					aluno[qtdAluno-1].matricula = aluno[qtdAluno-2].matricula + 1;
 					printf("\nALUNO CADASTRADO COM SUCESSO!\n");
@@ -184,18 +184,20 @@ void cadastrarAluno(int qtdAluno, dados aluno[]) {
 
 void mostrarAluno(int qtdAluno, dados aluno[]) {
 
+	int i;
+
 	printf("\n--------------------\n");
 	printf("| LISTANDO ALUNOS  |");
 	printf("\n--------------------\n");
 
-	for(int i = 0; i < qtdAluno; i++) {
-	printf("\n---------- ALUNO %d ----------\n", i+1);
-	printf("MATRICULA: %d", aluno[i].matricula);
-	printf("\nNOME: %s", aluno[i].nome);
-	printf("SEXO: %c", aluno[i].sexo);
-	printf("\nDATA DE NASCIMENTO: %s", aluno[i].data);
-	printf("CPF: %s", aluno[i].cpf);
-	printf("-----------------------------\n");
+	for(i = 0; i < qtdAluno; i++) {
+		printf("\n-----------------------------\n", i+1);
+		printf("MATRICULA: %d", aluno[i].matricula);
+		printf("\nNOME: %s", aluno[i].nome);
+		printf("SEXO: %c", aluno[i].sexo);
+		printf("\nDATA DE NASCIMENTO: %s", aluno[i].data);
+		printf("CPF: %s", aluno[i].cpf);
+		printf("-----------------------------\n");
 	}
 }
 
@@ -210,10 +212,9 @@ void alterarCadastroAluno(int qtdAluno, dados aluno[]) {
 
 	mostrarAluno(qtdAluno, aluno);
 
-	printf("\nInforme o numero do aluno para alterar o cadastro: ");
+	printf("\nInforme a matricula do aluno para alterar o cadastro: ");
 	scanf("%d", &num);
 	setbuf(stdin, NULL);
-
 	while(1) {
 		if(num <= 0 || num > qtdAluno) {
 			printf("\nALUNO NAO ENCONTRADO OU NAO REGISTRADO! Tente novamente...\n");
@@ -312,7 +313,7 @@ int removerAluno(int qtdAluno, dados aluno[]) {
 
 	mostrarAluno(qtdAluno, aluno);
 
-	printf("\nInforme o numero do aluno para ser removido: ");
+	printf("\nInforme a matricula do aluno para ser removido: ");
 	scanf("%d", &pos);
 	while(1) {
 		if(pos <= 0 || pos > qtdAluno) {
