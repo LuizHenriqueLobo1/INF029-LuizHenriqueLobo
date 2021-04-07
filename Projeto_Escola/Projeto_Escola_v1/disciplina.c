@@ -439,6 +439,7 @@ void removerAlunoDisciplina(int qtdDisciplina, disc disciplina[]) {
 	int numD;
 	int numA;
 	int pAlunoCadastrado;
+	int i;
 
 	printf("\nDigite o numero da disciplina que deseja remover um aluno: ");
 	scanf("%d", &numD);
@@ -466,15 +467,15 @@ void removerAlunoDisciplina(int qtdDisciplina, disc disciplina[]) {
 
 	pAlunoCadastrado = disciplina[numD].qtdAlunoCadastrado;
 
-	for(int i = numA; i < pAlunoCadastrado; i++) {
-		disciplina[numD].aluno[numA].matricula = disciplina[i].aluno[i+1].matricula;
-		strcpy(disciplina[numD].aluno[numA].nome, disciplina[i].aluno[i+1].nome);
-		disciplina[numD].aluno[numA].sexo = disciplina[i].aluno[i+1].sexo;
-		strcpy(disciplina[numD].aluno[numA].data, disciplina[i].aluno[i+1].data);
-		strcpy(disciplina[numD].aluno[numA].cpf, disciplina[i].aluno[i+1].cpf);
+	for(i = numA; i < pAlunoCadastrado; i++) {
+		disciplina[numD].aluno[i].matricula = disciplina[numD].aluno[i+1].matricula;
+		strcpy(disciplina[numD].aluno[i].nome, disciplina[numD].aluno[i+1].nome);
+		disciplina[numD].aluno[i].sexo = disciplina[numD].aluno[i+1].sexo;
+		strcpy(disciplina[numD].aluno[i].data, disciplina[numD].aluno[i+1].data);
+		strcpy(disciplina[numD].aluno[i].cpf, disciplina[numD].aluno[i+1].cpf);
 	}
 
-	disciplina[numD].qtdAlunoCadastrado--;
+	disciplina[numD].qtdAlunoCadastrado-=1;
 }
 
 void removerTodosAlunosDisciplina(int qtdDisciplina, disc disciplina[]) {
