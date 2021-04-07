@@ -76,9 +76,9 @@ int menu_alterarCadastroA(int num) {
 
 	int op = 0;
 
-	printf("\n----------------------\n");
-	printf("| ALTERANDO CADASTRO |\n");
-	printf("| ALUNO %d            |", num);
+	printf("\n--------------------------\n");
+	printf("| ALTERANDO CADASTRO     |\n");
+	printf("| ALUNO DE MATRICULA %d   |", num);
 	printf("\n--------------------------\n");
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> ALTERAR NOME      |\n");
@@ -97,9 +97,9 @@ int menu_alterarCadastroP(int num) {
 
 	int op = 0;
 
-	printf("\n----------------------\n");
-	printf("| ALTERANDO CADASTRO |\n");
-	printf("| PROFESSOR %d        |", num);
+	printf("\n--------------------------\n");
+	printf("| ALTERANDO CADASTRO     |\n");
+	printf("| PROF DE MATRICULA %d    |", num);
 	printf("\n--------------------------\n");
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> ALTERAR NOME      |\n");
@@ -118,16 +118,15 @@ int menu_alterarCadastroD(int num) {
 
 	int op = 0;
 
-	printf("\n----------------------\n");
-	printf("| ALTERANDO CADASTRO |\n");
-	printf("| DISCIPLINA %d       |", num);
+	printf("\n--------------------------\n");
+	printf("| ALTERANDO CADASTRO     |\n");
+	printf("| DISCIPLINA DE NUM %d    |", num);
 	printf("\n--------------------------\n");
 	printf("| 0 -> SAIR              |\n");
 	printf("| 1 -> ALTERAR CODIGO    |\n");
 	printf("| 2 -> ALTERAR NOME      |\n");
 	printf("| 3 -> ALTERAR SEMESTRE  |\n");
-	printf("| 4 -> ALTERAR PROFESSOR |\n");
-	printf("| 5 -> ALTERAR ALUNO     |");
+	printf("| 4 -> ALTERAR PROFESSOR |");
 	printf("\n--------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
