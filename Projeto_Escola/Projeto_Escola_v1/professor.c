@@ -94,6 +94,15 @@ int mainProfessor(dados professor[], int qtdProfessor) {
 				break;
 			}
 
+			case 8: {
+				if(qtdProfessor <= 0) {
+					printf("\nNENHUM PROFESSOR CADASTRADO!\n");
+				} else {
+					qtdProfessor = apagarTodosProfessores(qtdProfessor);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -116,7 +125,8 @@ int menuProfessor() {
 	printf("| 4 -> REMOVER PROFESSOR       |\n");
 	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
 	printf("| 6 -> MOSTRAR PROFS POR SEXO  |\n");
-	printf("| 7 -> PROFS EM ORDEM ALFABET  |");
+	printf("| 7 -> PROFS EM ORDEM ALFABET  |\n");
+	printf("| 8 -> APAGAR TODOS OS PROFS   |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -524,4 +534,21 @@ void listarProfessorOrdemAlfabetica(int qtdProfessor, dados professor[]) {
 		printf("CPF: %s", cloneProfessor[i].cpf);
 		printf("----------------------------\n");
 	}
+}
+
+int apagarTodosProfessores(int qtdProfessor) {
+
+	char confirmacao;
+
+	printf("\nDeseja mesmo apagar todos os professores? (S p/ confirmar): ");
+	scanf("%c", &confirmacao);
+	confirmacao = toupper(confirmacao);
+	if(confirmacao == 'S') {
+		qtdProfessor = 0;
+		printf("\nTODOS OS PROFESSORES FORAM APAGADOS!\n");
+	} else {
+		printf("\nNENHUM PROFESSOR FOI APAGADO!\n");
+	}
+
+	return qtdProfessor;
 }
