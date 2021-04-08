@@ -94,6 +94,15 @@ int mainAluno(dados aluno[], int qtdAluno) {
 				break;
 			}
 
+			case 8: {
+				if(qtdAluno <= 0) {
+					printf("\nNENHUM ALUNO CADASTRADO!\n");
+				} else {
+					qtdAluno = apagarTodosAlunos(qtdAluno);
+				}
+				break;
+			}
+
 			default: {
 				printf("\nOPCAO INVALIDA!\n");
 				break;
@@ -116,7 +125,8 @@ int menuAluno() {
 	printf("| 4 -> RETIRAR ALUNO           |\n");
 	printf("| 5 -> ANIVERSARIANTES DO MES  |\n");
 	printf("| 6 -> MOSTRAR ALUNOS POR SEXO |\n");
-	printf("| 7 -> ALUNOS EM ORDEM ALFAB   |");
+	printf("| 7 -> ALUNOS EM ORDEM ALFAB   |\n");
+	printf("| 8 -> APAGAR TODOS OS ALUNOS  |");
 	printf("\n--------------------------------\n");
 	printf("> ");
 	scanf("%d", &op);
@@ -524,4 +534,21 @@ void listarAlunoOrdemAlfabetica(int qtdAluno, dados aluno[]) {
 		printf("CPF: %s", cloneAluno[i].cpf);
 		printf("----------------------------\n");
 	}
+}
+
+int apagarTodosAlunos(int qtdAluno) {
+
+	char confirmacao;
+
+	printf("\nDeseja mesmo apagar todos os alunos? (S p/ confirmar): ");
+	scanf("%c", &confirmacao);
+	confirmacao = toupper(confirmacao);
+	if(confirmacao == 'S') {
+		qtdAluno = 0;
+		printf("\nTODOS OS ALUNOS FORAM APAGADOS!\n");
+	} else {
+		printf("\nNENHUM ALUNO FOI APAGADO!\n");
+	}
+
+	return qtdAluno;
 }
