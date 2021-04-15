@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "LuizHenriqueLobo2019116029.h"
 
@@ -225,10 +226,31 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     Um número n >= 0.
  */
 int q3(char *texto, char c, int isCaseSensitive){
-    int qtdOcorrencias = -1;
+    
+    int qtdOcorrencias = 0;
+    int i;
+    char textoAux[250];
+    char cAux;
+    int contador = 0;
 
+	if(isCaseSensitive == 1) {
+		for(i = 0; texto[i] != '\0'; i++) {
+			if(texto[i] == c) {
+				contador++;
+			}
+		}
+	} else {
+		for(i = 0; texto[i] != '\0'; i++) {
+			textoAux[i] = tolower(texto[i]);
+			cAux = tolower(c);
+			if(textoAux[i] == cAux) {
+				contador++;
+			}
+		}
+	}
+
+	qtdOcorrencias = contador;
     return qtdOcorrencias;
-
 }
 
 /*
