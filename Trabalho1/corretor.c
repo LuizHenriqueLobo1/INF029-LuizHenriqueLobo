@@ -11,13 +11,11 @@
 
 // Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 19/08/2016 - 12/12/2018
-
 // #################################################
 
 #include<stdio.h>
 #include<string.h>
 
-//renomeie o arquivo do include abaixo para PrimeiroUltimoNomeMATRICULA.c
 #include "LuizHenriqueLobo2019116029.h"
 
 void testSomar(); //função utilizada para testes
@@ -39,7 +37,6 @@ int main(){
     //testQ5();
     //testQ6();
 }
-
 
 void testSomar(){
     printf("%d\n",somar(3, 4) == 7);
@@ -64,6 +61,17 @@ void testQ1(){
     strcpy(str,"9/13/2014");
     printf("%d\n",q1(str) == 0);
     strcpy(str,"45/4/2014");
+    printf("%d\n",q1(str) == 0);
+    // Meus testes
+    strcpy(str,"29/2/2100");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"12/5/01");
+    printf("%d\n",q1(str) == 1);
+    strcpy(str,"/4/2014");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"15//2005");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"7/11/");
     printf("%d\n",q1(str) == 0);
 }
 
@@ -117,7 +125,6 @@ void testQ2(){
     printf("%d\n",qtdDias == 1);
     printf("%d\n",qtdMeses == 1);
     printf("%d\n",qtdAnos == 0);
-
 }
 
 void testQ3(){
@@ -146,7 +153,6 @@ void testQ4(){
     printf("%d\n",posicoes[2]==34);
     printf("%d\n",posicoes[3]==37);
 
-
     for (i = 0; i<30; i++){
         posicoes[i] = -1;
     }
@@ -159,9 +165,7 @@ void testQ4(){
     printf("%d\n",posicoes[3]==36);
     printf("%d\n",posicoes[4]==52);
     printf("%d\n",posicoes[5]==54);
-
 }
-
 
 void testQ5(){
     printf("%d\n",q5(345) == 543);
@@ -175,5 +179,4 @@ void testQ6(){
     printf("%d\n",q6(34567368, 4576) == 0);
     printf("%d\n",q6(3539343, 3) == 4);
     printf("%d\n",q6(3539343, 39) == 1);
-
 }
