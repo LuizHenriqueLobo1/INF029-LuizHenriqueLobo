@@ -70,93 +70,109 @@ int fatorial(int x){ //função utilizada para testes
 int q1(char *data){
 
     int datavalida = 0;
-
-    int i;
-    int qtdDigitos = 0;
-    int qtdBarras = 0;
-    char *dia;
-    char *mes;
-    char *ano;
-    int contador = 0;
+    int i, y;
+    char sDia[3];
+    char sMes[3];
+    char sAno[5];
     int diaI;
     int mesI;
     int anoI;
     int tamanhoAno;
 
-    for(i = 0; i < data[i] != '\0'; i++) {
-        qtdDigitos++;
-        if(data[i] == '/') {
-            qtdBarras++;
-        }
+	// Captura a string do dia e transforma em inteiro
+    for(i = 0; data[i] != '/'; i++) {
+    	sDia[i] = data[i];
     }
-    if(qtdDigitos < 8 || qtdDigitos > 10) {
-        datavalida = 0;
-    } else if(qtdBarras != 2) {
-        datavalida = 0;
-    } else {
+    sDia[i] = '\0';
 
-        dia = strtok(data, "/");
-        mes = strtok(NULL, "/");
-        ano = strtok(NULL, "/");
+    diaI = atoi(sDia);
 
-        diaI = atoi(dia);
-        mesI = atoi(mes);
-        anoI = atoi(ano);
+    // Captura a string do mes e transforma em inteiro
+    for(i = i + 1, y = 0; data[i] != '/'; i++, y++) {
+    	sMes[y] = data[i];
+    }
+    sMes[y] = '\0';
 
-        if(strlen(ano) == 2) {
-            anoI += 2000;
-            tamanhoAno = 4;
-        }
-        if(strlen(ano) == 4 || tamanhoAno == 4) {
-            if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
-                if(diaI <= 0 || diaI > 31) {
-                    datavalida = 0;
-                } else {
-                    datavalida = 1;
-                }
-            } else if(mesI == 2) {
-                if(anoI % 4 == 0)
-                    contador++;
-                if(anoI % 100 == 0) 
-                    contador--;
-                if(anoI % 400 == 0) 
-                    contador++;
-                
-                if(contador > 0) {
-                    if(mesI == 2) {
-                    if(diaI <= 0 || diaI > 29) {
-                        datavalida = 0;
-                    } else {
-                        datavalida = 1;
-                    }   
-                }
-            }
-            else {
-                if(mesI == 2) {
-                    if(diaI <= 0 || diaI > 28) {
-                        datavalida = 0;
-                    } else {
-                        datavalida = 1;
-                    }
-                }
-            }
-        }
-        else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
-            if(diaI <= 0 || diaI > 30) {
+    mesI = atoi(sMes);
+
+    // Captura a string do ano e transforma em inteiro
+    for(i = i + 1, y = 0; data[i] != '\0'; i++, y++) {
+    	sAno[y] = data[i];
+    }
+    sAno[y] = '\0';
+
+   	anoI = atoi(sAno);
+
+   	// Verifica o tamanho da string do ano, se igual a 2, é somado 2000
+   	if(strlen(sAno) == 2) {
+   		anoI+=2000;
+   		tamanhoAno = 4;
+   	}
+   	// Com o tamanho da string do ano igual a 4, o ano é válido, agora fazemos as validações do dia e mes
+   	if(strlen(sAno) == 4 || tamanhoAno == 4) {
+   		// Meses com 31 dias
+   		if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
+        	if(diaI <= 0 || diaI > 31) {
                 datavalida = 0;
             } else {
                 datavalida = 1;
             }
-        }
-        else {
-            datavalida = 0;
-        }
-    } else {
-            datavalida = 0;
-        }
-    }
+          // Mes 2, onde verificamos se o ano é bissexto  
+   		} else if(mesI == 2) {
+   			if(anoBissexto(anoI) == 1) {
+   				if(diaI <= 0 || diaI > 29) {
+                    datavalida = 0;
+                } else {
+                    datavalida = 1;
+                }
+   			} else {
+   				if(diaI <= 0 || diaI > 28) {
+   					datavalida = 0;
+   				} else {
+   					datavalida = 1;
+   				}
+   			}
+   	      // Meses com 30 dias
+   		} else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
+   			if(diaI <= 0 || diaI > 30) {
+                datavalida = 0;
+            } else {
+                datavalida = 1;
+            }
+          // Mes inválido  
+   		} else {
+   			datavalida = 0;
+   		}
+   	  // Ano inválido
+   	} else {
+   		datavalida = 0;
+   	}
 
     return datavalida;
+}
+
+int anoBissexto(int ano) {
+
+	int retorno = 0;
+	int contador = 0;
+
+	if(ano % 4 == 0) {
+		contador++;
+	}
+	if(ano % 100 == 0) {
+		contador--;
+	}
+	if(ano % 400 == 0) {
+		contador++;
+	}
+
+	if(contador > 0) {
+		retorno = 1;
+	} else {
+		retorno = 0;
+	}
+
+	return retorno;
 }
 
 /*
@@ -196,9 +212,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
     //coloque o retorno correto
     return 1;
-
 }
-
 
 /*
  Q3 = encontrar caracter em texto
@@ -247,7 +261,6 @@ int q4(char *strTexto, char *strBusca, int posicoes[30]){
  @saida
     Número invertido
  */
-
 int q5(int num){
 
     return num;
@@ -262,7 +275,6 @@ int q5(int num){
  @saida
     Quantidade de vezes que número de busca ocorre em número base
  */
-
 int q6(int numerobase, int numerobusca){
     int qtdOcorrencias;
     return qtdOcorrencias;
