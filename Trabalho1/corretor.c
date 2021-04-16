@@ -29,12 +29,12 @@ void testQ6();
 
 int main(){
     //testSomar();
-    //testFatorial();
+    testFatorial();
     //testQ1();
     //testQ2();
     //testQ3();
     //testQ4();
-    testQ5();
+    //testQ5();
     //testQ6();
 }
 
@@ -50,6 +50,11 @@ void testFatorial(){
     printf("%d\n",fatorial(3) == 6);
     printf("%d\n",fatorial(1) == 1);
     printf("%d\n",fatorial(5) == 120);
+    // Meus testes
+    printf("%d\n",fatorial(0) == 1);
+    printf("%d\n",fatorial(6) == 720);
+    printf("%d\n",fatorial(2) == 2);
+    printf("%d\n",fatorial(-4) == 0);
 }
 
 void testQ1(){
