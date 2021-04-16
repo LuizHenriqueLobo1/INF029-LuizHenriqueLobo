@@ -32,9 +32,9 @@ int main(){
     //testFatorial();
     //testQ1();
     //testQ2();
-    testQ3();
+    //testQ3();
     //testQ4();
-    //testQ5();
+    testQ5();
     //testQ6();
 }
 
@@ -177,6 +177,11 @@ void testQ5(){
     printf("%d\n",q5(78) == 87);
     printf("%d\n",q5(3) == 3);
     printf("%d\n",q5(5430) == 345);
+    // Meus testes
+    printf("%d\n",q5(100) == 1);
+    printf("%d\n",q5(123456789) == 987654321);
+    printf("%d\n",q5(2002) == 2002);
+    printf("%d\n",q5(76201) == 10267);
 }
 
 void testQ6(){
