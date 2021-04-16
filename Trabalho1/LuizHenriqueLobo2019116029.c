@@ -285,6 +285,22 @@ int q4(char *strTexto, char *strBusca, int posicoes[30]){
  */
 int q5(int num){
 
+	char strNum[100];
+	int tamNum = 0;
+	int numInvertido;
+
+	itoa(num, strNum, 10);
+	tamNum = strlen(strNum);
+
+	for(int i = 0; i < tamNum / 2; i++) {
+		char aux = strNum[i];
+		strNum[i] = strNum[tamNum - i - 1];
+		strNum[tamNum - i - 1] = aux;
+	}
+
+	numInvertido = atoi(strNum);
+
+	num = numInvertido;
     return num;
 }
 
