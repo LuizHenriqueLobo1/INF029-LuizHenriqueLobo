@@ -38,9 +38,12 @@
     resultado da soma (x + y)
  */
 int somar(int x, int y){
-  int soma = 0;
-  soma = x + y;
-  return soma;
+	
+	int soma = 0;
+  	
+  	soma = x + y;
+  	
+  	return soma;
 }
 
 /*
@@ -54,8 +57,21 @@ int somar(int x, int y){
     fatorial de x -> x!
  */
 int fatorial(int x){ //função utilizada para testes
-  int fat = 1;
-  return fat;
+
+	int fat = 0;
+
+	if(x < 0) {
+		fat = 0;
+	}
+	else if(x == 0 || x == 1) {
+		fat = 1;
+	} else {
+		for(fat = 1; x > 1; x = x - 1) {
+			fat *= x;
+		}
+	}
+
+	return fat;
 }
 
 /*
