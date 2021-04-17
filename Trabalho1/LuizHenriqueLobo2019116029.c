@@ -330,6 +330,25 @@ int q5(int num){
     Quantidade de vezes que número de busca ocorre em número base
  */
 int q6(int numerobase, int numerobusca){
-    int qtdOcorrencias;
+    
+    int qtdOcorrencias = 0;
+    int multiplicador = 1;
+    int numAux = numerobusca;
+
+    while(numAux != 0) {
+    	multiplicador *= 10;
+    	numAux /= 10;
+    }
+    numAux = numerobase;
+
+    while(numAux != 0) {
+    	if(numAux % multiplicador == numerobusca) {
+    		qtdOcorrencias++;
+    		numAux /= multiplicador;
+    	} else {
+    		numAux /= 10;
+    	}
+    }
+
     return qtdOcorrencias;
 }
