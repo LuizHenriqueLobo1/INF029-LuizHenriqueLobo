@@ -84,6 +84,8 @@ void testQ1(){
     printf("%d\n",q1(str) == 0);
     strcpy(str,"10/7/0001");
     printf("%d\n",q1(str) == 0);
+    strcpy(str,"04/03/01");
+    printf("%d\n",q1(str) == 1);
 }
 
 void testQ2(){

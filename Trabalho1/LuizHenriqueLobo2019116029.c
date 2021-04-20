@@ -87,7 +87,6 @@ int fatorial(int x){ //função utilizada para testes
 int q1(char *data){
 
     int datavalida = 0;
-    int i, y;
     char sDia[3];
     char sMes[3];
     char sAno[5];
@@ -96,26 +95,11 @@ int q1(char *data){
     int anoI;
     int tamanhoAno;
 
-    for(i = 0; data[i] != '/'; i++) {
-    	sDia[i] = data[i];
-    }
-    sDia[i] = '\0';
+    quebrarData(data, sDia, sMes, sAno);
 
     diaI = atoi(sDia);
-
-    for(i = i + 1, y = 0; data[i] != '/'; i++, y++) {
-    	sMes[y] = data[i];
-    }
-    sMes[y] = '\0';
-
     mesI = atoi(sMes);
-
-    for(i = i + 1, y = 0; data[i] != '\0'; i++, y++) {
-    	sAno[y] = data[i];
-    }
-    sAno[y] = '\0';
-
-   	anoI = atoi(sAno);
+    anoI = atoi(sAno);
 
    	if(strlen(sAno) == 2) {
    		anoI+=2000;
@@ -165,6 +149,26 @@ int q1(char *data){
    	}
 
     return datavalida;
+}
+
+void quebrarData(char data[], char sDia[], char sMes[], char sAno[]) {
+
+  int i, y;
+
+  for(i = 0; data[i] != '/'; i++) {
+      sDia[i] = data[i];
+    }
+    sDia[i] = '\0';
+
+    for(i = i + 1, y = 0; data[i] != '/'; i++, y++) {
+      sMes[y] = data[i];
+    }
+    sMes[y] = '\0';
+    
+    for(i = i + 1, y = 0; data[i] != '\0'; i++, y++) {
+      sAno[y] = data[i];
+    }
+    sAno[y] = '\0';
 }
 
 int anoBissexto(int ano) {
