@@ -30,12 +30,12 @@ void testQ6();
 int main(){
     //testSomar();
     //testFatorial();
-    //testQ1();
+    testQ1();
     //testQ2();
     //testQ3();
     //testQ4();
     //testQ5();
-    testQ6();
+    //testQ6();
 }
 
 void testSomar(){
@@ -77,6 +77,12 @@ void testQ1(){
     strcpy(str,"15//2005");
     printf("%d\n",q1(str) == 0);
     strcpy(str,"7/11/");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"7/010/01");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"010/7/01");
+    printf("%d\n",q1(str) == 0);
+    strcpy(str,"10/7/0001");
     printf("%d\n",q1(str) == 0);
 }
 
