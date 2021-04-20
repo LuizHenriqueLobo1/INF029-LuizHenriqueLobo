@@ -96,7 +96,6 @@ int q1(char *data){
     int anoI;
     int tamanhoAno;
 
-	// Captura a string do dia e transforma em inteiro
     for(i = 0; data[i] != '/'; i++) {
     	sDia[i] = data[i];
     }
@@ -104,7 +103,6 @@ int q1(char *data){
 
     diaI = atoi(sDia);
 
-    // Captura a string do mes e transforma em inteiro
     for(i = i + 1, y = 0; data[i] != '/'; i++, y++) {
     	sMes[y] = data[i];
     }
@@ -112,7 +110,6 @@ int q1(char *data){
 
     mesI = atoi(sMes);
 
-    // Captura a string do ano e transforma em inteiro
     for(i = i + 1, y = 0; data[i] != '\0'; i++, y++) {
     	sAno[y] = data[i];
     }
@@ -120,23 +117,21 @@ int q1(char *data){
 
    	anoI = atoi(sAno);
 
-   	// Verifica o tamanho da string do ano, se igual a 2, é somado 2000
    	if(strlen(sAno) == 2) {
    		anoI+=2000;
    		tamanhoAno = 4;
    	}
-   	// Com o tamanho da string do ano igual a 4, o ano é válido, agora fazemos as validações do dia e mes
    	if((strlen(sAno) == 4 || tamanhoAno == 4) && anoI > 1000) {
-   		// Verificando se o tamanho do dia e do mês são válidos
+   		
    		if((strlen(sMes) > 0 && strlen(sMes) <= 2) && (strlen(sDia) > 0 && strlen(sDia) <= 2)) {
-   			// Meses com 31 dias
+   			
    			if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
         		if(diaI <= 0 || diaI > 31) {
                 	datavalida = 0;
             	} else {
                		datavalida = 1;
             	}
-           	// Mes 2, onde verificamos se o ano é bissexto
+
    			} else if(mesI == 2) {
    				if(anoBissexto(anoI) == 1) {
    					if(diaI <= 0 || diaI > 29) {
@@ -151,22 +146,20 @@ int q1(char *data){
    						datavalida = 1;
    					}
    				}
-   			// Meses com 30 dias
+   			
    			} else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
    				if(diaI <= 0 || diaI > 30) {
                 	datavalida = 0;
             	} else {
                 	datavalida = 1;
             	}
-          	// Mes inválido  
+          	  
    			} else {
    				datavalida = 0;
    			}
-   		// Tamanho inválido (Mês ou Dia)
    		} else {
    			datavalida = 0;
    		}
-   	  // Ano inválido
    	} else {
    		datavalida = 0;
    	}
