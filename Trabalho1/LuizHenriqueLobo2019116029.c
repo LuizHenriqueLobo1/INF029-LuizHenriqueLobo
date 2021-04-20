@@ -126,37 +126,43 @@ int q1(char *data){
    		tamanhoAno = 4;
    	}
    	// Com o tamanho da string do ano igual a 4, o ano é válido, agora fazemos as validações do dia e mes
-   	if(strlen(sAno) == 4 || tamanhoAno == 4) {
-   		// Meses com 31 dias
-   		if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
-        	if(diaI <= 0 || diaI > 31) {
-                datavalida = 0;
-            } else {
-                datavalida = 1;
-            }
-          // Mes 2, onde verificamos se o ano é bissexto  
-   		} else if(mesI == 2) {
-   			if(anoBissexto(anoI) == 1) {
-   				if(diaI <= 0 || diaI > 29) {
-                    datavalida = 0;
-                } else {
-                    datavalida = 1;
-                }
-   			} else {
-   				if(diaI <= 0 || diaI > 28) {
-   					datavalida = 0;
+   	if((strlen(sAno) == 4 || tamanhoAno == 4) && anoI > 1000) {
+   		// Verificando se o tamanho do dia e do mês são válidos
+   		if((strlen(sMes) > 0 && strlen(sMes) <= 2) && (strlen(sDia) > 0 && strlen(sDia) <= 2)) {
+   			// Meses com 31 dias
+   			if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
+        		if(diaI <= 0 || diaI > 31) {
+                	datavalida = 0;
+            	} else {
+               		datavalida = 1;
+            	}
+           	// Mes 2, onde verificamos se o ano é bissexto
+   			} else if(mesI == 2) {
+   				if(anoBissexto(anoI) == 1) {
+   					if(diaI <= 0 || diaI > 29) {
+                    	datavalida = 0;
+                	} else {
+                    	datavalida = 1;
+                	}
    				} else {
-   					datavalida = 1;
+   					if(diaI <= 0 || diaI > 28) {
+   						datavalida = 0;
+   					} else {
+   						datavalida = 1;
+   					}
    				}
+   			// Meses com 30 dias
+   			} else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
+   				if(diaI <= 0 || diaI > 30) {
+                	datavalida = 0;
+            	} else {
+                	datavalida = 1;
+            	}
+          	// Mes inválido  
+   			} else {
+   				datavalida = 0;
    			}
-   	      // Meses com 30 dias
-   		} else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
-   			if(diaI <= 0 || diaI > 30) {
-                datavalida = 0;
-            } else {
-                datavalida = 1;
-            }
-          // Mes inválido  
+   		// Tamanho inválido (Mês ou Dia)
    		} else {
    			datavalida = 0;
    		}
