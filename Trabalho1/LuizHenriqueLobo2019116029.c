@@ -209,20 +209,19 @@ int anoBissexto(int ano) {
  */
 int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtdAnos){
     
+    int retorno = 0;
+
     //calcule os dados e armazene nas três variáveis a seguir
     int nDias, nMeses, nAnos;
 
-
+    // Verificações iniciais
     if (q1(datainicial) == 0)
-        return 2;
-
-    nDias = 4;
-    nMeses = 10;
-    nAnos = 2;
-
-
-
-
+        retorno = 2;
+    else if(q1(datafinal) == 0)
+    	retorno = 3;
+    else if(dataMaiorMenor(datainicial, datafinal) == -1)
+    	retorno = 4;
+    
     /*mantenha o código abaixo, para salvar os dados em 
     nos parâmetros da funcao
     */
@@ -231,7 +230,54 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     *qtdMeses = nMeses;
 
     //coloque o retorno correto
-    return 1;
+    return retorno;
+}
+
+int dataMaiorMenor(char dataInicial[], char dataFinal[]) {
+
+	int retorno = 0;
+	
+	// Variáveis da data inicial, string e inteiro
+	char diaIni[3];
+	char mesIni[3];
+	char anoIni[5];
+	int iDiaIni;
+	int iMesIni;
+	int iAnoIni;
+	quebrarData(dataInicial, diaIni, mesIni, anoIni);
+	iDiaIni = atoi(diaIni);
+	iMesIni = atoi(mesIni);
+	iAnoIni = atoi(anoIni);
+
+	// Variáveis da data final, string e inteiro
+	char diaFinal[3];
+	char mesFinal[3];
+	char anoFinal[5];
+	int iDiaFinal;
+	int iMesFinal;
+	int iAnoFinal;
+	quebrarData(dataFinal, diaFinal, mesFinal, anoFinal);
+	iDiaFinal = atoi(diaFinal);
+	iMesFinal = atoi(mesFinal);
+	iAnoFinal = atoi(anoFinal);
+
+	if(iAnoIni > iAnoFinal) {
+		retorno = -1;
+	} else {
+		retorno = 1;
+		if(iMesIni > iMesFinal) {
+			retorno = -1;
+		} else {
+			retorno = 1;
+			if(iDiaIni > iDiaFinal) {
+				retorno = -1;
+			} else {
+				retorno = 1;
+			}
+		}
+	}
+
+	return retorno;
 }
 
 /*

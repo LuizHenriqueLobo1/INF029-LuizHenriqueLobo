@@ -32,3 +32,4 @@ int q6(int numerobase, int numerobusca);
 // Minhas funções
 void quebrarData(char data[], char sDia[], char sMes[], char sAno[]);
 int anoBissexto(int ano);
+int dataMaiorMenor(char dataInicial[], char dataFinal[]);
