@@ -287,10 +287,29 @@ int q3(char *texto, char c, int isCaseSensitive){
         O retorno da função, n, nesse caso seria 1;
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30]){
-    int qtdOcorrencias = -1;
+    
+  int qtdOcorrencias = 0;
+  int i, y, j;
+  int c = 0;
+  int tamStrTexto = strlen(strTexto);
+  int tamStrBusca = strlen(strBusca);
 
-    return qtdOcorrencias;
+  for(i = 0; i < tamStrTexto; i++) {
+    if(strBusca[0] == strTexto[i]) {
+      c++;
+      for(y = 1, j = i + 1; y < tamStrBusca; y++, j++) {
+        if(strBusca[y] == strTexto[j]) {
+          c++;
+        } 
+      }
+    }
+    if(c == tamStrBusca) {
+        qtdOcorrencias++;
+      }
+    c = 0;
+  }
 
+  return qtdOcorrencias;
 }
 
 /*
