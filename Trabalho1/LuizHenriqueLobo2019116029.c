@@ -335,18 +335,36 @@ int q3(char *texto, char c, int isCaseSensitive){
 int q4(char *strTexto, char *strBusca, int posicoes[30]){
     
   int qtdOcorrencias = 0;
-  int i, y, j;
+  int i, y, j, x, z;
+  int aux;
+  int acentos = 0;
   int c = 0;
+  int vetorAux[250];
   int tamStrTexto = strlen(strTexto);
   int tamStrBusca = strlen(strBusca);
 
+  for(x = 0; x < 250; x++) {
+    vetorAux[0] = 999;
+    vetorAux[x] = 999;
+  }
+
   for(i = 0; i < tamStrTexto; i++) {
+    if(strTexto[i] == -61) {
+        acentos++;
+    }
     if(strBusca[0] == strTexto[i]) {
+      vetorAux[i] = i+1 - acentos;
       c++;
       for(y = 1, j = i + 1; y < tamStrBusca; y++, j++) {
         if(strBusca[y] == strTexto[j]) {
           c++;
-        } 
+          if(strBusca[tamStrBusca-1] == strTexto[j]) {
+            vetorAux[i+1] = j+1 - acentos;
+          }
+        } else {
+          vetorAux[i] = 999;
+          y = tamStrBusca;
+        }
       }
     }
     if(c == tamStrBusca) {
@@ -354,7 +372,19 @@ int q4(char *strTexto, char *strBusca, int posicoes[30]){
       }
     c = 0;
   }
-
+  for(x = 0; x < 250; x++) {
+    for(z = x + 1; z < 250; z++) {
+      if(vetorAux[x] > vetorAux[z]) {
+        aux = vetorAux[x];
+        vetorAux[x] = vetorAux[z];
+        vetorAux[z] = aux;
+      }
+    }
+  }
+  for(x = 0; x < 30; x++) {
+    posicoes[x] = vetorAux[x];
+  }
+  
   return qtdOcorrencias;
 }
 
