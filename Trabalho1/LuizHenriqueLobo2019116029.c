@@ -213,6 +213,10 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
     //calcule os dados e armazene nas três variáveis a seguir
     int nDias, nMeses, nAnos;
+    int iDiaIni, iMesIni, iAnoIni;
+    int iDiaFinal, iMesFinal, iAnoFinal;
+    char sDiaIni[3], sMesIni[3], sAnoIni[5];
+    char sDiaFinal[3], sMesFinal[3], sAnoFinal[5];
 
     // Verificações iniciais
     if (q1(datainicial) == 0)
@@ -221,7 +225,19 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     	retorno = 3;
     else if(dataMaiorMenor(datainicial, datafinal) == -1)
     	retorno = 4;
-    
+    else
+      retorno = 1;
+
+  	quebrarData(datainicial, sDiaIni, sMesIni, sAnoIni);
+  	iDiaIni = atoi(sDiaIni);
+  	iMesIni = atoi(sMesIni);
+  	iAnoIni = atoi(sAnoIni);
+
+    quebrarData(datafinal, sDiaFinal, sMesFinal, sAnoFinal);
+    iDiaFinal = atoi(sDiaFinal);
+    iMesFinal = atoi(sMesFinal);
+    iAnoFinal = atoi(sAnoFinal);
+
     /*mantenha o código abaixo, para salvar os dados em 
     nos parâmetros da funcao
     */
