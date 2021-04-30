@@ -3,9 +3,11 @@
 #include <ctype.h>
 
 int menu();
+void tutorial();
 void preencherMatriz(int matriz[3][3]);
 void printarMatriz(int matriz[3][3]);
 void jogar(int matriz[3][3]);
+int terminarJogo(int matriz[3][3], int numero);
 int validarCelula(char celula[10]);
 
 int main() {
@@ -15,7 +17,6 @@ int main() {
 	int opcao;
 
 	preencherMatriz(matriz);
-	printarMatriz(matriz);
 
 	while(loop == 1) {
 
@@ -25,6 +26,11 @@ int main() {
 
 			case 1: {
 				jogar(matriz);
+				break;
+			}
+
+			case 2: {
+				tutorial();
 				break;
 			}
 
@@ -45,12 +51,26 @@ int menu() {
 
 	printf("\n--JOGO DA VELHA--");
 	printf("\n| 1) JOGAR      |");
+	printf("\n| 2) TUTORIAL   |");
 	printf("\n| 0) SAIR       |");
 	printf("\n-----------------");
 	printf("\n> ");
 	scanf("%d", &opcao);
 
 	return opcao;
+}
+
+void tutorial() {
+
+	printf("\n------TUTORIAL------");
+	printf("\n| JOGADOR 1 = X    |");
+	printf("\n| JOGADOR 2 = O    |");
+	printf("\n--------------------");
+	printf("\n| A CELULA eh a    |");
+	printf("\n| combinacao da    |");
+	printf("\n| LINHA e da COLUNA|");
+	printf("\n| Ex: A1 - B3 - C2 |");
+	printf("\n--------------------\n");
 }
 
 void preencherMatriz(int matriz[3][3]) {
@@ -82,8 +102,10 @@ void printarMatriz(int matriz[3][3]) {
 			printf(" ");
 			if(c >= 1)
 				printf(" |");
-			if(matriz[l][c] != 9)
-				printf(" %d", matriz[l][c]);
+			if(matriz[l][c] == 1)
+				printf(" X");
+			else if(matriz[l][c] == 2)
+				printf(" O");
 			else
 				printf("  ");
 		}
@@ -95,13 +117,14 @@ void jogar(int matriz[3][3]) {
 
 	int loop = 1;
 	char celula[10];
-	int l, c;
 	char linha, coluna;
 	int iLinha, iColuna;
 	int jogada;
 	int contador = 0;
 
 	while(loop == 1) {
+
+		printarMatriz(matriz);
 
 		if(contador % 2 == 0)
 			jogada = 1;
@@ -138,12 +161,31 @@ void jogar(int matriz[3][3]) {
 		iLinha--;
 		iColuna--;
 
-		matriz[iLinha][iColuna] = jogada;
+		if(matriz[iLinha][iColuna] == 9) 
+			matriz[iLinha][iColuna] = jogada;
+		else {
+			printf("\nJOGADA INVALIDA!\n");
+			contador--;
+		}
+
 		contador++;
+		
+		if(terminarJogo(matriz, jogada) == 2) {
+			printf("\nPARTIDA ENCERRADA!!!\n");
+			printarMatriz(matriz);
+			printf("\nJOGADOR 1 VENCEU!\n");
+			preencherMatriz(matriz);
+			loop = 0;
+		}
+		else if(terminarJogo(matriz, jogada) == 3) {
+			printf("\nPARTIDA ENCERRADA!!!\n");
+			printarMatriz(matriz);
+			printf("\nJOGADOR 2 VENCEU!\n");
+			preencherMatriz(matriz);
+			loop = 0;
+		}
 
-		printarMatriz(matriz);
 	}
-
 }
 
 int validarCelula(char celula[10]) {
@@ -169,5 +211,39 @@ int validarCelula(char celula[10]) {
 	else
 		retorno = -1;
 	
+	return retorno;
+}
+
+int terminarJogo(int matriz[3][3], int numero) {
+
+	int retorno;
+
+	// Linha 1
+	if((matriz[0][0] == numero) && (matriz[0][1] == numero) && (matriz[0][2] == numero))
+		retorno = numero + 1;
+	// Linha 2
+	if((matriz[1][0] == numero) && (matriz[1][1] == numero) && (matriz[1][2] == numero))
+		retorno = numero + 1;
+	// Linha 3
+	if((matriz[2][0] == numero) && (matriz[2][1] == numero) && (matriz[2][2] == numero))
+		retorno = numero + 1;
+
+	// Coluna 1
+	if((matriz[0][0] == numero) && (matriz[1][0] == numero) && (matriz[2][0] == numero))
+		retorno = numero + 1;
+	// Coluna 2
+	if((matriz[0][1] == numero) && (matriz[1][1] == numero) && (matriz[2][1] == numero))
+		retorno = numero + 1;
+	// Coluna 3
+	if((matriz[0][2] == numero) && (matriz[1][2] == numero) && (matriz[2][2] == numero))
+		retorno = numero + 1;
+
+	// Diagonal 1
+	if((matriz[0][0] == numero) && (matriz[1][1] == numero) && (matriz[2][2] == numero))
+		retorno = numero + 1;
+	// Diagonal 2
+	if((matriz[0][2] == numero) && (matriz[1][1] == numero) && (matriz[2][0] == numero))
+		retorno = numero + 1;
+
 	return retorno;
 }
