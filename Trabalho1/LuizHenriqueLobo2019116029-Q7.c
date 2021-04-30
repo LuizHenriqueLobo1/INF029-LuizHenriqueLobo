@@ -75,7 +75,10 @@ void printarMatriz(int matriz[3][3]) {
 		for(c = 0; c < 3; c++) {
 			if(c >= 1)
 				printf(" |");
-			printf(" %d", matriz[l][c]);
+			if(matriz[l][c] != 9)
+				printf(" %d", matriz[l][c]);
+			else
+				printf("  ");
 		}
 	}
 	printf("\n\n");
@@ -85,10 +88,20 @@ void jogar(int matriz[3][3]) {
 
 	int loop = 1;
 	char celula[10];
+	int l, c;
 	char linha, coluna;
 	int iLinha, iColuna;
+	int jogada;
+	int contador = 0;
 
 	while(loop == 1) {
+
+		if(contador % 2 == 0)
+			jogada = 1;
+		else
+			jogada = 2;
+
+		printf("\nVEZ DO JOGADOR: %d", jogada);
 
 		setbuf(stdin, NULL);
 		printf("\nDICA -> (A, B, C = Linhas / 1, 2, 3 = Colunas)\n");
@@ -106,11 +119,23 @@ void jogar(int matriz[3][3]) {
 		linha = celula[0];
 		linha = toupper(linha);
 		coluna = celula[1];
-		
-		printf("\nLinha: %c", linha);
-		printf("\nColuna: %c\n", coluna);
 
-		loop = 0;
+		if(linha == 'A')
+			iLinha = 1;
+		else if(linha == 'B')
+			iLinha = 2;
+		else
+			iLinha = 3;
+
+		iColuna = coluna - '0';
+
+		iLinha--;
+		iColuna--;
+
+		matriz[iLinha][iColuna] = jogada;
+		contador++;
+
+		printarMatriz(matriz);
 	}
 
 }
