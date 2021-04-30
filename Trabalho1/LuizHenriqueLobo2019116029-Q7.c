@@ -131,10 +131,10 @@ void jogar(int matriz[3][3]) {
 		else
 			jogada = 2;
 
-		printf("\nVEZ DO JOGADOR: %d", jogada);
+		printf("\nVEZ DO JOGADOR (%d)", jogada);
 
 		setbuf(stdin, NULL);
-		printf("\nDIGITE A CELULA: ");
+		printf("\nDIGITE A CELULA -> ");
 		fgets(celula, 10, stdin);
 		while(1) {
 			if(validarCelula(celula) != 1) {
@@ -181,6 +181,14 @@ void jogar(int matriz[3][3]) {
 			printf("\nPARTIDA ENCERRADA!!!\n");
 			printarMatriz(matriz);
 			printf("\nJOGADOR 2 VENCEU!\n");
+			preencherMatriz(matriz);
+			loop = 0;
+		}
+
+		if(contador == 9) {
+			printf("\nPARTIDA ENCERRADA!!!\n");
+			printarMatriz(matriz);
+			printf("\nDEU VELHA! NENHUM JOGADOR VENCEU!\n");
 			preencherMatriz(matriz);
 			loop = 0;
 		}
