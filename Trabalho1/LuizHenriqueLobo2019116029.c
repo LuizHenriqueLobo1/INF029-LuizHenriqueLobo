@@ -213,10 +213,16 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
     //calcule os dados e armazene nas três variáveis a seguir
     int nDias, nMeses, nAnos;
-    int iDiaIni, iMesIni, iAnoIni;
-    int iDiaFinal, iMesFinal, iAnoFinal;
+
+    // Variáveis da data inicial
     char sDiaIni[3], sMesIni[3], sAnoIni[5];
+    int iDia1, iMes1, iAno1;
+
+    // Variáveis da data final
     char sDiaFinal[3], sMesFinal[3], sAnoFinal[5];
+    int iDia2, iMes2, iAno2;
+
+    int diferencaDia, diferencaMes, diferencaAno;
 
     // Verificações iniciais
     if (q1(datainicial) == 0)
@@ -226,21 +232,176 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     else if(dataMaiorMenor(datainicial, datafinal) == -1)
     	retorno = 4;
     else
-      retorno = 1;
+      	retorno = 1;
 
   	quebrarData(datainicial, sDiaIni, sMesIni, sAnoIni);
-  	iDiaIni = atoi(sDiaIni);
-  	iMesIni = atoi(sMesIni);
-  	iAnoIni = atoi(sAnoIni);
+  	iDia1 = atoi(sDiaIni);
+  	iMes1 = atoi(sMesIni);
+  	iAno1 = atoi(sAnoIni);
 
     quebrarData(datafinal, sDiaFinal, sMesFinal, sAnoFinal);
-    iDiaFinal = atoi(sDiaFinal);
-    iMesFinal = atoi(sMesFinal);
-    iAnoFinal = atoi(sAnoFinal);
+    iDia2 = atoi(sDiaFinal);
+    iMes2 = atoi(sMesFinal);
+    iAno2 = atoi(sAnoFinal);
 
-    /*mantenha o código abaixo, para salvar os dados em 
-    nos parâmetros da funcao
-    */
+    // Transforma o ano com 2 caracteres em um ano com 4 caracteres
+    if(strlen(sDiaIni) == 2)
+    	iAno1 += 2000;
+  	if(strlen(sDiaFinal) == 2)
+   		iAno2 += 2000;
+
+   	
+   	// Diferença entre dias, meses e anos
+   	if(iAno1 == iAno2)
+   		diferencaAno = 0;
+ 	else
+    	diferencaAno = 1;
+
+  	if(iMes1 == iMes2)
+    	diferencaMes = 0;
+  	else 
+    	diferencaMes = 1;
+  
+  	if(iDia1 == iDia2)
+    	diferencaDia = 0;
+  	else
+    	diferencaDia = 1;
+
+    // Calculo do Ano
+  	if(diferencaAno == 0) {
+    	nAnos = 0;
+  	} else {
+
+	    if(iAno1 > iAno2)
+	      nAnos = iAno1  - iAno2;
+	    else
+	      nAnos = iAno2 - iAno1;
+
+	    if(diferencaMes == 0 && iDia1 > iDia2)
+	      nAnos -= 1;
+	    else if(diferencaMes == 0 && iDia2 > iDia1)
+	      nAnos -= 1;
+
+	    if(iMes1 == 2 && iMes1 == 2) {
+	    	if(anoBissexto(iAno1) && anoBissexto(iAno2) && iDia1 == iDia2) {
+	        	if(iAno1 > iAno2)
+	          		nAnos = iAno1 - iAno2;
+	        	else
+	         		nAnos = iAno2 - iAno1;
+
+	      } else if(anoBissexto(iAno1) && !anoBissexto(iAno2) && iDia1 == 29 && iDia2 == 28) {
+	        	if(iAno1 > iAno2)
+	          		nAnos = iAno1 - iAno2;
+	         	else
+	          		nAnos = iAno2 - iAno1;
+	   
+	      } else if(!anoBissexto(iAno1) && anoBissexto(iAno2) && iDia1 == 28 && iDia2 == 29) {
+	        	if(iAno1 > iAno2)
+	          		nAnos = iAno1 - iAno2;
+	        	else
+	          		nAnos = iAno2 - iAno1;
+	    	}
+	    }
+  	}
+
+  	// Calculo do Mes
+  	if(diferencaMes == 0) {    
+    
+    	if(iDia1 == iDia2)
+      		nMeses = 0;
+    	else if(iDia1 > iDia2)
+      		nMeses = (12 - iMes1) + iMes2 - 1;
+     	else
+      		nMeses = (12 - iMes2) + iMes1 - 1;
+
+    	if(iMes1 == 2 && iMes2 == 2) {
+      		if(anoBissexto(iAno1) && anoBissexto(iAno2) && iDia1 == 29 && iDia2 == 29)
+        		nMeses = 0;
+      		else if(!anoBissexto(iAno1) && anoBissexto(iAno2) && iDia1 == 28 && iDia2 == 29)
+        		nMeses = 0;
+      		else if(anoBissexto(iAno1) && !anoBissexto(iAno2) && iDia1 == 29 && iDia2 == 28)
+        		nMeses = 0;
+        }
+
+  	} else {
+
+	    if(iMes1 > iMes2 && iDia1 > iDia2)
+	    	nMeses = (12 - iMes1) - iMes2;
+	    else if(iMes2 > iMes1 && iDia2 > iDia1)
+	      	nMeses = iMes2 - iMes1;
+	    else if(iMes1 > iMes2 && iDia1 == iDia2)
+	      	nMeses = iMes1 - iMes2;
+	    else if(iMes2 > iMes1 && iDia2 == iDia1)
+	      	nMeses = iMes2 - iMes1;
+
+	    if(nMeses < 0)
+	      nMeses *= -1;
+  	}
+
+  	// Diferenciando meses
+	int iMes1_31 = 0;
+	int iMes1_30 = 0;
+	int iMes1_28 = 0;
+	int iMes1_29 = 0;
+
+	int iMes2_31 = 0;
+	int iMes2_30 = 0;
+	int iMes2_28 = 0;
+	int iMes2_29 = 0;
+
+	// Calculo do Dia
+  	if(diferencaDia == 0)
+    	nDias = 0;
+  	else {
+
+	  	// Descobre a quantidade de dias do primeiro mês
+	  	if(iMes1==1 || iMes1==3 || iMes1==5 || iMes1==7 || iMes1==8 || iMes1==10 || iMes1==12) {
+			iMes1_31 = 1;
+	    }
+	    if(iMes1==2 && !anoBissexto(iAno1)) {
+	      	iMes1_28 = 1;
+	    }
+	    if(iMes1==2 && anoBissexto(iAno1)) {
+	      	iMes1_29 = 1;
+	    }
+	    if(iMes1==4 || iMes1==6 || iMes1==9 || iMes1==11) {
+	      	iMes1_30 = 1;
+	    }
+	    // Descobre a quantidade de dias do segundo mês
+	    if(iMes2==1 || iMes2==3 || iMes2==5 || iMes2==7 || iMes2==8 || iMes2==10 || iMes2==12) {
+	      	iMes2_31 = 1;
+	    }
+	    if(iMes2==2 && !anoBissexto(iAno2)) {
+	     	iMes2_28 = 1;
+	    }
+	    if(iMes2==2 && anoBissexto(iAno2)) {
+	     	iMes2_29 = 1;
+	    }
+	    if(iMes2==4 || iMes2==6 || iMes2==9 || iMes2==11) {
+	      	iMes2_30 = 1;
+	    }
+
+	    nDias = iDia1 - iDia2;
+
+	    if(iDia1 > iDia2) {
+	      if(iMes1_30 == 1)
+	        nDias = (30 - iDia1) + iDia2;
+	      if(iMes1_31 == 1)
+	        nDias = (31 - iDia1) + iDia2;
+	      if(iMes1_28 == 1)
+	        nDias = (28 - iDia1) + iDia2;
+	      if(iMes1_29 == 1)
+	        nDias = (29 - iDia1) + iDia2;
+	      if((iMes1_29 == 1) && (iMes2_28 == 1))
+	        nDias = iDia1 - iDia2 - 1;
+	    }
+	    
+	    if(nDias < 0)
+	      nDias *= -1;
+  	}
+
+    /* mantenha o código abaixo, para salvar os dados em 
+    nos parâmetros da funcao */
     *qtdDias = nDias;
     *qtdAnos = nAnos;
     *qtdMeses = nMeses;
