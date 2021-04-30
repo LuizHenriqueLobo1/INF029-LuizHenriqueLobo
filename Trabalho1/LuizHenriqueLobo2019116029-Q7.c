@@ -68,11 +68,18 @@ void printarMatriz(int matriz[3][3]) {
 
 	int l, c;
 
-	printf("\n");
+	printf("\n\n   1    2    3\n\n");
 	for(l = 0; l < 3; l++) {
+		if(l == 0)
+			printf("A");
 		if(l >= 1)
-			printf("\n------------\n");
+			printf("\n   ------------\n");
+		if(l == 1)
+			printf("B");
+		if(l == 2)
+			printf("C");
 		for(c = 0; c < 3; c++) {
+			printf(" ");
 			if(c >= 1)
 				printf(" |");
 			if(matriz[l][c] != 9)
@@ -104,8 +111,7 @@ void jogar(int matriz[3][3]) {
 		printf("\nVEZ DO JOGADOR: %d", jogada);
 
 		setbuf(stdin, NULL);
-		printf("\nDICA -> (A, B, C = Linhas / 1, 2, 3 = Colunas)\n");
-		printf("DIGITE A CELULA: ");
+		printf("\nDIGITE A CELULA: ");
 		fgets(celula, 10, stdin);
 		while(1) {
 			if(validarCelula(celula) != 1) {
