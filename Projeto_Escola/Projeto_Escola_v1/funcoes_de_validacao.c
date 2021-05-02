@@ -173,98 +173,149 @@ int validarCPF(char cpf[]) {
 	return retorno;
 }
 
-int validarData(char dataNasc[]) {
+int validarData_tamanho(char data[]) {
 
 	int retorno;
 
-	long int data = atoi(dataNasc);
+	if(strlen(data) - 1 < 11 && strlen(data) - 1 > 5) {
+		retorno = 1;
+	} else {
+		retorno = -1;
+	}
 
-	if(strlen(dataNasc) - 1 == 6) {
-		int digito1 = 0;
-		int digito2 = 0;
-		int digito3 = 0;
-		int digito4 = 0;
-		int digito5 = 0;
-		int digito6 = 0;
-		digito1 = (data / 100000) % 10;
-		digito2 = (data / 10000) % 10;
-		digito3 = (data / 1000) % 10;
-		digito4 = (data / 100) % 10;
-		digito5 = (data / 10) % 10;
-		digito6 = data % 10;
+	return retorno;
+}
 
-		// Dividindo os números em três partes (Dias, Meses, Anos);
-		
-		// Dias
-		int digito1Dia = digito1 * 10;
-		int digito2Dia = digito2;
-		int digitosDias = digito1Dia + digito2Dia;
-		if(digitosDias <= 0 || digitosDias > 31) {
-			retorno = -1;
-		} else {
-			// Meses
-			int digito1Mes = digito3 * 10;
-			int digito2Mes = digito4;
-			int digitosMes = digito1Mes + digito2Mes;
-			if(digitosMes <= 0 || digitosMes > 12) {
-				retorno = -1;
-			} else {
-				int digito1Ano = digito5 * 10;
-				int digito2Ano = digito6;
-				int digitosAno = digito1Ano + digito2Ano;
-				if(digitosAno < 0 || digitosAno > 21) {
-					retorno = -1;
-				} else {
-					retorno = 1;
-				}
-			}
-		}
-	} else if(strlen(dataNasc) -1 == 8) {
-		int digito1 = 0;
-		int digito2 = 0;
-		int digito3 = 0;
-		int digito4 = 0;
-		int digito5 = 0;
-		int digito6 = 0;
-		int digito7 = 0;
-		int digito8 = 0;
-		digito1 = (data / 10000000) % 10;
-		digito2 = (data / 1000000) % 10;
-		digito3 = (data / 100000) % 10;
-		digito4 = (data / 10000) % 10;
-		digito5 = (data / 1000) % 10;
-		digito6 = (data / 100) % 10;
-		digito7 = (data / 10) % 10;
-		digito8 = data % 10;		
+int validarData_digitos(char data[]) {
 
-		// Dias
-		int digito1Dia = digito1 * 10;
-		int digito2Dia = digito2;
-		int digitosDia = digito1Dia + digito2Dia;
-		if(digitosDia <= 0 || digitosDia > 31) {
-			retorno = -1;
-		} else {
-			// Meses
-			int digito1Mes = digito3 * 10;
-			int digito2Mes = digito4;
-			int digitosMes = digito1Mes + digito2Mes;
-			if(digitosMes <= 0 || digitosMes > 12) {
-				retorno = -1;
-			} else {
-				// Anos
-				int digito1Ano = digito5 * 1000;
-				int digito2Ano = digito6 * 100;
-				int digito3Ano = digito7 * 10;
-				int digito4Ano = digito8;
-				int digitosAno = digito1Ano + digito2Ano + digito3Ano + digito4Ano;
-				if(digitosAno <= 0 || digitosAno > 2021) {
-					retorno = -1;
-				} else {
-					retorno = 1;
-				}
-			}
+	int retorno;
+	int contador = 0;
+	int i;
+
+	for(i = 0; data[i] != '\0'; i++) {
+		if(data[i] == '/') {
+			contador++;
 		}
 	}
+
+	if(contador == 2) {
+		retorno = 1;
+	} else {
+		retorno = -1;
+	}
+
+	return retorno;
+}
+
+int validarData_main(char data[]) {
+
+	int retorno;
+	char *dia;
+	char *mes;
+	char *ano;
+	int diaI;
+	int mesI;
+	int anoI;
+	int contador = 0;
+	int tamAno;
+
+	dia = strtok(data, "/");
+	mes = strtok(NULL, "/");
+	ano = strtok(NULL, "/");
+
+	ano[strlen(ano)-1] = '\0';
+
+	diaI = atoi(dia);
+	mesI = atoi(mes);
+	anoI = atoi(ano);
+
+	if(strlen(ano) == 2) {
+		anoI += 2000;
+		tamAno = 4;
+	}
+	if(strlen(ano) == 4 || tamAno == 4) {
+
+		if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12) {
+			if(diaI <= 0 || diaI > 31) {
+				// Dia inválido
+				retorno = 0;
+			} else {
+				// Dia válido
+				retorno = 1;
+			}
+		} else if(mesI == 2) {
+			// Descobre se o ano é bissexto
+			if(anoI % 4 == 0)
+				contador++;
+			if(anoI % 100 == 0) 
+				contador--;
+			if(anoI % 400 == 0) 
+				contador++;
+			// Contador > 0 = Ano bissexto
+			if(contador > 0) {
+				// Ano bissexto
+				if(mesI == 2) {
+					if(diaI <= 0 || diaI > 29) {
+						// Dia inválido
+						retorno = 0;
+					} else {
+						// Dia válido
+						retorno = 1;
+					}	
+				}
+			}
+			// Contador <= 0 = Ano nao bissexto
+			else {
+				// Ano naõ bissexto
+				if(mesI == 2) {
+					if(diaI <= 0 || diaI > 28) {
+						// Dia inválido
+						retorno = 0;
+					} else {
+						// Dia válido
+						retorno = 1;
+					}
+				}
+			}
+		}
+		else if(mesI == 4 || mesI == 6 || mesI == 9 || mesI == 11) {
+			if(diaI <= 0 || diaI > 30) {
+				// Dia inválido
+				retorno = 0;
+			} else {
+				// Dia válido
+				retorno = 1;
+			}
+		}
+		else {
+			// Mês inválido
+			retorno = 0;
+		}
+	} else {
+		// Ano inválido
+		retorno = 0;
+	}
+
+	return retorno;
+}
+
+int validarData(char data[]) {
+
+	int retorno;
+	char dataAux[15];
+	strcpy(dataAux, data);
+
+	if(validarData_tamanho(data) != 1) {
+		retorno = -1;
+	} else if(validarData_digitos(data) != 1) {
+		retorno = -1;
+	} else if(validarData_main(data) != 1) {
+		retorno -1;
+	} else {
+		retorno = 1;
+	}
+
+	strcpy(data, dataAux);
 
 	return retorno;
 }

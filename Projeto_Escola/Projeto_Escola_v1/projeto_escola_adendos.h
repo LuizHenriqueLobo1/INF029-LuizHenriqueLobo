@@ -4,7 +4,7 @@ typedef struct {
 	int matricula;
 	char nome[50];
 	char sexo;
-	char data[50];
+	char data[15];
 	char cpf[50];
 }dados;
 
@@ -64,7 +64,10 @@ int validarMatricula(char matricula[]);
 int validarNome(char nome[]);
 int validarSexo(char sexo);
 int validarCPF(char cpf[]);
-int validarData(char dataNasc[]);
+int validarData_tamanho(char data[]);
+int validarData_digitos(char data[]);
+int validarData_main(char data[]);
+int validarData(char data[]);
 int validarCodigoDisciplina(char codigo[]);
 int validarNomeDisciplina(char nomeDisciplina[]);
 int validarSemestreDisciplina(int semestre);
