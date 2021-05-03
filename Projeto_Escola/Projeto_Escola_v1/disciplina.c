@@ -35,7 +35,11 @@ int mainDisciplina(disc disciplina[], int qtdDisciplina, int qtdProfessor, dados
 			}
 
 			case 2: {
-				mostrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, professor);
+				if(qtdDisciplina <= 0) {
+					printf("\nNENHUMA DISCIPLINA CADASTRADA!\n");
+				} else {
+					mostrarDisciplina(qtdDisciplina, disciplina, qtdProfessor, professor);
+				}
 				break;
 			}
 
