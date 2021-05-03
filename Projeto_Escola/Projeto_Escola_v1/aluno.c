@@ -31,11 +31,10 @@ int mainAluno(dados aluno[], int qtdAluno) {
 					aluno[qtdAluno-1].matricula = 0;
 					aluno[qtdAluno-1].matricula = aluno[qtdAluno-2].matricula + 1;
 					printf("\nALUNO CADASTRADO COM SUCESSO!\n");
-					break;
 				} else {
 					printf("\nQUANTIDADE MAXIMA DE ALUNOS ATINGIDA!\n");
-					break;
 				}
+				break;
 			}
 
 			case 2: {
