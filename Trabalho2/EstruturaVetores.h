@@ -22,10 +22,10 @@ typedef struct {
 
 estrutura vetorPrincipal[TAM];
 
-int criarEstruturaAuxiliar(int tamanho, int posicao);
-int inserirNumeroEmEstrutura(int valor, int posicao);
+int criarEstruturaAuxiliar(int posicao, int tamanho);
+int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
-int excluirNumeroEspecificoDeEstrutura(int valor, int posicao);
+int excluirNumeroEspecificoDeEstrutura(int posicao, int valor);
 int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]);
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[]);
 int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]);
