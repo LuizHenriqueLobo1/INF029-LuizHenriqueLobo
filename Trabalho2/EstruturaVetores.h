@@ -9,12 +9,18 @@
 #define NUMERO_INEXISTENTE -9
 #define NOVO_TAMANHO_INVALIDO -10
 #define TODAS_ESTRUTURAS_AUXILIARES_VAZIAS -11
+#define TAM 10
 
 typedef struct reg {
 	int conteudo;
-  struct reg *prox;
+  	struct reg *prox;
 } No;
 
+typedef struct {
+	int *pEstruturaAux;
+}estrutura;
+
+estrutura vetorPrincipal[TAM];
 
 int criarEstruturaAuxiliar(int tamanho, int posicao);
 int inserirNumeroEmEstrutura(int valor, int posicao);
@@ -33,3 +39,5 @@ void destruirListaEncadeadaComCabecote(No** inicio);
 void inicializar();
 void finalizar();
 void dobrar(int *x);
+
+int ehPosicaoValida(int posicao);

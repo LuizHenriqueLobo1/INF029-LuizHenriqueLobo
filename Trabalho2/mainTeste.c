@@ -17,18 +17,19 @@ void testeListaEncadeada();
 
 int main(){
     inicializar();
-    testeInserirSemNada();
+    //testeInserirSemNada();
     testeCriarEstrutura();
-    testeInserirComEstrutura();
-    testeExcluir();
-    testeListar();
-    testeRetornarTodosNumeros();
-    testeMudarTamanhoEstrutura();
-    testeListaEncadeada();
-    finalizar();
+    //testeInserirComEstrutura();
+    //testeExcluir();
+    //testeListar();
+    //testeRetornarTodosNumeros();
+    //testeMudarTamanhoEstrutura();
+    //testeListaEncadeada();
+    //finalizar();
 
 } 
-int ligado = 0;
+
+int ligado = 1;
 void show_log(char *str){
     if (ligado)
         printf("###%s###\n", str);
