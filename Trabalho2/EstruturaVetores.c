@@ -1,18 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 10
-
 
 #include "EstruturaVetores.h"
-
-int vetorPrincipal[TAM];
 
 void dobrar(int *x){
 
     *x = *x * 2;
-
-
 }
+
 /*
 Objetivo: criar estrutura auxiliar na posição 'posicao'.
 com tamanho 'tamanho'
@@ -26,19 +21,34 @@ Rertono (int)
 int criarEstruturaAuxiliar(int tamanho, int posicao){
 
     int retorno = 0;
-    // a posicao pode já existir estrutura auxiliar
-    retorno = JA_TEM_ESTRUTURA_AUXILIAR;
-    // se posição é um valor válido {entre 1 e 10}
-    retorno = POSICAO_INVALIDA;
-    // o tamanho ser muito grande
-    retorno = SEM_ESPACO_DE_MEMORIA;
-    // o tamanho nao pode ser menor que 1
-    retorno = TAMANHO_INVALIDO;
-    // deu tudo certo, crie
-    retorno = SUCESSO;
+
+    // Verifica se a posição da Estrutura Principal é válida
+    if(ehPosicaoValida(posicao) != SUCESSO)
+    	retorno = POSICAO_INVALIDA;
+
+    // Verifica se o tamanho da Estrutura Auxiliar é válida
+    else if(tamanho < 1)
+    	retorno = TAMANHO_INVALIDO;
+
+    else {
+    	// Verifica se já existe Estrutura Auxiliar na posição
+    	if(vetorPrincipal[posicao - 1].pEstruturaAux != NULL)
+    		retorno = JA_TEM_ESTRUTURA_AUXILIAR;
+    	else
+    		retorno = SUCESSO;
+    }
+
+    if(retorno == SUCESSO) {
+
+    	// Faz a alocação da Estrutura Auxiliar
+    	vetorPrincipal[posicao - 1].pEstruturaAux = malloc(tamanho * sizeof(int));
+
+    	// Verifica se existe espaço
+    	if(vetorPrincipal[posicao - 1].pEstruturaAux == NULL)
+    		retorno = SEM_ESPACO_DE_MEMORIA;
+    } 
 
     return retorno;
-
 }
 
 /*
@@ -111,14 +121,17 @@ int excluirNumeroEspecificoDeEstrutura(int valor, int posicao){
 
 // se posição é um valor válido {entre 1 e 10}
 int ehPosicaoValida(int posicao){
+    
     int retorno = 0;
-    if (posicao < 1 || posicao > 10){
+
+    if (posicao < 1 || posicao > 10)
         retorno = POSICAO_INVALIDA;
-    }else retorno = SUCESSO;
+    else
+    	retorno = SUCESSO;
 
     return retorno;
-
 }
+
 /*
 Objetivo: retorna os números da estrutura auxiliar da posição 'posicao (1..10)'.
 os números devem ser armazenados em vetorAux
@@ -135,7 +148,6 @@ int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]){
     return retorno;
 
 }
-
 
 /*
 Objetivo: retorna os números ordenados da estrutura auxiliar da posição 'posicao (1..10)'.
@@ -253,18 +265,18 @@ void destruirListaEncadeadaComCabecote(No** inicio){
 /*
 Objetivo: inicializa o programa. deve ser chamado ao inicio do programa 
 */
-
 void inicializar(){
-    
-    
+
+    for(int i = 0; i < TAM; i++) {
+    	vetorPrincipal[i].pEstruturaAux = NULL;
+    }
 }
 
 /*
 Objetivo: finaliza o programa. deve ser chamado ao final do programa 
 para poder liberar todos os espaços de memória das estruturas auxiliares.
 */
-
 void finalizar(){
-    
-    
+
+
 }
