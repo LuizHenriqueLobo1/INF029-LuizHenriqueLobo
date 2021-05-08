@@ -23,28 +23,28 @@ int criarEstruturaAuxiliar(int posicao, int tamanho) {
 
     // Verifica se a posição da Estrutura Principal é válida
     if(ehPosicaoValida(posicao) != SUCESSO)
-    	retorno = POSICAO_INVALIDA;
+        retorno = POSICAO_INVALIDA;
 
     // Verifica se o tamanho da Estrutura Auxiliar é válido
     else if(tamanho < 1)
-    	retorno = TAMANHO_INVALIDO;
+        retorno = TAMANHO_INVALIDO;
 
     else {
-    	// Verifica se já existe Estrutura Auxiliar na posição
-    	if(existeEstruturaAuxiliar(posicao) != SUCESSO)
-    		retorno = JA_TEM_ESTRUTURA_AUXILIAR;
-    	else
-    		retorno = SUCESSO;
+        // Verifica se já existe Estrutura Auxiliar na posição
+        if(existeEstruturaAuxiliar(posicao) != SUCESSO)
+            retorno = JA_TEM_ESTRUTURA_AUXILIAR;
+        else
+            retorno = SUCESSO;
     }
 
     if(retorno == SUCESSO) {
 
-    	// Faz a alocação da Estrutura Auxiliar
-    	vetorPrincipal[posicao - 1].pEstruturaAux = malloc(tamanho * sizeof(int));
+        // Faz a alocação da Estrutura Auxiliar
+        vetorPrincipal[posicao - 1].pEstruturaAux = malloc(tamanho * sizeof(int));
 
-    	// Verifica se existe espaço
-    	if(temEspacoMemoria(posicao) != SUCESSO)
-    		retorno = SEM_ESPACO_DE_MEMORIA;
+        // Verifica se existe espaço
+        if(temEspacoMemoria(posicao) != SUCESSO)
+            retorno = SEM_ESPACO_DE_MEMORIA;
     } 
 
     return retorno;
@@ -96,8 +96,8 @@ Rertono (int)
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int excluirNumeroDoFinaldaEstrutura(int posicao) {
-	int retorno = SUCESSO;
-	return retorno;
+    int retorno = SUCESSO;
+    return retorno;
 }
 
 /*
@@ -113,8 +113,8 @@ Rertono (int)
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int excluirNumeroEspecificoDeEstrutura(int posicao, int valor) {
-	int retorno = SUCESSO;
-  	return retorno;
+    int retorno = SUCESSO;
+    return retorno;
 }
 
 // se posição é um valor válido {entre 1 e 10}
@@ -125,7 +125,7 @@ int ehPosicaoValida(int posicao){
     if (posicao < 1 || posicao > 10)
         retorno = POSICAO_INVALIDA;
     else
-    	retorno = SUCESSO;
+        retorno = SUCESSO;
 
     return retorno;
 }
@@ -133,12 +133,12 @@ int ehPosicaoValida(int posicao){
 // se existe estrutura auxiliar
 int existeEstruturaAuxiliar(int posicao) {
 
-	int retorno = 0;
+    int retorno = 0;
 
     if(vetorPrincipal[posicao - 1].pEstruturaAux != NULL)
-    	retorno = JA_TEM_ESTRUTURA_AUXILIAR;
+        retorno = JA_TEM_ESTRUTURA_AUXILIAR;
     else
-    	retorno = SUCESSO;
+        retorno = SUCESSO;
 
     return retorno;
 }
@@ -146,12 +146,12 @@ int existeEstruturaAuxiliar(int posicao) {
 // se tem espaço de memoria
 int temEspacoMemoria(int posicao) {
 
-	int retorno = 0;
+    int retorno = 0;
 
-	if(vetorPrincipal[posicao - 1].pEstruturaAux == NULL)
-    	retorno = SEM_ESPACO;
+    if(vetorPrincipal[posicao - 1].pEstruturaAux == NULL)
+        retorno = SEM_ESPACO_DE_MEMORIA;
     else
-    	retorno = SUCESSO;
+        retorno = SUCESSO;
 
     return retorno;
 }
@@ -268,7 +268,7 @@ Objetivo: inicializa o programa. deve ser chamado ao inicio do programa
 void inicializar() {
 
     for(int i = 0; i < TAM; i++) {
-    	vetorPrincipal[i].pEstruturaAux = NULL;
+        vetorPrincipal[i].pEstruturaAux = NULL;
     }
 }
 
