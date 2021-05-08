@@ -18,6 +18,7 @@ typedef struct reg {
 
 typedef struct {
 	int *pEstruturaAux;
+	int qtdElementos;
 }estrutura;
 
 estrutura vetorPrincipal[TAM];
@@ -41,3 +42,5 @@ void finalizar();
 void dobrar(int *x);
 
 int ehPosicaoValida(int posicao);
+int existeEstruturaAuxiliar(int posicao);
+int temEspacoMemoria(int posicao);

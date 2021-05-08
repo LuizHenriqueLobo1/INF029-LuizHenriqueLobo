@@ -25,13 +25,13 @@ int criarEstruturaAuxiliar(int posicao, int tamanho) {
     if(ehPosicaoValida(posicao) != SUCESSO)
     	retorno = POSICAO_INVALIDA;
 
-    // Verifica se o tamanho da Estrutura Auxiliar é válida
+    // Verifica se o tamanho da Estrutura Auxiliar é válido
     else if(tamanho < 1)
     	retorno = TAMANHO_INVALIDO;
 
     else {
     	// Verifica se já existe Estrutura Auxiliar na posição
-    	if(vetorPrincipal[posicao - 1].pEstruturaAux != NULL)
+    	if(existeEstruturaAuxiliar(posicao) != SUCESSO)
     		retorno = JA_TEM_ESTRUTURA_AUXILIAR;
     	else
     		retorno = SUCESSO;
@@ -43,7 +43,7 @@ int criarEstruturaAuxiliar(int posicao, int tamanho) {
     	vetorPrincipal[posicao - 1].pEstruturaAux = malloc(tamanho * sizeof(int));
 
     	// Verifica se existe espaço
-    	if(vetorPrincipal[posicao - 1].pEstruturaAux == NULL)
+    	if(temEspacoMemoria(posicao) != SUCESSO)
     		retorno = SEM_ESPACO_DE_MEMORIA;
     } 
 
@@ -124,6 +124,32 @@ int ehPosicaoValida(int posicao){
 
     if (posicao < 1 || posicao > 10)
         retorno = POSICAO_INVALIDA;
+    else
+    	retorno = SUCESSO;
+
+    return retorno;
+}
+
+// se existe estrutura auxiliar
+int existeEstruturaAuxiliar(int posicao) {
+
+	int retorno = 0;
+
+    if(vetorPrincipal[posicao - 1].pEstruturaAux != NULL)
+    	retorno = JA_TEM_ESTRUTURA_AUXILIAR;
+    else
+    	retorno = SUCESSO;
+
+    return retorno;
+}
+
+// se tem espaço de memoria
+int temEspacoMemoria(int posicao) {
+
+	int retorno = 0;
+
+	if(vetorPrincipal[posicao - 1].pEstruturaAux == NULL)
+    	retorno = SEM_ESPACO;
     else
     	retorno = SUCESSO;
 
