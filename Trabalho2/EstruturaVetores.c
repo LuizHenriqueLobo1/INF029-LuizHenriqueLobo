@@ -63,23 +63,22 @@ CONSTANTES
 int inserirNumeroEmEstrutura(int posicao, int valor) {
 
     int retorno = 0;
-    int existeEstruturaAuxiliar = 0;
-    int temEspaco = 0;
-    int posicao_invalida = 0;
 
-    if (posicao_invalida)
+    if(ehPosicaoValida(posicao) != SUCESSO)
         retorno = POSICAO_INVALIDA;
-    else{
-        // testar se existe a estrutura auxiliar
-        if (existeEstruturaAuxiliar){
-          if (temEspaco){
-              //insere
-              retorno = SUCESSO;
-          }else{
-              retorno = SEM_ESPACO;
-          }
-        }else{
-          retorno = SEM_ESTRUTURA_AUXILIAR;
+    else {
+
+        if(existeEstruturaAuxiliar(posicao) != SUCESSO){
+          	if(temEspacoEstruturaAux(posicao) == SUCESSO) {
+          		// Inserir na Estrura Aux
+          		vetorPrincipal[posicao - 1].pEstruturaAux[vetorPrincipal[posicao - 1].qtdElementos] = valor;
+          		vetorPrincipal[posicao - 1].qtdElementos += 1;
+            	retorno = SUCESSO;
+          	} else {
+              	retorno = SEM_ESPACO;
+        	}
+        } else {
+          	retorno = SEM_ESTRUTURA_AUXILIAR;
         }
     }
 
@@ -155,6 +154,19 @@ int temEspacoMemoria(int posicao) {
         retorno = SUCESSO;
 
     return retorno;
+}
+
+// se tem espaço na estrutra auxiliar
+int temEspacoEstruturaAux(int posicao) {
+
+	int retorno = 0;
+
+	if(vetorPrincipal[posicao - 1].qtdElementos >= vetorPrincipal[posicao - 1].tamEstruturaAux)
+		retorno = SEM_ESPACO;
+	else
+		retorno = SUCESSO;
+
+	return retorno;
 }
 
 /*
@@ -270,6 +282,8 @@ void inicializar() {
 
     for(int i = 0; i < TAM; i++) {
         vetorPrincipal[i].pEstruturaAux = NULL;
+        vetorPrincipal[i].tamEstruturaAux = 0;
+        vetorPrincipal[i].qtdElementos = 0;
     }
 }
 
