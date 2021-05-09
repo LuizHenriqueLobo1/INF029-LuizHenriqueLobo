@@ -18,7 +18,7 @@ typedef struct reg {
 
 typedef struct {
 	int *pEstruturaAux;
-	int qtdElementos;
+	int tamEstruturaAux;
 }estrutura;
 
 estrutura vetorPrincipal[TAM];

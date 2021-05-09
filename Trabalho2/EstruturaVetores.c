@@ -41,7 +41,8 @@ int criarEstruturaAuxiliar(int posicao, int tamanho) {
 
         // Faz a alocação da Estrutura Auxiliar
         vetorPrincipal[posicao - 1].pEstruturaAux = malloc(tamanho * sizeof(int));
-
+        vetorPrincipal[posicao - 1].tamEstruturaAux = tamanho;
+        
         // Verifica se existe espaço
         if(temEspacoMemoria(posicao) != SUCESSO)
             retorno = SEM_ESPACO_DE_MEMORIA;
