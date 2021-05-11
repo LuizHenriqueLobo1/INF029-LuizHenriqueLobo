@@ -46,3 +46,4 @@ int ehPosicaoValida(int posicao);
 int existeEstruturaAuxiliar(int posicao);
 int temEspacoMemoria(int posicao);
 int temEspacoEstruturaAux(int posicao);
+int estruturaAuxiliarVazia(int posicao);
