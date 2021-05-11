@@ -31,7 +31,7 @@ int criarEstruturaAuxiliar(int posicao, int tamanho) {
 
     else {
         // Verifica se já existe Estrutura Auxiliar na posição
-        if(existeEstruturaAuxiliar(posicao) != SUCESSO)
+        if(existeEstruturaAuxiliar(posicao) != SEM_ESTRUTURA_AUXILIAR)
             retorno = JA_TEM_ESTRUTURA_AUXILIAR;
         else
             retorno = SUCESSO;
@@ -68,7 +68,7 @@ int inserirNumeroEmEstrutura(int posicao, int valor) {
         retorno = POSICAO_INVALIDA;
     else {
 
-        if(existeEstruturaAuxiliar(posicao) != SUCESSO){
+        if(existeEstruturaAuxiliar(posicao) != SEM_ESTRUTURA_AUXILIAR){
           	if(temEspacoEstruturaAux(posicao) == SUCESSO) {
           		// Inserir na Estrura Aux
           		vetorPrincipal[posicao - 1].pEstruturaAux[vetorPrincipal[posicao - 1].qtdElementos] = valor;
@@ -138,7 +138,7 @@ int existeEstruturaAuxiliar(int posicao) {
     if(vetorPrincipal[posicao - 1].pEstruturaAux != NULL)
         retorno = JA_TEM_ESTRUTURA_AUXILIAR;
     else
-        retorno = SUCESSO;
+        retorno = SEM_ESTRUTURA_AUXILIAR;
 
     return retorno;
 }
