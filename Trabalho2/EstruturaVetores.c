@@ -96,7 +96,25 @@ Rertono (int)
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int excluirNumeroDoFinaldaEstrutura(int posicao) {
-    int retorno = SUCESSO;
+    
+    int retorno;
+        
+    if(ehPosicaoValida(posicao) != SUCESSO)
+        retorno = POSICAO_INVALIDA;
+    else {
+        if(existeEstruturaAuxiliar(posicao) != JA_TEM_ESTRUTURA_AUXILIAR)
+            retorno = SEM_ESTRUTURA_AUXILIAR;
+        else {
+            if(vetorPrincipal[posicao - 1].qtdElementos == 0)
+                retorno = ESTRUTURA_AUXILIAR_VAZIA;
+            else {
+                vetorPrincipal[posicao - 1].pEstruturaAux[vetorPrincipal[posicao - 1].qtdElementos - 1] = 0;
+                vetorPrincipal[posicao - 1].qtdElementos -= 1;
+                retorno = SUCESSO;
+            }
+        }
+    }
+
     return retorno;
 }
 

@@ -20,7 +20,7 @@ int main()
     testeInserirSemNada();
     testeCriarEstrutura();
     testeInserirComEstrutura();
-    //testeExcluir();
+    testeExcluir();
     //testeListar();
     //testeRetornarTodosNumeros();
     //testeMudarTamanhoEstrutura();
