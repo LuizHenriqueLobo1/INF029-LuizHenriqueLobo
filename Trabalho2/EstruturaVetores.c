@@ -271,7 +271,30 @@ Rertono (int)
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[]) {
+
     int retorno = 0;
+    int aux = 0;
+    int i, y;
+
+    if(ehPosicaoValida(posicao) != SUCESSO)
+    	retorno = POSICAO_INVALIDA;
+    else {
+    	if(existeEstruturaAuxiliar(posicao) != JA_TEM_ESTRUTURA_AUXILIAR)
+    		retorno = SEM_ESTRUTURA_AUXILIAR;
+    	else {
+    		for(i = 0; i < vetorPrincipal[posicao - 1].qtdElementos; i++) {
+    			for(y = i + 1; y < vetorPrincipal[posicao - 1].qtdElementos; y++) {
+    				if(vetorAux[i] > vetorAux[y]) {
+    					aux = vetorAux[i];
+    					vetorAux[i] = vetorAux[y];
+    					vetorAux[y] = aux;
+    				}
+    			}
+    		}
+    		retorno = SUCESSO;
+    	}
+    }
+
     return retorno;
 }
 
