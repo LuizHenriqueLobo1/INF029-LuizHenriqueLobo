@@ -242,7 +242,23 @@ Retorno (int)
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]) {
+
     int retorno = 0;
+    int i;
+
+    if(ehPosicaoValida(posicao) != SUCESSO)
+    	retorno = POSICAO_INVALIDA;
+    else {
+    	if(existeEstruturaAuxiliar(posicao) != JA_TEM_ESTRUTURA_AUXILIAR)
+    		retorno = SEM_ESTRUTURA_AUXILIAR;
+    	else {
+    		for(i = 0; i < vetorPrincipal[posicao - 1].qtdElementos; i++) {
+    			vetorAux[i] = vetorPrincipal[posicao - 1].pEstruturaAux[i];
+    		}
+    		retorno = SUCESSO;
+    	}
+    }
+
     return retorno;
 }
 
