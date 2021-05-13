@@ -147,24 +147,26 @@ int excluirNumeroEspecificoDeEstrutura(int posicao, int valor) {
     			retorno = ESTRUTURA_AUXILIAR_VAZIA;
     		else {
     			for(i = 0; i < vetorPrincipal[posicao - 1].qtdElementos; i++) {
-    				contador++;
-    				if(valor == vetorPrincipal[posicao - 1].pEstruturaAux[i]) {
-    					vetorPrincipal[posicao - 1].pEstruturaAux[i] = 0;
+                    if(valor != vetorPrincipal[posicao - 1].pEstruturaAux[i]) {
+                        contador++;
+                        if(contador == vetorPrincipal[posicao - 1].qtdElementos) {
+                            retorno = NUMERO_INEXISTENTE;
+                            break;
+                        }
+                    } else {
+    				    vetorPrincipal[posicao - 1].pEstruturaAux[i] = 0;
     					auxPosicao = i;
-    					contador--;
-    					for(y = auxPosicao; y < vetorPrincipal[posicao - 1].qtdElementos; y++) {
+    					for(y = auxPosicao; y < vetorPrincipal[posicao - 1].qtdElementos - 1; y++) {
     						vetorPrincipal[posicao - 1].pEstruturaAux[y] = vetorPrincipal[posicao - 1].pEstruturaAux[y + 1];
     					}
     					vetorPrincipal[posicao - 1].qtdElementos--;
     					retorno = SUCESSO;
     				}
     			}
-    			if(contador == vetorPrincipal[posicao - 1].qtdElementos)
-    				retorno = NUMERO_INEXISTENTE;
     		}
     	}
     }
-
+    
     return retorno;
 }
 
