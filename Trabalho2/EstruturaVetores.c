@@ -305,11 +305,30 @@ Objetivo: retorna os números de todas as estruturas auxiliares.
 os números devem ser armazenados em vetorAux
 Rertono (int)
     SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
-    SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
-    POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
 int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]) {
+
     int retorno = 0;
+    int i, y;
+    int contador = 0;
+    int vazio = 0;
+
+
+    for(i = 0; i < TAM; i++) {
+    	if(vetorPrincipal[i].qtdElementos > 0) {
+    		vazio++;
+    		for(y = 0; y < vetorPrincipal[i].qtdElementos; y++) {
+    			vetorAux[contador] = vetorPrincipal[i].pEstruturaAux[y]; 
+    			contador++;
+    		}
+    	}
+    }
+
+    if(vazio == 0)
+    	retorno = TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
+    else
+    	retorno = SUCESSO;
+
     return retorno;
 }
 
