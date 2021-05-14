@@ -24,7 +24,7 @@ int main()
     testeExcluir();
     testeExcluirNumeroEspecifico();
     testeListar();
-    //testeRetornarTodosNumeros();
+    testeRetornarTodosNumeros();
     //testeMudarTamanhoEstrutura();
     //testeListaEncadeada();
     //finalizar();
