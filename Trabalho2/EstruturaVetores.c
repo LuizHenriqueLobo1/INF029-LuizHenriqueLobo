@@ -386,7 +386,35 @@ Rertono (int)
     SEM_ESPACO_DE_MEMORIA - erro na alocação do novo valor
 */
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho) {
+    
     int retorno = 0;
+    int tamanhoAtual = vetorPrincipal[posicao - 1].tamEstruturaAux;
+
+    if(ehPosicaoValida(posicao) != SUCESSO)
+    	retorno = POSICAO_INVALIDA;
+
+    else if((tamanhoAtual + novoTamanho) < 1)
+    	retorno = NOVO_TAMANHO_INVALIDO;
+
+    else {
+    	if(existeEstruturaAuxiliar(posicao) != JA_TEM_ESTRUTURA_AUXILIAR)
+    		retorno = SEM_ESTRUTURA_AUXILIAR;
+    	else
+    		retorno = SUCESSO;
+    }
+
+    if(retorno == SUCESSO) {
+    	
+    	vetorPrincipal[posicao - 1].pEstruturaAux = realloc(vetorPrincipal[posicao - 1].pEstruturaAux, (tamanhoAtual + novoTamanho));
+    	vetorPrincipal[posicao - 1].tamEstruturaAux += novoTamanho;
+
+    	if(novoTamanho < 0)
+    		vetorPrincipal[posicao - 1].qtdElementos += novoTamanho;
+
+    	if(temEspacoMemoria(posicao) != SUCESSO)
+            retorno = SEM_ESPACO_DE_MEMORIA;
+    }
+
     return retorno;
 }
 
