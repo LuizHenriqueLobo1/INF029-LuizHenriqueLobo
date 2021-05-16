@@ -427,7 +427,11 @@ Retorno (int)
     Um número int > 0 correpondente a quantidade de elementos preenchidos da estrutura
 */
 int getQuantidadeElementosEstruturaAuxiliar(int posicao) {
+    
     int retorno = 0;
+    
+    retorno = vetorPrincipal[posicao - 1].qtdElementos;
+
     return retorno;
 }
 
@@ -474,4 +478,12 @@ Objetivo: finaliza o programa. deve ser chamado ao final do programa
 para poder liberar todos os espaços de memória das estruturas auxiliares.
 */
 void finalizar() {
+
+	for(int i = 0; i < TAM; i++) {
+		if(existeEstruturaAuxiliar(i) == JA_TEM_ESTRUTURA_AUXILIAR) {
+			free(vetorPrincipal[i].pEstruturaAux);
+			vetorPrincipal[i].tamEstruturaAux = 0;
+			vetorPrincipal[i].qtdElementos = 0;
+		}
+	}
 }
