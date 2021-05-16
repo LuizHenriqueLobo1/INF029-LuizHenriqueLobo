@@ -430,8 +430,19 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao) {
     
     int retorno = 0;
     
-    retorno = vetorPrincipal[posicao - 1].qtdElementos;
-
+    if(ehPosicaoValida(posicao) != SUCESSO)
+    	retorno = POSICAO_INVALIDA;
+    else {
+    	if(existeEstruturaAuxiliar(posicao) != JA_TEM_ESTRUTURA_AUXILIAR)
+    		retorno = SEM_ESTRUTURA_AUXILIAR;
+    	else {
+    		if(estruturaAuxiliarVazia(posicao) != SUCESSO)
+    			retorno = ESTRUTURA_AUXILIAR_VAZIA;
+    		else
+    			retorno = vetorPrincipal[posicao - 1].qtdElementos;
+    	}
+    }
+    
     return retorno;
 }
 
