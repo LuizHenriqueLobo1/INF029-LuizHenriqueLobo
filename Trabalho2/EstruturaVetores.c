@@ -446,6 +446,21 @@ int getQuantidadeElementosEstruturaAuxiliar(int posicao) {
     return retorno;
 }
 
+// Pegar a soma da quantidade de elementos de todas as estrutuas auxiliares
+int getQuantidadeTotalElementos() {
+
+	int i, y;
+	int qtdTotalElementos = 0;
+
+	for(i = 0; i < TAM; i++) {
+		if(vetorPrincipal[i].qtdElementos > 0)
+			for(y = 0; y < vetorPrincipal[i].qtdElementos; y++)
+                qtdTotalElementos++;
+	}
+
+	return qtdTotalElementos;
+}
+
 /*
 Objetivo: montar a lista encadeada com cabeçote com todos os números presentes em todas as estruturas.
 Retorno (No*)
@@ -453,7 +468,31 @@ Retorno (No*)
     No*, ponteiro para o início da lista com cabeçote
 */
 No* montarListaEncadeadaComCabecote() {
-    return NULL;
+    
+    No *inicio = NULL;
+
+    int quantidadeTotalElementos = getQuantidadeTotalElementos();
+    int vetorTemp[quantidadeTotalElementos];
+    getDadosDeTodasEstruturasAuxiliares(vetorTemp);
+
+    int i;
+    
+    for(i = quantidadeTotalElementos; i >= 0; i--) {
+        inserirNaListaEncadeada(&inicio, vetorTemp[i]);
+    }
+
+    return inicio;
+}
+
+// Inserir valor na lista encadeada
+void inserirNaListaEncadeada(No** inicio, int valor) {
+
+	No *p;
+    p = (No*)malloc(sizeof(No));
+
+    p->conteudo = valor;
+    p->prox = *inicio;
+    *inicio = p;
 }
 
 /*
@@ -461,6 +500,14 @@ Objetivo: retorna os números da lista enceada com cabeçote armazenando em veto
 Retorno void
 */
 void getDadosListaEncadeadaComCabecote(No* inicio, int vetorAux[]) {
+
+    int y = 0;
+
+    while(inicio != NULL) {
+        vetorAux[y] = inicio->conteudo;
+        inicio = inicio->prox;
+        y++;
+    }
 }
 
 /*
@@ -470,6 +517,8 @@ Retorno
     void.
 */
 void destruirListaEncadeadaComCabecote(No** inicio) {
+    if(*inicio != NULL)
+        *inicio = NULL;
 }
 
 /*
