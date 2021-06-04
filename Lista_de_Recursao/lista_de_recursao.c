@@ -6,6 +6,7 @@ void main() {
 	questao1();
 	questao2();
 	questao3();
+	questao4();
 }
 
 void separadorInicio(char string[]) {
@@ -49,5 +50,21 @@ void questao3() {
 	separadorInicio("Questao 3");
 	printf("Numero invertido: ");
 	numero = inverteNumero(numero);
+	separadorFinal();
+}
+
+void questao4() {
+
+	int tamVetor = 5;
+	int vetor[tamVetor];
+	int i;
+	int soma;
+
+	for(i = 0; i < tamVetor; i++) {
+		vetor[i] = i + 1;
+	}
+
+	separadorInicio("Questao 4");
+	printf("Soma dos valores do vetor: %d", soma = somaInteirosVetor(vetor, tamVetor));
 	separadorFinal();
 }
