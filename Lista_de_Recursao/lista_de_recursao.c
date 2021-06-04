@@ -38,8 +38,8 @@ void questao2() {
 	separadorInicio("Questao 2");
 	printf("Sequencia Fibonacci:\n");
 	for(i = 0; i <= tamSeq; i++) {
-    	r = fibonacci(i);
-    	printf("%d ", r);       
+		r = fibonacci(i);
+		printf("%d ", r);       
 	}
 	separadorFinal();
 }
