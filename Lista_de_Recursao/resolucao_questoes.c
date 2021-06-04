@@ -30,3 +30,11 @@ int inverteNumero(int num) {
 		return inverteNumero(num);
 	}
 }
+
+// Q4
+int somaInteirosVetor(int vetor[], int tamVet) {
+	if(tamVet == 1)
+		return vetor[tamVet - 1];
+	else
+		return vetor[tamVet - 1] + somaInteirosVetor(vetor, tamVet - 1);
+}
