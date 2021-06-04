@@ -19,3 +19,14 @@ int fibonacci(int n) {
 	else 
 		return fibonacci(n - 1) + fibonacci(n - 2);
 }
+
+// Q3
+int inverteNumero(int num) {
+	if(num == 0)
+		return num;
+	else {
+		printf("%d", num % 10);
+		num /= 10;
+		return inverteNumero(num);
+	}
+}
