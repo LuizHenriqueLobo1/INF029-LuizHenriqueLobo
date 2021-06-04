@@ -38,3 +38,11 @@ int somaInteirosVetor(int vetor[], int tamVet) {
 	else
 		return vetor[tamVet - 1] + somaInteirosVetor(vetor, tamVet - 1);
 }
+
+// Q5
+int somatorioNumeros(int num) {
+	if(num == 0)
+		return 0;
+	else
+		return num + somatorioNumeros(num - 1);
+}
