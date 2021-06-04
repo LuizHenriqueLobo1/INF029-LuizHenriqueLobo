@@ -7,6 +7,7 @@ void main() {
 	questao2();
 	questao3();
 	questao4();
+	questao5();
 }
 
 void separadorInicio(char string[]) {
@@ -66,5 +67,15 @@ void questao4() {
 
 	separadorInicio("Questao 4");
 	printf("Soma dos valores do vetor: %d", soma = somaInteirosVetor(vetor, tamVetor));
+	separadorFinal();
+}
+
+void questao5() {
+
+	int n = 3;
+	int resultado = 0;
+
+	separadorInicio("Questao 5");
+	printf("Soma dos valores de 1 a N: %d", resultado = somatorioNumeros(n));
 	separadorFinal();
 }
