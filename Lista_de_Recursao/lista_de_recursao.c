@@ -5,6 +5,7 @@
 void main() {
 	questao1();
 	questao2();
+	questao3();
 }
 
 void separadorInicio(char string[]) {
@@ -38,5 +39,15 @@ void questao2() {
     	r = fibonacci(i);
     	printf("%d ", r);       
 	}
+	separadorFinal();
+}
+
+void questao3() {
+
+	int numero = 12345;
+
+	separadorInicio("Questao 3");
+	printf("Numero invertido: ");
+	numero = inverteNumero(numero);
 	separadorFinal();
 }
