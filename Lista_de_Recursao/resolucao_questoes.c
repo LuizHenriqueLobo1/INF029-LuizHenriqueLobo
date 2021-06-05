@@ -46,3 +46,11 @@ int somatorioNumeros(int num) {
 	else
 		return num + somatorioNumeros(num - 1);
 }
+
+// Q6
+int calcularKelevadoN(int k, int n) {
+	if(k == 0 && n == 0)
+		return 1;
+	else if(n > 1)
+		return k * calcularKelevadoN(k, n - 1);
+}
