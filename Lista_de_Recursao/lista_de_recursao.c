@@ -8,6 +8,7 @@ void main() {
 	questao3();
 	questao4();
 	questao5();
+	questao6();
 }
 
 void separadorInicio(char string[]) {
@@ -77,5 +78,16 @@ void questao5() {
 
 	separadorInicio("Questao 5");
 	printf("Soma dos valores de 1 a N: %d", resultado = somatorioNumeros(n));
+	separadorFinal();
+}
+
+void questao6() {
+	
+	int k = 5;
+	int n = 3;
+	int resultado = 0;
+
+	separadorInicio("Questao 6");
+	printf("K(%d) elevado a N(%d): %d", k, n, resultado = calcularKelevadoN(k,n ));
 	separadorFinal();
 }
