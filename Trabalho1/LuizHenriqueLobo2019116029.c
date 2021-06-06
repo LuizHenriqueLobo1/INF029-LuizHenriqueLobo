@@ -580,7 +580,7 @@ int q5(int num){
 	int tamNum = 0;
 	int numInvertido;
 
-	itoa(num, strNum, 10);
+	sprintf(strNum, "%d", num);
 	tamNum = strlen(strNum);
 
 	for(int i = 0; i < tamNum / 2; i++) {
