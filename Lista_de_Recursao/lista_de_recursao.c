@@ -9,6 +9,7 @@ void main() {
 	questao4();
 	questao5();
 	questao6();
+	questao7();
 }
 
 void separadorInicio(char string[]) {
@@ -89,5 +90,23 @@ void questao6() {
 
 	separadorInicio("Questao 6");
 	printf("K(%d) elevado a N(%d): %d", k, n, resultado = calcularKelevadoN(k,n ));
+	separadorFinal();
+}
+
+void questao7() {
+
+	float vetor[4] = {1.5, 2.3, 3.7, 4.2};
+	int i;
+
+	separadorInicio("Questao 7");
+	printf("Vet Original: ");
+	for(i = 0; i < 4; i++)
+		printf("%.1f ", vetor[i]);
+
+	inverteOrdemDosElementos(vetor, 0, 3);
+
+	printf("\nVet Invertido: ");
+	for(i = 0; i < 4; i++)
+		printf("%.1f ", vetor[i]);
 	separadorFinal();
 }

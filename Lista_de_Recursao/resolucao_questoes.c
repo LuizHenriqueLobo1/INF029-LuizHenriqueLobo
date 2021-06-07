@@ -54,3 +54,14 @@ int calcularKelevadoN(int k, int n) {
 	else if(n > 1)
 		return k * calcularKelevadoN(k, n - 1);
 }
+
+// Q7
+void inverteOrdemDosElementos(float vetor[], int inicio, int final) {
+	float aux;
+	if(inicio < final) {
+		aux = vetor[inicio];
+		vetor[inicio] = vetor[final];
+		vetor[final] = aux;
+		inverteOrdemDosElementos(vetor, inicio + 1, final - 1);
+	}
+}
