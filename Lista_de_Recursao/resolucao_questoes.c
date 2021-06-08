@@ -65,3 +65,11 @@ void inverteOrdemDosElementos(float vetor[], int inicio, int final) {
 		inverteOrdemDosElementos(vetor, inicio + 1, final - 1);
 	}
 }
+
+// Q8
+int mdc(int x, int y) {
+  if (y == 0)
+    return x;
+  else
+    return mdc(y, x % y);
+}
