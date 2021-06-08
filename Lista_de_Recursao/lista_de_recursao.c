@@ -10,6 +10,7 @@ void main() {
 	questao5();
 	questao6();
 	questao7();
+	questao8();
 }
 
 void separadorInicio(char string[]) {
@@ -108,5 +109,16 @@ void questao7() {
 	printf("\nVet Invertido: ");
 	for(i = 0; i < 4; i++)
 		printf("%.1f ", vetor[i]);
+	separadorFinal();
+}
+
+void questao8() {
+
+	int x = 12;
+	int y = 4;
+	int resultado = 0;
+
+	separadorInicio("Questao 8");
+	printf("MDC de X(%d) e Y(%d): %d", x, y, resultado = mdc(x, y));
 	separadorFinal();
 }
