@@ -11,6 +11,7 @@ void main() {
 	questao6();
 	questao7();
 	questao8();
+	questao10();
 }
 
 void separadorInicio(char string[]) {
@@ -120,5 +121,19 @@ void questao8() {
 
 	separadorInicio("Questao 8");
 	printf("MDC de X(%d) e Y(%d): %d", x, y, resultado = mdc(x, y));
+	separadorFinal();
+}
+
+void questao10() {
+
+	int numero = 25389202;
+	int nBusca = 2;
+	int qtd = 0;
+	int *k = &qtd;
+
+	separadorInicio("Questao 10");
+	procuraNumeroEmOutro(numero, k, nBusca);
+	printf("Numero Base: %d\nNumero Busca: %d", numero, nBusca);
+	printf("\nQtd Ocorrencias: %d", qtd);
 	separadorFinal();
 }

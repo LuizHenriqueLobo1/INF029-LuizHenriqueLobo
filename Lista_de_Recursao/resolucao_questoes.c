@@ -73,3 +73,15 @@ int mdc(int x, int y) {
   else
     return mdc(y, x % y);
 }
+
+// Q10
+int procuraNumeroEmOutro(int n, int *k, int nBusca) {
+	if(n==0)
+		return 0;
+	else {
+		if(nBusca == (n % 10))
+			*k += 1;
+		n /= 10;
+    return procuraNumeroEmOutro(n, k, nBusca);
+   }
+}
