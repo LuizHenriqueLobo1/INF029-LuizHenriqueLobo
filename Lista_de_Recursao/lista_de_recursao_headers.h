@@ -29,3 +29,4 @@ void questao13();
 // Outros
 void separadorInicio(char string[]);
 void separadorFinal();
+void separadorFinal2();
