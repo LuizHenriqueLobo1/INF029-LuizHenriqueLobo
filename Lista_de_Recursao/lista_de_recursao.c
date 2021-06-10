@@ -12,6 +12,9 @@ void main() {
 	questao7();
 	questao8();
 	questao10();
+	questao11();
+	questao12();
+	questao13();
 }
 
 void separadorInicio(char string[]) {
@@ -135,5 +138,38 @@ void questao10() {
 	procuraNumeroEmOutro(numero, k, nBusca);
 	printf("Numero Base: %d\nNumero Busca: %d", numero, nBusca);
 	printf("\nQtd Ocorrencias: %d", qtd);
+	separadorFinal();
+}
+
+void questao11() {
+
+	int num1 = 5;
+	int num2 = 6;
+	int resultado = 0;
+
+	resultado = multiplicacaoRecursiva(num1, num2);
+
+	separadorInicio("Questao 11");
+	printf("N1(%d) * N2(%d) = %d", num1, num2, resultado);
+	separadorFinal();
+}
+
+void questao12() {
+
+	int n = 7;
+
+	separadorInicio("Questao 12");
+	printf("Imprime Crescente:\n");
+	imprimeOrdemCrescente(n);
+	separadorFinal();
+}
+
+void questao13() {
+
+	int n = 7;
+
+	separadorInicio("Questao 13");
+	printf("Imprime Decrescente:\n");
+	imprimeOrdemDecrescente(n);
 	separadorFinal();
 }
