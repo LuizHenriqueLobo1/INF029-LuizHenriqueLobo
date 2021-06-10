@@ -16,6 +16,7 @@ void main() {
 	questao12();
 	questao13();
 	questao14();
+	questao15();
 }
 
 void separadorInicio(char string[]) {
@@ -190,5 +191,15 @@ void questao14() {
 	separadorInicio("Questao 14");
 	printf("Imprime Nums Pares de 0 a N(%d):\n", n);
 	imprimeNumerosPares(n);
+	separadorFinal2();
+}
+
+void questao15() {
+
+	int n = 20;
+
+	separadorInicio("Questao 15");
+	printf("Imprime Nums Pares de 0 a N(%d):\n", n);
+	imprimeNumerosParesDecrescente(n);
 	separadorFinal2();
 }
