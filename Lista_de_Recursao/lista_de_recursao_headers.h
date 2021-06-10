@@ -11,6 +11,7 @@ int procuraNumeroEmOutro(int n, int *k, int nBusca);
 int multiplicacaoRecursiva(int n1, int n2);
 void imprimeOrdemCrescente(int n);
 void imprimeOrdemDecrescente(int n);
+void imprimeNumerosPares(int n);
 
 // Chamadas das questões
 void questao1();
@@ -25,6 +26,7 @@ void questao10();
 void questao11();
 void questao12();
 void questao13();
+void questao14();
 
 // Outros
 void separadorInicio(char string[]);
