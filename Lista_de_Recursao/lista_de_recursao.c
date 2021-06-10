@@ -25,14 +25,17 @@ void separadorFinal() {
 	printf("\n-------------------------------\n");
 }
 
+void separadorFinal2() {
+	printf("\n--------------------------------\n");
+}
+
 void questao1() {
 
 	int n = 6;
-	
-	n = fatorial(n);
+	int fat = 0;
 	
 	separadorInicio("Questao 1");
-	printf("Fatorial: %d", n);
+	printf("Fatorial de %d: %d", n, fat = fatorial(n));
 	separadorFinal();
 }
 
@@ -43,7 +46,7 @@ void questao2() {
 	int i;
 
 	separadorInicio("Questao 2");
-	printf("Sequencia Fibonacci:\n");
+	printf("Seq Fibonacci ate %d nums:\n", tamSeq);
 	for(i = 0; i <= tamSeq; i++) {
 		r = fibonacci(i);
 		printf("%d ", r);       
@@ -56,6 +59,8 @@ void questao3() {
 	int numero = 12345;
 
 	separadorInicio("Questao 3");
+	printf("Numero original: ");
+	printf("%d\n", numero);
 	printf("Numero invertido: ");
 	numero = inverteNumero(numero);
 	separadorFinal();
@@ -73,7 +78,10 @@ void questao4() {
 	}
 
 	separadorInicio("Questao 4");
-	printf("Soma dos valores do vetor: %d", soma = somaInteirosVetor(vetor, tamVetor));
+	printf("Valores do vetor:\n");
+	for(i = 0; i < tamVetor; i++)
+		printf("%d ", vetor[i]);
+	printf("\nSoma dos valores do vetor: %d", soma = somaInteirosVetor(vetor, tamVetor));
 	separadorFinal();
 }
 
@@ -138,7 +146,7 @@ void questao10() {
 	procuraNumeroEmOutro(numero, k, nBusca);
 	printf("Numero Base: %d\nNumero Busca: %d", numero, nBusca);
 	printf("\nQtd Ocorrencias: %d", qtd);
-	separadorFinal();
+	separadorFinal2();
 }
 
 void questao11() {
@@ -151,7 +159,7 @@ void questao11() {
 
 	separadorInicio("Questao 11");
 	printf("N1(%d) * N2(%d) = %d", num1, num2, resultado);
-	separadorFinal();
+	separadorFinal2();
 }
 
 void questao12() {
@@ -161,7 +169,7 @@ void questao12() {
 	separadorInicio("Questao 12");
 	printf("Imprime Crescente:\n");
 	imprimeOrdemCrescente(n);
-	separadorFinal();
+	separadorFinal2();
 }
 
 void questao13() {
@@ -171,5 +179,5 @@ void questao13() {
 	separadorInicio("Questao 13");
 	printf("Imprime Decrescente:\n");
 	imprimeOrdemDecrescente(n);
-	separadorFinal();
+	separadorFinal2();
 }
