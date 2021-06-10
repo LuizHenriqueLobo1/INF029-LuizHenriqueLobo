@@ -116,3 +116,11 @@ void imprimeNumerosPares(int n) {
 	if(n % 2 == 0)
 		printf("%d ", n);
 }
+
+// Q15
+void imprimeNumerosParesDecrescente(int n) {
+	if(n % 2 == 0)
+		printf("%d ", n);
+	if(n != 0)
+		imprimeNumerosParesDecrescente(n - 1);
+}
