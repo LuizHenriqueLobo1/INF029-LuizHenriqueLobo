@@ -108,3 +108,11 @@ void imprimeOrdemDecrescente(int n) {
 	if(n != 0)
 		imprimeOrdemDecrescente(n - 1);
 }
+
+// Q14
+void imprimeNumerosPares(int n) {
+	if(n != 0)
+		imprimeNumerosPares(n - 1);
+	if(n % 2 == 0)
+		printf("%d ", n);
+}
