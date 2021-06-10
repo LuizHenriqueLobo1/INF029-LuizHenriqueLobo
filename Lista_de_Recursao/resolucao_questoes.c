@@ -85,3 +85,26 @@ int procuraNumeroEmOutro(int n, int *k, int nBusca) {
     return procuraNumeroEmOutro(n, k, nBusca);
    }
 }
+
+// Q11
+int multiplicacaoRecursiva(int n1, int n2) {
+	if(n1 == 0 || n2 == 0)
+		return 0;
+	else
+		if(n2 != 0)
+			return n1 + multiplicacaoRecursiva(n1, n2 - 1);	
+}
+
+// Q12
+void imprimeOrdemCrescente(int n) {
+	if(n != 0)
+		imprimeOrdemCrescente(n - 1);
+	printf("%d ", n);
+}
+
+// Q13
+void imprimeOrdemDecrescente(int n) {
+	printf("%d ", n);
+	if(n != 0)
+		imprimeOrdemDecrescente(n - 1);
+}
