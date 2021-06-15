@@ -13,6 +13,7 @@ void imprimeOrdemCrescente(int n);
 void imprimeOrdemDecrescente(int n);
 void imprimeNumerosPares(int n);
 void imprimeNumerosParesDecrescente(int n);
+void decimalParaBinario(int n);
 
 // Chamadas das questões
 void questao1();
@@ -29,6 +30,7 @@ void questao12();
 void questao13();
 void questao14();
 void questao15();
+void questao35();
 
 // Outros
 void separadorInicio(char string[]);
