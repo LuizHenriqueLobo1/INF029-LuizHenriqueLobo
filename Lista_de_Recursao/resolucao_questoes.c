@@ -124,3 +124,13 @@ void imprimeNumerosParesDecrescente(int n) {
 	if(n != 0)
 		imprimeNumerosParesDecrescente(n - 1);
 }
+
+// Q35
+void decimalParaBinario(int n) {
+	if(n < 2)
+		printf("%d", n);
+	else {
+		decimalParaBinario(n / 2);
+		printf("%d", n % 2);
+	}
+}
